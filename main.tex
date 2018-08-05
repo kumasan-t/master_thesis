@@ -1,14 +1,29 @@
-\documentclass[12pt, a4paper, oneside]{book}
-\usepackage{makeidx}
+\documentclass[LaM, twoside, english, noexaminfo]{sapthesis}
 \usepackage{subfiles}
 
 \title{Dummy Thesis Title}
 \author{Lorenzo Travagliati}
+\IDnumber{1495035}
+\course[Faculty of Information Engineering Computer Science and Statistics]{Corso di Laurea Magistrale in Engineering in Computer Science}
+\courseorganizer{Faculty of Information Engineering, Computer Science and Statistics}
+\submitdate{2017/2018}
+\copyyear{2018}
+\advisor{Prof.ssa Silvia Bonomi}
+\authoremail{1495035.travagliati@studenti.uniroma1.it}
+
 \makeindex
-\begin{document}	
+\begin{document}
+	
+	\frontmatter
 	\maketitle
+	
+	\dedication{Dedicated to\\ Satan}
+	\begin{abstract}
+	This thesis deals with my demons and my inner shadows.
+	\end{abstract}
+	
 	\tableofcontents
-	\newpage
+	\mainmatter
 	\subfile{introduction/intro}
 	\subfile{material_methods/material_methods}
 	\subfile{results/results}
