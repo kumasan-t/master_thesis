@@ -1,5 +1,6 @@
 \documentclass[LaM, twoside, english, noexaminfo]{sapthesis}
 \usepackage{subfiles}
+\usepackage{setspace}
 
 \title{Dummy Thesis Title}
 \author{Lorenzo Travagliati}
@@ -11,6 +12,7 @@
 \advisor{Prof.ssa Silvia Bonomi}
 \authoremail{1495035.travagliati@studenti.uniroma1.it}
 
+\onehalfspace
 \makeindex
 \begin{document}
 	
@@ -25,9 +27,11 @@
 	\tableofcontents
 	\mainmatter
 	\subfile{introduction/intro}
+	\subfile{background/background}
 	\subfile{material_methods/material_methods}
 	\subfile{results/results}
 	\subfile{discussion/discussion}
 	\subfile{conclusion/conclusion}
-	\subfile{bibliography/bibliography}
+	\bibliographystyle{plain}
+	\bibliography{bibliography.bib}
 \end{document}
