@@ -1,6 +1,10 @@
-\documentclass[LaM, twoside, english, noexaminfo]{sapthesis}
+\documentclass[LaM, oneside, english, noexaminfo]{sapthesis}
 \usepackage{subfiles}
 \usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{tabulary}
+\usepackage{listings}
+\graphicspath{ {./background/images/} }
 
 \title{Dummy Thesis Title}
 \author{Lorenzo Travagliati}
@@ -14,6 +18,7 @@
 
 \onehalfspace
 \makeindex
+
 \begin{document}
 	
 	\frontmatter
@@ -34,4 +39,5 @@
 	\subfile{conclusion/conclusion}
 	\bibliographystyle{plain}
 	\bibliography{bibliography.bib}
+	
 \end{document}

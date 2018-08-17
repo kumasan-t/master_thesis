@@ -1,8 +1,51 @@
 \begin{thebibliography}{1}
 
+\bibitem{Buterin2014}
+Vitalik Buterin.
+\newblock {A next-generation smart contract and decentralized application
+  platform}.
+\newblock {\em Etherum}, (January):1--36, 2014.
+
+\bibitem{Decker2013}
+Christian Decker and Roger Wattenhofer.
+\newblock {Information propagation in the Bitcoin network}.
+\newblock {\em 13th IEEE International Conference on Peer-to-Peer Computing,
+  IEEE P2P 2013 - Proceedings}, (September):1--10, 2013.
+
+\bibitem{Dwork1992}
+Cynthia Dwork and Moni Naor.
+\newblock {Pricing via Processing or Combatting Junk Mail}.
+\newblock In {\em Advances in Cryptology — CRYPTO' 92}, pages 139--147.
+  Springer Berlin Heidelberg, Berlin, Heidelberg, 1992.
+
+\bibitem{Eyal2013}
+Ittay Eyal and Emin~Gun Sirer.
+\newblock {Majority is not Enough: Bitcoin Mining is Vulnerable}.
+\newblock {\em Lecture Notes in Computer Science (including subseries Lecture
+  Notes in Artificial Intelligence and Lecture Notes in Bioinformatics)},
+  8437:436--454, nov 2013.
+
+\bibitem{Lamport1982}
+Leslie Lamport, Robert Shostak, and Marshall Pease.
+\newblock {The Byzantine Generals Problem}.
+\newblock {\em ACM Transactions on Programming Languages and Systems},
+  4(3):382--401, 1982.
+
+\bibitem{Malone2014}
+D.~Malone and K.J. O'Dwyer.
+\newblock {Bitcoin Mining and its Energy Footprint}.
+\newblock {\em 25th IET Irish Signals {\&} Systems Conference 2014 and 2014
+  China-Ireland International Conference on Information and Communities
+  Technologies (ISSC 2014/CIICT 2014)}, pages 280--285, 2014.
+
 \bibitem{Nakamoto2008}
 Satoshi Nakamoto.
 \newblock {Bitcoin: A Peer-to-Peer Electronic Cash System}.
 \newblock {\em Www.Bitcoin.Org}, page~9, 2008.
+
+\bibitem{Wust2017}
+Karl W{\"{u}}st and Arthur Gervais.
+\newblock {Do you need a Blockchain?}
+\newblock {\em IACR Cryptology ePrint Archive}, pages 1--7, 2017.
 
 \end{thebibliography}

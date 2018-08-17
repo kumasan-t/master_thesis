@@ -1,4 +1,66 @@
-@article{Apostolaki2017,
+@incollection{Dwork1992,
+address = {Berlin, Heidelberg},
+author = {Dwork, Cynthia and Naor, Moni},
+booktitle = {Advances in Cryptology — CRYPTO' 92},
+doi = {10.1007/3-540-48071-4_10},
+file = {:D$\backslash$:/Documenti/Mendeley Desktop/1992/Dwork, Naor/Dwork, Naor - 1992 - Pricing via Processing or Combatting Junk Mail.pdf:pdf},
+mendeley-groups = {Blockchain},
+pages = {139--147},
+publisher = {Springer Berlin Heidelberg},
+title = {{Pricing via Processing or Combatting Junk Mail}},
+url = {http://link.springer.com/10.1007/3-540-48071-4{\_}10},
+year = {1992}
+}
+
+@article{Lamport1982,
+abstract = {Reliable computer systems must handle malfunctioning components that give conflicting information to different parts of the system. This situation can be expressed abstractly in terms of a group of generals of the Byzantine army camped with their troops around an enemy city. Communicating only by messenger, the generals must agree upon a common battle plan. However, one of more of them may be traitors who will try to confuse the others. The problem is to find an algorithm to ensure that the loyal generals will reach agreement. It is shown that, using only oral messages, this problem is solvable if and only if more than two-thirds of the generals are loyal; so a single traitor can confound two loyal generals. With unforgeable written messages, the problem is solvable for any number of generals and possible traitors. Applications of the solutions to reliable computer systems are then discussed.},
+archivePrefix = {arXiv},
+arxivId = {arXiv:1011.1669v3},
+author = {Lamport, Leslie and Shostak, Robert and Pease, Marshall},
+doi = {10.1145/357172.357176},
+eprint = {arXiv:1011.1669v3},
+file = {:D$\backslash$:/Documenti/Mendeley Desktop/1982/Lamport, Shostak, Pease/Lamport, Shostak, Pease - 1982 - The Byzantine Generals Problem.pdf:pdf},
+isbn = {0164-0925},
+issn = {01640925},
+journal = {ACM Transactions on Programming Languages and Systems},
+mendeley-groups = {Blockchain},
+number = {3},
+pages = {382--401},
+pmid = {25246403},
+title = {{The Byzantine Generals Problem}},
+url = {http://portal.acm.org/citation.cfm?doid=357172.357176},
+volume = {4},
+year = {1982}
+}
+
+@article{Buterin2014,
+abstract = {Satoshi Nakamoto's development of Bitcoin in 2009 has often been hailed as a radical development in money and currency, being the first example of a digital asset which simultaneously has no backing or "intrinsic value" and no centralized issuer or controller. However, another, arguably more important, part of the Bitcoin experiment is the underlying blockchain technology as a tool of distributed consensus, and attention is rapidly starting to shift to this other aspect of Bitcoin. Commonly cited alternative applications of blockchain technology include using on-blockchain digital assets to represent custom currencies and financial instruments ("colored coins"), the ownership of an underlying physical device ("smart property"), non-fungible assets such as domain names ("Namecoin"), as well as more complex applications involving having digital assets being directly controlled by a piece of code implementing arbitrary rules ("smart contracts") or even blockchain-based "decentralized autonomous organizations" (DAOs). What Ethereum intends to provide is a blockchain with a built-in fully fledged Turing-complete programming language that can be used to create "contracts" that can be used to encode arbitrary state transition functions, allowing users to create any of the systems described above, as well as many others that we have not yet imagined, simply by writing up the logic in a few lines of code.},
+author = {Buterin, Vitalik},
+doi = {10.5663/aps.v1i1.10138},
+file = {:D$\backslash$:/Documenti/Mendeley Desktop/2009/Buterin/Buterin - 2009 - A NEXT GENERATION SMART CONTRACT {\&} DECENTRALIZED APPLICATION PLATFORM.pdf:pdf},
+isbn = {9780101808422},
+issn = {1923-3299},
+journal = {Etherum},
+number = {January},
+pages = {1--36},
+pmid = {21382811},
+title = {{A next-generation smart contract and decentralized application platform}},
+url = {http://buyxpr.com/build/pdfs/EthereumWhitePaper.pdf},
+year = {2014}
+}
+
+@article{Mendling2017,
+archivePrefix = {arXiv},
+arxivId = {arXiv:1704.03610v2},
+author = {Mendling, Jan and Weber, Ingo and Aalst, Wil Van Der and Cabanillas, Cristina and Daniel, Florian and Ciccio, Claudio Di and Dumas, Marlon and Dustdar, Schahram and Gal, Avigdor and Governatori, Guido and Hull, Richard and Rosa, Marcello La and Leopold, Henrik and Leymann, Frank and Recker, Jan and Reichert, Manfred and Hajo, A and Rogge-solti, Andreas and Rosemann, Michael and Schulte, Stefan and Singh, Munindar P and Slaats, Tijs and Staples, Mark and Weidlich, Matthias and Weske, Mathias and Xu, Xiwei and Zhu, Liming},
+eprint = {arXiv:1704.03610v2},
+file = {:D$\backslash$:/Documenti/Mendeley Desktop/2017/Mendling et al/Mendling et al. - 2017 - Blockchains for Business Process Management - Challenges and Opportunities.pdf:pdf},
+mendeley-groups = {Blockchain,Business Process Modeling},
+pages = {1--20},
+title = {{Blockchains for Business Process Management - Challenges and Opportunities}},
+year = {2017}
+
+}@article{Apostolaki2017,
 abstract = {As the most successful cryptocurrency to date, Bitcoin constitutes a target of choice for attackers. While many attack vectors have already been uncovered, one important vector has been left out though: attacking the currency via the Internet routing infrastructure itself. Indeed, by manipulating routing advertisements (BGP hijacks) or by naturally intercepting traffic, Autonomous Systems (ASes) can intercept and manipulate a large fraction of Bitcoin traffic. This paper presents the first taxonomy of routing attacks and their impact on Bitcoin, considering both small-scale attacks, targeting individual nodes, and large-scale attacks, targeting the network as a whole. While challenging, we show that two key properties make routing attacks practical: (i) the efficiency of routing manipulation; and (ii) the significant centralization of Bitcoin in terms of mining and routing. Specifically, we find that any network attacker can hijack few ({\textless}100) BGP prefixes to isolate {\~{}}50{\%} of the mining power---even when considering that mining pools are heavily multi-homed. We also show that on-path network attackers can considerably slow down block propagation by interfering with few key Bitcoin messages. We demonstrate the feasibility of each attack against the deployed Bitcoin software. We also quantify their effectiveness on the current Bitcoin topology using data collected from a Bitcoin supernode combined with BGP routing data. The potential damage to Bitcoin is worrying. By isolating parts of the network or delaying block propagation, attackers can cause a significant amount of mining power to be wasted, leading to revenue losses and enabling a wide range of exploits such as double spending. To prevent such effects in practice, we provide both short and long-term countermeasures, some of which can be deployed immediately.},
 archivePrefix = {arXiv},
 arxivId = {1605.07524},
@@ -336,6 +398,22 @@ url = {http://epubs.siam.org/doi/abs/10.1137/0122040},
 volume = {22},
 year = {1972}
 }
+
+@article{Malone2014,
+abstract = {Bitcoin is a digital cryptocurrency that has generated considerable public interest, including both booms in value and busts of exchanges dealing in Bitcoins. One of the fundamental concepts of Bitcoin is that work, called mining, must be done in checking all monetary transactions, which in turn creates Bitcoins as a reward. In this paper we look at the energy consumption of Bitcoin mining. We consider if and when Bitcoin mining has been profitable compared to the energy cost of performing the mining, and conclude that specialist hardware is usually required to make Bitcoin mining profitable. We also show that the power currently used for Bitcoin mining is comparable to Ireland's electricity consumption.},
+author = {Malone, D. and O'Dwyer, K.J.},
+doi = {10.1049/cp.2014.0699},
+file = {:D$\backslash$:/Documenti/Mendeley Desktop/2014/Dwyer, Malone/Dwyer, Malone - 2014 - Bitcoin Mining and its Energy Footprint.pdf:pdf},
+isbn = {978-1-84919-924-7},
+journal = {25th IET Irish Signals {\&} Systems Conference 2014 and 2014 China-Ireland International Conference on Information and Communities Technologies (ISSC 2014/CIICT 2014)},
+keywords = {bitcoin},
+mendeley-groups = {Blockchain},
+pages = {280--285},
+title = {{Bitcoin Mining and its Energy Footprint}},
+url = {http://digital-library.theiet.org/content/conferences/10.1049/cp.2014.0699},
+year = {2014}
+}
+
 @article{McAuley2007,
 abstract = {The so-called rich-club phenomenon in a complex network is characterized when nodes of higher degree (hubs) are better connected among themselves than are nodes with smaller degree. The presence of the rich-club phenomenon may be an indicator of several interesting high-level network properties, such as tolerance to hub failures. Here we investigate the existence of the rich-club phenomenon across the hierarchical degrees of a number of real-world networks. Our simulations reveal that the phenomenon may appear in some hierarchies but not in others and, moreover, that it may appear and disappear as we move across hierarchies. This reveals the interesting possibility of non-monotonic behavior of the phenomenon; the possible implications of our findings are discussed.},
 archivePrefix = {arXiv},
