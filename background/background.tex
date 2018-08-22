@@ -1,5 +1,7 @@
 \begin{document}
 	\chapter{Background}
+	
+	\section{Bitcoin}
 		The Bitcoin blockchain makes its first appearance in 2008, in an white paper written by someone under the pseudonym of Satoshi Nakamoto \cite{Nakamoto2008} and published on the Cypherpunks mailing list in what is described as "A purely peer-to-peer version of electronic cash that would allow online payments to be sent directly from one party to another without going through a financial institution". In his paper, Nakamoto addresses the problem of the trust-based transaction processors. In his work, Nakamoto asserts that the need of third party in electronic payments brings inherent weaknesses:
 		\begin{itemize}
 			\item There is no possibility of completely non-reversibile transactions (financial institutes cannot avoid to mediating disputes).
@@ -8,7 +10,7 @@
 		\end{itemize}
 		Nakamoto suggestion is a peer-to-peer electronic cash system based on the concept of \textit{proof} instead of \textit{trust}: his idea is to make transactions that are computationally impractical to reverse along with a peer-to-peer distributed timestamp service to generate the computational proof of the chronological order the transactions. The other claim Nakamoto does on his paper is that such a system is resilient to attacks as long as the honest nodes of the peer-to-peer network control more computational power than any other cooperating group of attacker nodes, implicitly saying that the system is tolerant to Byzantine failures \cite{Lamport1982}.
 		
-	\section{Bitcoin Transactions}
+	\subsection{Bitcoin Transactions}
 		Nakamoto defines the peer-to-peer electronic cash system as a chain of digital transactions where each owner transfers the coin to the next by signing (digitally, in a cryptographic sense) the hash of the previous transactions and the public key of the receiver. The receiver can then verify the signatures to ensure that the chain of ownership was legal. 
 		
 		\begin{figure}
@@ -16,12 +18,12 @@
 			\includegraphics[width=10cm]{transactions.png}
 			\centering	
 		\end{figure}
-	
+		
 		The only problem here is that the payee can't prove that the amount the previous owner passed to it was double-spent before the change of ownership. That is, without the full-knowledge of the chronological order of the transactions, a malicious attacker can effectively reuse its money before the payee is able to use it. 
 		
-		What is needed then is some sort of timestamp service that could put guarantees over the chronological order of the transactions. This is the \textit{trust} that a third party electronic cash system requires to work and what such system does is essentially to check that there exists one and only transaction from the sender to the receiver. Furthermore, this means that a system is required to have the \textit{full-knowledge} of its history, meaning that a decentralized system has as a requirement an \textit{agreement} over a single full history of the transactions. Each transaction must be broadcasted among all the nodes of the network.
+		What is needed then is some sort of timestamps service that could put guarantees over the chronological order of the transactions. This is the \textit{trust} that a third party electronic cash system requires for it to work and what such system does is essentially to check that there exists one and only transaction from the sender to the receiver. Furthermore, this means that a system is required to have the \textit{full-knowledge} of its history, meaning that a decentralized system has as a requirement an \textit{agreement} over a single full history of the transactions. Each transaction must be broadcasted among all the nodes of the network.
 		
-	\section{Bitcoin Blockchain}
+	\subsection{Bitcoin Blockchain}
 		The solution that Bitcoin (and the majority of the other cryptocurrencies) adopted to provide the full history of the Bitcoin transaction is to store every user's transaction informations on a public ledger replicated among all the nodes of the network. These information are collected in blocks of transactions and each block refers to its predecessor by including its hash.
 		
 		\begin{figure}
@@ -34,7 +36,7 @@
 		
 		What is required then is that the users must all agree on the very same public ledger in order to be sure that a transaction has not been double-spent.
 		
-	\section{Consensus Mechanism}
+	\subsection{Consensus Mechanism}
 		The core innovation and the success of the blockchain technology resides in the consensus protocol which will be referred as \textit{Nakamoto Consensus}. Nakamoto Consensus main goal is to reach an agreement over the same public ledger owned by every node of the network, i.e. old blocks and new blocks must be the same for everyone.
 		
 		The trick here is to use a challenging computational puzzle (that Nakamoto in his paper calls \textit{Proof-of-work}, but it's a misnomer\footnote{Bitcoin's PoW is not a real Proof of Work because it's a probabilistic puzzle, i.e. with a certain luck one is capable to find a solution with very little work. The very first Proof of Work was invented in 1992 by C. Dwork and M. Naor as an anti-spam system \cite{Dwork1992}}) to determine the next block in the chain. Every user can work on the puzzle and try their luck to get the possibility to find a new block.
@@ -49,7 +51,7 @@
 		\end{enumerate}		
 		This verification is performed by bitcoin nodes. It would be useless for a malicious user to forge invalid blocks, because any invalid block (malformed blocks, blocks that contain invalid transactions or blocks whose proof-of-work doesn't resolve the puzzle) would be discarded by the honest peers of the network.
 		
-		It is possible though that two proof-of-work are found within a short time window. This situation is known as a \textit{temporary fork}, a situation in which the blockchain is split in two chains of equal size and was found to happen with a rate of 1,69 every 100 blocks (\(r = 1,69\%\)) (C. Decker, R. Wattenhofer, 2013). Miners will start to produce a block for either one of the two temporary heads of the chain; the random nature of the computational puzzle will eventually extend one of the two forks and sooner or later every node in the network will reach agreement over the longest chain. Resolving a fork is a crucial matter as forks enable a disruptive attack on the network known as \textit{selfish mining} which reduces the computational powers requirements for attackers from 50\% of the total computational power to 33\% \cite{Eyal2013}. 
+		It is possible though that two proof-of-work are found within a short time window. This situation is known as a \textit{temporary fork}, a situation in which the blockchain is split in two chains of equal size and was found to happen with a rate of 1,69 every 100 blocks (\(r = 1,69\%\)) (C. Decker, R. Wattenhofer, 2013). Miners will start to produce a block for either one of the two temporary heads of the chain; the random nature of the computational puzzle will eventually extend one of the two forks and sooner or later every node in the network will reach agreement over the longest chain. Resolving a fork is a crucial matter as forks enable a disruptive attack on the network known as \textit{selfish mining} which reduces the computational powers requirements for attackers from 50\% of the total computational power to 33\% \cite{Eyal2013}. Because of this possibility, it has been discovered that Nakamoto suggestion for Byzantine Agreement doesn’t really solve Consensus but solves a weaker version of Consensus in which only agreement is satisfied but validity cannot be guaranteed with overwhelming probability both in synchronous \cite{Garay2015} and in asynchronous settings \cite{Pass2016}.
 		
 		Although a fork condition happens not so often, it is always advised to wait at least 6 confirmation blocks (roughly one hour) before considering a transaction to be valid.
 		
@@ -57,8 +59,6 @@
 		
 		A node who decides to actively participate by creating new blocks is called \textit{miner}. What a miner does is to gather the maximum number of transactions that can fit in a block (whose size is fixed) and to find a value (\textit{nonce}) that hash the block and in the meantime whose hash is lesser than a target. More precisely, in order for a block to be valid, the SHA-256 hash of a block's header must be lower to the current \textit{target}, with this last one being a 256-bit number that all the Bitcoin clients share. Finding a block is a cryptographic puzzle, a simple brute force attack on the SHA-256 protocol, whose goal, by picking nonces at random, is to find a hash with \(d\) consecutive zero bits, where \(d\) is called \textit{difficulty} and is derived from the target value in the following way:
 		
-		\newpage
-	
 		\[ d = 8 + \frac{log(D)}{16}\] 
 		where
 		\[D = \frac{\text{max difficulty}}{\text{target}}\]
@@ -69,23 +69,25 @@
 		
 		The incentive also protects the system from attackers: suppose an attacker is able to assemble the majority of the computational power, then he would have to choose between using this power to enable a double-spend attack or to generate new coins. It is much more profitable for him to behave good and play by the rules than to destroy the currency.
 		
-		\section{Ownership}
-		
-		There is no concept of "account" in Bitcoin. \textit{Ownership} of the currency means knowledge of the private key that is capable to redeem a certain output.
-		
-		Each transaction output has a signature validation routine (a script) that verify the ownership for those that will claim it. This routine is called \textit{scriptPubKey}, also known as "pay-to-pub-key-hash". It is a script written in the Bitcoin scripting language, a Forth-like, stack language that includes several built-in operations called \textit{opcodes}. 
-		
-		ECDSA is the protocol used by the Bitcoin network to provide a pair of private and public keys. Every Bitcoin address is the result of the hash of the public portion of the ECDSA private/public key. The amount of Bitcoins that reside in an address can be spent only if a user can prove with his signature that he is the owner of the Bitcoin address. To redeem the coins of an address, the owner proves his identity by inputting the signature and the public key of the \textit{scriptSig} to a \textit{scriptPubKey} of a previous transaction.
-		
 		\newpage
 		
+		\subsection{Ownership}
+		
+		Bitcoin relies on cryptography to allow users to perform operations in a completely secure and private way, making use of \textit{digital signatures} to prove one's identity and \textit{hash function} to verify the integrity of the data in the system.
+		There is no concept of "account" in Bitcoin. \textit{Ownership} of the currency means knowledge of the private key that is capable to redeem a certain output. 	Bitcoin transactions express the transfer of value from one \textit{Bitcoin address} to another. A Bitcoin address is the partial hash of a user public keys and it is represented as a string of 26-35 alphanumeric characters.
+		
+		Each transaction output has a signature validation routine (a script) that verifies the ownership for those that will claim it. This routine is called \textit{scriptPubKey}, also known as "pay-to-pub-key-hash" or P2PKH. It is a script written in the Bitcoin scripting language, a Forth-like, stack language that includes several built-in operations called \textit{opcodes}. 
+		
+		ECDSA is the protocol used by the Bitcoin network to provide a pair of private and public keys to every user. Every Bitcoin address is the result of the hash of the public portion of the ECDSA private/public key. The amount of Bitcoins that reside in an address can be spent only if a user can prove with his signature that he is the owner of the Bitcoin address. To redeem the coins of an address, the owner proves his identity by inputting the signature and the public key of the \textit{scriptSig} to a \textit{scriptPubKey} of a previous transaction.
+		
 		Given the following \textit{scriptSig} and \textit{scriptPubKey}:
+		
 		\begin{verbatim}
 		scriptPubKey: OP_DUP OP_HASH160 <pubKeyHash> OP_EQUALVERIFY OP_CHECKSIG
 		scriptSig: <sig> <pubKey>
 		\end{verbatim}
 		
-		The validation \footnote{from the Bitcoin wiki. https://en.bitcoin.it/wiki/Transaction\#Pay-to-PubkeyHash}:
+		the script will execute in the following way\footnote{from the Bitcoin wiki. https://en.bitcoin.it/wiki/Transaction\#Pay-to-PubkeyHash}:
 		\begin{center}
 			\begin{tabulary}{\textwidth}{|L|C|L|}
 			\hline
@@ -101,4 +103,57 @@
 			\end{tabulary}
 		\end{center}
 		
+		\section{Scaling issue}
+		
+		Bitcoin has two main limitation that are strongly correlated: throughput of transactions processed and disk space occupied from the blockchain. The correlation is trivial: as long as a block holds more transactions, the throughput increases and the same does the size of the block. Balancing the trade-off is crucial to the cryptocurrency success or failure because either Bitcoin is small in size but is unable then to process more than a few transactions or either it becomes capable to process a great number of transactions while having huge increase in blockchain size. 
+		
+		The scaling debate as its root since the very first few days of the Bitcoin life: initially set to 1MB per block\footnote{https://github.com/bitcoin/bitcoin/commit/a30b56ebe76ffff9f9cc8a6667186179413c6349\#diff-118fcbaaba162ba17933c7893247df3aR2614}, was later changed to a soft-cap of 250KB for newly created blocks\footnote{https://github.com/bitcoin/bitcoin/commit/c555400ca134991e39d5e3a565fcd2215abe56f6} and later raised up to 750kB\footnote{https://github.com/bitcoin/bitcoin/commit/ad898b40aaf06c1cc7ac12e953805720fc9217c0\#diff-e8db9b851adc2422aadfffca88f14c91R39}. Proposal for a further increase of the maximum block size up to 8MB were made and discussed\footnote{https://github.com/bitcoin/bitcoin/pull/6341}, but were found too risky. Some of these debates resulted in hard-forks, a split that occurs when the underlying protocol changes, thus new \textit{alt-coins} born.
+		By the end of the first half of 2015 the blocks were 40\% full. The risk of a saturated network was real, and a number of suggestion came from the Bitcoin developers (as well a proposal for a 4MB block size increase and a 12 seconds latency for each block \cite{Croman}, which are the settings that theoretically maximize the \textit{effective throughput}). 
+		
+		\section{Lightning Network}
+		
+		In early 2016, J. Poon and T. Dryja released a white paper where a Bitcoin layer 2 decentralized payment system, called Lightning Network, is proposed. The goal of the Lightning Network is addressing the scaling problem not on the Bitcoin protocol itself, but by building on top of the Bitcoin system a network of peer-to-peer micro-payment channels where each transactions takes place off-chain.
+		A micropayment channel is a trustless relationship between two peers of the Bitcoin network, where these two party continuously exchange coins and update their balances, avoiding to broadcast the transaction until both reach an agreement over a final state. The idea of micropayment channels is not new in the Bitcoin community and it has been around since 2013\cite{Micropayments:Online}\cite{Micropayments:Bitcoinj}. The intuition in Lightning Network was to connect the channels each other in which those who want to send a payment to any other peer in the network, ask other users to cooperate in a trustless way to route the payment to the desired receiver.
+		
+		\subsection{Bi-Directional Payment Channels}
+		
+		The building block of the Lightning Network are bi-directional payment channels, channels in which a payer sends money to a payee and vice-versa. To build such channels it is required to leverage on the timestamp property of the blockchain and furthermore, a special redeem script is needed along with some particular op-codes. The core ingredients for a bi-directional channels are:
+		\begin{itemize}
+			\item \textit{2-of-2 Multisignature addresses}: Bitcoin addresses requires to verify two signatures instead of just one (as seen on the scriptPubKey example). An example of real case of 2-of-2 multisignature account are the husband and wife saving accounts where both signatures are required to spend the funds, preventing one spouse from spending without the other spouse's consent. More generally, Bitcoin supports $m$-of-$n$ multisignature addresses meaning that spending from such an address requires m signatures out of n.
+			
+			\item \textit{Timelocks}: they are a special primitive functions for smart-contracts that prevents outputs from being spent until a specified block heights. Timelocks can either be \textit{absolute} or \textit{relative}:
+			\begin{itemize}
+				\item absolute timelocks are identified by a special field, nLockTime, that specifies the earliest time (i.e. the block height) a transaction may be added to a valid block. A special op-code, namely OP\_CHECKLOCKTIMEVERIFY\footnote{https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki} (abbrv. CLTV), allow transactions outputs to be encumbered by the timelock. 
+				
+				\item relative timelocks are specified by the nSequence fields and allows input to specify the earliest time it can be added to a block based on how long ago the output being spent by that input was included in a block on the block chain. The OP\_CHECKSEQUENCEVERIFY\footnote{https://github.com/bitcoin/bips/blob/master/bip-0112.mediawiki} provides for relative timelocks the same feature that OP\_CHECKLOCKTIMEVERIFY provides for absolute timelocks.
+			\end{itemize}	
+			
+			\item \textit{SIGHASH\_NOINPUT}: it is a special function of the Bitcoin scripting language that allows dynamic binding of unspent transactions. It modifies the digest algorithm used in the signature creation and verification by removing the dependency on the previous output commitment. With SIGHASH\_NOINPUT\footnote{https://github.com/bitcoin/bips/blob/master/bip-0118.mediawiki\#backward-compatibility} it is possible to have chains of \textit{floating transactions}, i.e. transaction that are not yet published on the blockchain yet related each other.
+		\end{itemize}
+		
+		\subsection{Opening a micro-payment channel}
+		
+		To open a new bi-directional payment channel, two parties initially must fund the channel with the maximum amount of Bitcoin that they want to be able to spend inside it, by allocating funds on a 2-of-2 multisignature address, i.e. an address that need the cooperation (that is, signatures) of the two parties to be used for further transactions. This is the \textit{Funding Transaction}.
+		
+		Before signing and broadcasting this transaction, the two party signs and exchange a new transaction called \textit{Commitment Transaction} spending the output of the funding transaction and whose goal is to express the current channel balance. The very first commitment transaction will simply return the money to their legitimate owners: this is done in order to avoid hostage scenarios in which one of the party is uncooperative and it's willing to block any future operation from the funding transaction. For the sake of clarity, say Alice and Bob wants to open a new channel:
+		\begin{enumerate}
+			\item Either one between Alice and Bob make a new funding transaction F allocating funds to a 2-of-2 multisignature address. This transaction is not yet broadcasted in the Bitcoin Network.
+			
+			\item Alice prepares a commitment transaction CT\textsubscript{1} that spends from F and returns her money back to herself and to Bob. Bob does the same.
+			
+			\item Alice signs her commitment transaction, CT\textsubscript{A1}, and gives it to Bob. Bob signs his transaction and gives it to Alice (CT\textsubscript{B1}). 
+			
+			\item Now Alice signs the transaction Bob gave her, CT\textsubscript{AB1}. Bob as well signs the transaction Alice gave him. Now they both have a refund that ensures that they will be able to get back the money from the 2-of-2 address of the funding transaction if the other party is uncooperative.
+			
+			\item Now it is safe to broadcast the funding transaction onto the blockchain. By the time F gets mined into a block, a channel is opened between Alice and Bob. Alice or Bob can quit the channel and get their money back anytime they want by broadcasting their CT\textsubscript{AB1}.
+		\end{enumerate}
+		
+		\begin{figure}[h]
+			\includegraphics[width=8cm, height=4cm]{funding}
+			\centering
+			\caption{The funding transaction is the only one that gets published in the Bitcoin network. The disclosure of CT1 would refund Alice and Bob of their initial input.}
+		\end{figure}
+		
+		Once the opening process is done, the channel is ready for use. The commitment transaction represent the current channel balance, that is the output address in CT\textsubscript{1} are Alice and Bob personal address. In the naive version of this protocol if Alice and Bob wish to update their balance, say Alice wants to give Bob 0.1 BTC, they can simply create a new commitment transaction CT2 where the outputs of CT2 allocates 0.6 BTC to Bob and 0.4 BTC to Alice and thanks to SIGHASH\_NOINPUT, it is possible to rebind the funding transaction outputs to the new commitment transaction input. However, this implementation has 
+			
 	\end{document}

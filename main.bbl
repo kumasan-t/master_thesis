@@ -1,10 +1,21 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{Micropayments:Bitcoinj}
+Bitcoinj.
+\newblock Working with micropayment channels.
+\newblock "\url{https://bitcoinj.github.io/working-with-micropayments}".
 
 \bibitem{Buterin2014}
 Vitalik Buterin.
 \newblock {A next-generation smart contract and decentralized application
   platform}.
 \newblock {\em Etherum}, (January):1--36, 2014.
+
+\bibitem{Croman}
+Kyle Croman, Christian Decker, Ittay Eyal, Adem~Efe Gencer, Ari Juels, Ahmed
+  Kosba, Andrew Miller, Prateek Saxena, Elaine Shi, Emin~G{\"{u}}n Sirer, Dawn
+  Song, and Roger Wattenhofer.
+\newblock {On Scaling Decentralized Blockchains (A Position Paper)}.
 
 \bibitem{Decker2013}
 Christian Decker and Roger Wattenhofer.
@@ -25,6 +36,13 @@ Ittay Eyal and Emin~Gun Sirer.
   Notes in Artificial Intelligence and Lecture Notes in Bioinformatics)},
   8437:436--454, nov 2013.
 
+\bibitem{Garay2015}
+Juan Garay, Aggelos~Kiayias B, and Nikos Leonardos.
+\newblock {The Bitcoin Backbone Protocol : Analysis and Applications}.
+\newblock In {\em Lecture Notes in Computer Science (including subseries
+  Lecture Notes in Artificial Intelligence and Lecture Notes in
+  Bioinformatics)}, volume~2, pages 281--310, 2015.
+
 \bibitem{Lamport1982}
 Leslie Lamport, Robert Shostak, and Marshall Pease.
 \newblock {The Byzantine Generals Problem}.
@@ -42,6 +60,17 @@ D.~Malone and K.J. O'Dwyer.
 Satoshi Nakamoto.
 \newblock {Bitcoin: A Peer-to-Peer Electronic Cash System}.
 \newblock {\em Www.Bitcoin.Org}, page~9, 2008.
+
+\bibitem{Pass2016}
+Rafael Pass, Lior Seeman, and Abhi Shelat.
+\newblock {\em {Analysis of the Blockchain Protocol in Asynchronous Networks}}.
+\newblock 2016.
+
+\bibitem{Micropayments:Online}
+Bitcoin wiki.
+\newblock {Rapidly-adjusted (micro)payments to a pre-determined party}.
+\newblock
+  "\url{https://en.bitcoin.it/wiki/Contract#Example_7:_Rapidly-adjusted_.28micro.29payments_to_a_pre-determined_party}".
 
 \bibitem{Wust2017}
 Karl W{\"{u}}st and Arthur Gervais.
