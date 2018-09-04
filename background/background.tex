@@ -65,7 +65,7 @@
 		
 		The difficulty is calibrated every 2016 blocks (roughly two weeks) so that each solution takes approximately 10 minutes to be found. 
 		
-		The mining operation requires a lot of computational power and the computational power requires a lot of electrical energy, which in 2014 D. Malone and  K.J. O'Dwyer estimated to be comparable to Ireland's electricity consumption \cite{Malone2014}. That is, producing a block has a high production cost associated. To incentivize the production of new blocks, there's a reward for each miner that can be obtained if and only if a block is successfully added to the blockchain: in fact, miners can include a \textit{coinbase} transaction which is capable to generate new coins for the creator of the block; furthermore, this is the only way in which new Bitcoins are input onto the network.
+		The mining operation requires a lot of computational power and the computational power requires a lot of electrical energy, which in 2014 D. Malone and  K.J. O'Dwyer estimated to be comparable to Ireland's electricity consumption \cite{Malone2014}. That is, producing a block has a high production cost associated. To incentivize the production of new blocks, there's a reward for each miner that can be obtained if and only if a block is successfully added to the blockchain: miners can include a \textit{coinbase} transaction which is capable to generate new coins for the creator of the block; furthermore, this is the only way in which new Bitcoins are input onto the network. Since the coinbase reward is programmed to be halved every 210'000 mined blocks, Nakamoto included transaction fees as another incentive for miners to perform mining.
 		
 		The incentive also protects the system from attackers: suppose an attacker is able to assemble the majority of the computational power, then he would have to choose between using this power to enable a double-spend attack or to generate new coins. It is much more profitable for him to behave good and play by the rules than to destroy the currency.
 		
@@ -103,7 +103,7 @@
 			\end{tabulary}
 		\end{center}
 		
-		\section{Scaling issue}
+		\subsection{Scaling issue}
 		
 		Bitcoin has two main limitation that are strongly correlated: throughput of transactions processed and disk space occupied from the blockchain. The correlation is trivial: as long as a block holds more transactions, the throughput increases and the same does the size of the block. Balancing the trade-off is crucial to the cryptocurrency success or failure because either Bitcoin is small in size but is unable then to process more than a few transactions or either it becomes capable to process a great number of transactions while having huge increase in blockchain size. 
 		
@@ -113,7 +113,9 @@
 		\section{Lightning Network}
 		
 		In early 2016, J. Poon and T. Dryja released a white paper where a Bitcoin layer 2 decentralized payment system, called Lightning Network, is proposed. The goal of the Lightning Network is addressing the scaling problem not on the Bitcoin protocol itself, but by building on top of the Bitcoin system a network of peer-to-peer micro-payment channels where each transactions takes place off-chain.
-		A micropayment channel is a trustless relationship between two peers of the Bitcoin network, where these two party continuously exchange coins and update their balances, avoiding to broadcast the transaction until both reach an agreement over a final state. The idea of micropayment channels is not new in the Bitcoin community and it has been around since 2013\cite{Micropayments:Online}\cite{Micropayments:Bitcoinj}. The intuition in Lightning Network was to connect the channels each other in which those who want to send a payment to any other peer in the network, ask other users to cooperate in a trustless way to route the payment to the desired receiver.
+		A micropayment channel is a trustless relationship between two peers of the Bitcoin network, where these two party continuously exchange coins and update their balances, avoiding to broadcast the transaction until both reach an agreement over a final state. This means that between two peers could occur almost infinite transactions without hitting the blockchain (and therefore without incurring in the scaling issues mentioned before), updating the channel balance everytime the two peers wish to perform a transaction and publishing onto the blockchain the final state agreed by the two users.
+		
+		 The idea of micropayment channels is not new in the Bitcoin community and it has been around since 2013\cite{Micropayments:Online}\cite{Micropayments:Bitcoinj}. The intuition in Lightning Network was to connect the channels each other in which those who want to send a payment to any other peer in the network, ask other users to cooperate in a trustless way to route the payment to the desired receiver.
 		
 		\subsection{Bi-Directional Payment Channels}
 		
@@ -125,7 +127,7 @@
 			\begin{itemize}
 				\item absolute timelocks are identified by a special field, nLockTime, that specifies the earliest time (i.e. the block height) a transaction may be added to a valid block. A special op-code, namely OP\_CHECKLOCKTIMEVERIFY\footnote{https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki} (abbrv. CLTV), allow transactions outputs to be encumbered by the timelock. 
 				
-				\item relative timelocks are specified by the nSequence fields and allows input to specify the earliest time it can be added to a block based on how long ago the output being spent by that input was included in a block on the block chain. The OP\_CHECKSEQUENCEVERIFY\footnote{https://github.com/bitcoin/bips/blob/master/bip-0112.mediawiki} provides for relative timelocks the same feature that OP\_CHECKLOCKTIMEVERIFY provides for absolute timelocks.
+				\item relative timelocks are specified by the nSequence fields and allows input to specify the earliest time it can be added to a block based on how long ago the output being spent by that input was included in the blockchain. The OP\_CHECKSEQUENCEVERIFY\footnote{https://github.com/bitcoin/bips/blob/master/bip-0112.mediawiki} provides for relative timelocks the same feature that OP\_CHECKLOCKTIMEVERIFY provides for absolute timelocks.
 			\end{itemize}	
 			
 			\item \textit{SIGHASH\_NOINPUT}: it is a special function of the Bitcoin scripting language that allows dynamic binding of unspent transactions. It modifies the digest algorithm used in the signature creation and verification by removing the dependency on the previous output commitment. With SIGHASH\_NOINPUT\footnote{https://github.com/bitcoin/bips/blob/master/bip-0118.mediawiki\#backward-compatibility} it is possible to have chains of \textit{floating transactions}, i.e. transaction that are not yet published on the blockchain yet related each other.
@@ -136,6 +138,13 @@
 		To open a new bi-directional payment channel, two parties initially must fund the channel with the maximum amount of Bitcoin that they want to be able to spend inside it, by allocating funds on a 2-of-2 multisignature address, i.e. an address that need the cooperation (that is, signatures) of the two parties to be used for further transactions. This is the \textit{Funding Transaction}.
 		
 		Before signing and broadcasting this transaction, the two party signs and exchange a new transaction called \textit{Commitment Transaction} spending the output of the funding transaction and whose goal is to express the current channel balance. The very first commitment transaction will simply return the money to their legitimate owners: this is done in order to avoid hostage scenarios in which one of the party is uncooperative and it's willing to block any future operation from the funding transaction. For the sake of clarity, say Alice and Bob wants to open a new channel:
+		
+		\begin{figure}[]
+			\includegraphics[width=9.5cm, keepaspectratio]{funding}
+			\centering
+			\caption{The funding transaction is the only one that gets published in the Bitcoin network. The disclosure of CT1 would refund Alice and Bob of their initial input.}
+		\end{figure}
+		
 		\begin{enumerate}
 			\item Either one between Alice and Bob make a new funding transaction F allocating funds to a 2-of-2 multisignature address. This transaction is not yet broadcasted in the Bitcoin Network.
 			
@@ -145,15 +154,102 @@
 			
 			\item Now Alice signs the transaction Bob gave her, CT\textsubscript{AB1}. Bob as well signs the transaction Alice gave him. Now they both have a refund that ensures that they will be able to get back the money from the 2-of-2 address of the funding transaction if the other party is uncooperative.
 			
-			\item Now it is safe to broadcast the funding transaction onto the blockchain. By the time F gets mined into a block, a channel is opened between Alice and Bob. Alice or Bob can quit the channel and get their money back anytime they want by broadcasting their CT\textsubscript{AB1}.
+			\item Now it is safe to broadcast the funding transaction onto the blockchain because both Alice and Bob have CT\textsubscript{AB1}, which permit to any of the two to quit the channel anytime they want and get their money back. By the time F gets mined into a block, a channel is opened between Alice and Bob.
 		\end{enumerate}
 		
-		\begin{figure}[h]
-			\includegraphics[width=8cm, height=4cm]{funding}
+		The process is completely asymmetric: every user involved creates its own transaction, signs it and then exchange it with the other user. In the end, Alice and Bob will hold two different transactions, with different transaction IDs, performing the very same operation. Recently a new protocol for the Lightning Network channel update mechanism named \textit{eltoo}\cite{Decker} has been proposed, addressing the asymmetric nature of the process and bringing other improvements on the security of the channels.
+		
+		Once the opening process is done, the channel is ready for use. The commitment transaction represent the current channel balance, that is the output address in CT\textsubscript{1} are Alice and Bob personal address. In the naive version of this protocol if Alice and Bob wish to update their balance, say Alice wants to give Bob 0.1 BTC, they can simply create a new commitment transaction CT2 where the outputs of CT2 allocates 0.6 BTC to Bob and 0.4 BTC to Alice and rebind the funding transaction outputs to the new commitment transaction input. However, this approach as serious flaws since there is no mechanism that prevents a malicious Alice to restore her previous balance by publishing CT1 before CT2 onto the blockchain, allowing a double-spend attack in a off-chain scenario.
+		
+		\begin{figure}
+			\includegraphics[width=\linewidth]{broken_ct}
 			\centering
-			\caption{The funding transaction is the only one that gets published in the Bitcoin network. The disclosure of CT1 would refund Alice and Bob of their initial input.}
+			\caption{To update the balance, Alice creates a commitment transaction CT2 whose outputs reflect the payment she wishes to perform. In this broken implementation there is no way Bob can react to Alice publishing CT1 after getting paid by her.}
 		\end{figure}
 		
-		Once the opening process is done, the channel is ready for use. The commitment transaction represent the current channel balance, that is the output address in CT\textsubscript{1} are Alice and Bob personal address. In the naive version of this protocol if Alice and Bob wish to update their balance, say Alice wants to give Bob 0.1 BTC, they can simply create a new commitment transaction CT2 where the outputs of CT2 allocates 0.6 BTC to Bob and 0.4 BTC to Alice and thanks to SIGHASH\_NOINPUT, it is possible to rebind the funding transaction outputs to the new commitment transaction input. However, this implementation has 
+		\subsection{Fidelity Bonds}
+		
+		It is necessary then to enforce a condition that prevents older commitment transaction to be broadcast. There are some tools in Bitcoin that let replace a transaction that has yet to be mined with a newer, higher fee transaction\footnote{https://github.com/bitcoin/bips/blob/master/bip-0125.mediawiki}. Yet, in the hypothesis that Bitcoin will be used by billions of people, this on-chain replacement mechanism doesn't scale well because of the scaling issues mentioned before, therefore the revocation of a commitment transaction must be enforced off-chain.
+		
+		\textit{Fidelity Bonds} are a form of insurance protection against violations of the terms of an agreement, preventing malicious behaviors by any party who adhere to these. The contract terms for a Lightning Network channel is that both the parties involved in the channel agree on the latest commitment transaction. Any attempt on broadcasting an older commitment transaction should result on the loss of all funds in favor of the other party. 
+		
+		The enforcement of these fidelity bonds are done with the help of two special outputs: \textit{Revocable Sequence Maturity Contract} (abbrv. RSMC) and \textit{Breach Remedy} (abbrv. BR). RSMC are transactions encumbered by the nSequence parameter which is an integer describing how many blocks, starting from parent transaction confirmation, must be waited before the transactions gets mined. Each commitment transaction now has two output: an encumbered refund toward the owner of the CT and an immediate refund output towards the other user in the channel. 
+		Figure \ref{rsmc} puts in evidence the user point of views with respect to their floating transaction chain according to the asymmetrical nature of the protocol. If either one of the two party of the channel wishes to broadcast their commitment transaction and redeem the coins then he will be forced by the RSMC to wait a number of confirmation block before being able to get his money back.
+		
+		\begin{figure}
+			\centering
+			\begin{subfigure}{0.4\textwidth}
+				\centering
+				\includegraphics[width=.7\linewidth]{rsmc_a}
+				\caption{Alice perspective}
+			\end{subfigure}
+			\begin{subfigure}{0.4\textwidth}	
+				\centering
+				\includegraphics[width=.7\linewidth]{rsmc_b}
+				\caption{Bob perspective}
+			\end{subfigure}
+			\caption{Each user holds different RSMC. Alice can broadcast red transactions, Bob the blue ones. If Alice wishes to broadcast CT\textsubscript{1A}, then she must wait \(n\) confirmation blocks before she can broadcast her refund.}
+			\label{rsmc}
+		\end{figure}
+		
+		Encumbering a transaction is required to allow a user to take measures against a misbehavior of the counterpart whenever two users agreed on the latest channel balance. When a new pair of commitment transaction is agreed upon, the previous commitment transaction has to be invalidated. The invalidation routine consists in two new transactions called \textit{Breach Remedy}, that spends from each party old commitment transaction and whose spends transfer all the funds from one user to another whenever an older state is published onto the blockchain. The idea is that by being afraid to commit to such a strong punishment, a user would prefer to just delete old commitment transactions in order to not losing its fund.
+		
+		\begin{figure}
+			\centering
+			\includegraphics[width=.7\linewidth]{breach_remedy_a}
+			\caption{Alice perspective. The encumered RSMC gives Bob time to publish the Breach Remedy and the refund to himself. Alice is encumbered by \textit{nSequence} blocks before she's able to do something.}
+		\end{figure}
+				
+		To close a channel either a commitment transaction is published onto the blockchain, resulting on one of the two party waiting \(n\) blocks before being able to get his money back, or the two agree on the last final state of the balance, namely a \textit{Settlement Transaction}, in which its outputs are not encumbered. Yet it is important to notice that if the two parties remain cooperative, the channel can remain open indeterminately.
+		
+		\subsection{Hashed Timelock Contracts}
+		
+		The missing construction that allows to build a network of channel are the \textit{Hashed Time-Lock Contract}, a special contract that allow to maintain a global state across multiple channels based on time commitments (by using the nLockTime parameter) and pre-images discloures.
+		The contract is the following:
+		\begin{enumerate}
+			\item if Bob can produce to Alice within 3 days the input R that hashes to the known hash H, then the contract has to be settled and Alice pays Bob by the sum agreed.
 			
+			\item after three days without any R disclosure the contract is considered void and the process must be invalidated.
+			
+			\item the parties involved must payout according to the terms of the contract and close the contract early as soon as both agree.
+			
+			\item fidelity bonds should occur when the terms of the contract are violated and have to be paid to the non-violating counterparty.
+		\end{enumerate}
+	
+		Essentialy a HTLC is an additional output in the commitment transaction and has two possible spends, where one path is taken if Bob can produce R and the other occurs when a fixed time has passed (we will consider 3 days for further examples). The redeem script is the following:
+		\begin{center}
+			\begin{tabulary}{\textwidth}{|L|C|}
+				\hline
+				OP\_IF & \\
+				 & OP\_HASH160 <Hash160(R)> OP\_EQUALVERIFY \\
+				 & 2 <Alice2><Bob2>OP\_CHECKMULTISIG \\ \hline
+				OP\_ELSE & \\
+				 & 2 <Alice1><Bob1>OP\_CHECKMULTISIG \\ \hline
+				 OP\_ENDIF & \\
+				 \hline				 
+			\end{tabulary}
+		\end{center}
+	
+		\begin{figure}
+			\centering
+			\includegraphics[width=7cm]{htlc_a}
+			\caption{Alice perspective. The HTLC represents a pending state in which there is the intent to deliver 0.1 BTC to Bob.}
+			\label{htlc_a}
+		\end{figure}
+	
+		If Alice wishes to send 0.1 BTC to Bob by using an HTLC, the two agree on building a new commitment transactions with 3 outputs where the first two are refunds for Alice and Bob (0.4 BTC and 0,5 BTC) while the last one is the 0.1 HTLC pending transaction from Alice to Bob that will either go to Bob if Bob knows R, or refund Alice of its 0.1 BTC in case 3 days elapsed. The invalidation process of an HTLC goes the same as for commitment transaction with HTLC Revocable Sequence Maturity Contract and HTLC Breach Remedy. Once Bob discloses the R, the two can cooperate to update the channel balance in a new commitment transaction in order to maintain the channel open or they could simply push the entire transactions chain onto the blockchain (and thus closing the channel).
+		
+		\subsection{A Network of Channels}
+		
+		The use of HTLCs is not intended for a single channel. Instead it is possible now to create a global state across multiple channels, allowing to build the multi-hop payment network that is the Lightning Network. HTLCs allows for time-constrained transactions that force the payee to prove the ownership and oblige the payers to transfer funds before the locktime runs off, in what is known as \textit{chain delegation}, where the burden of the transfer of funds between two users, which don't belong in the same channel, is delegated to the participants of the path that connects the two.
+
+		Let's say Alice wants to pay David and they don't belong in the same channel. Between Alice and David there are Bob and Carol. So Alice can \textit{delegate} Bob to pay David, Bob can do the same with Carol and lastly Carol pays David. With HTLCs these tasks can be set up so that each payment steps can occur before the next is processed in a cascading fashion thanks to the nLockTime parameter. By knowing the number of hops required to reach David, Alice uses that information as the HTLC expiry for its first hop with Bob (say 3 days). Bob will decrement its HTLC expiry by one day with Carol, and Carol will have a 1 day HTLC expiry with David. 
+		
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=0.7\linewidth]{decrementing_timelocks}
+		\end{figure}
+	
+		In this way the participant will perform their task knowing that the step before has been already performed. Let's say Alice wants to pay David, then David picks a random number R, produces the hash and gives it to Alice. Alice tells Bob that if he can show her R then he will be able to pull funds from her. Bob does the same with Carol and Carol with David. Now on day 1, David knows R so he can pull the funds from Carol. On day 2, Carol shows R to Bob so she can pull funds from Bob and finally on day 3 Bob shows R to Alice, and he's able to pull funds from her as well.
+		
 	\end{document}

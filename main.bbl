@@ -1,15 +1,10 @@
 \begin{thebibliography}{10}
 
-\bibitem{Micropayments:Bitcoinj}
-Bitcoinj.
-\newblock Working with micropayment channels.
-\newblock "\url{https://bitcoinj.github.io/working-with-micropayments}".
-
-\bibitem{Buterin2014}
-Vitalik Buterin.
-\newblock {A next-generation smart contract and decentralized application
-  platform}.
-\newblock {\em Etherum}, (January):1--36, 2014.
+\bibitem{Andrychowicz2015}
+Marcin Andrychowicz, Stefan Dziembowski, Daniel Malinowski, and {\L}ukasz
+  Mazurek.
+\newblock {On the Malleability of Bitcoin Transactions}.
+\newblock pages 1--18. Springer, Berlin, Heidelberg, 2015.
 
 \bibitem{Croman}
 Kyle Croman, Christian Decker, Ittay Eyal, Adem~Efe Gencer, Ari Juels, Ahmed
@@ -17,11 +12,20 @@ Kyle Croman, Christian Decker, Ittay Eyal, Adem~Efe Gencer, Ari Juels, Ahmed
   Song, and Roger Wattenhofer.
 \newblock {On Scaling Decentralized Blockchains (A Position Paper)}.
 
+\bibitem{Decker}
+Christian Decker, Rusty Russell, and Olaoluwa Osuntokun.
+\newblock {eltoo: A Simple Layer2 Protocol for Bitcoin}.
+
 \bibitem{Decker2013}
 Christian Decker and Roger Wattenhofer.
 \newblock {Information propagation in the Bitcoin network}.
 \newblock {\em 13th IEEE International Conference on Peer-to-Peer Computing,
   IEEE P2P 2013 - Proceedings}, (September):1--10, 2013.
+
+\bibitem{Decker2014}
+Christian Decker and Roger Wattenhofer.
+\newblock {Bitcoin Transaction Malleability and MtGox}.
+\newblock mar 2014.
 
 \bibitem{Dwork1992}
 Cynthia Dwork and Moni Naor.
@@ -65,12 +69,6 @@ Satoshi Nakamoto.
 Rafael Pass, Lior Seeman, and Abhi Shelat.
 \newblock {\em {Analysis of the Blockchain Protocol in Asynchronous Networks}}.
 \newblock 2016.
-
-\bibitem{Micropayments:Online}
-Bitcoin wiki.
-\newblock {Rapidly-adjusted (micro)payments to a pre-determined party}.
-\newblock
-  "\url{https://en.bitcoin.it/wiki/Contract#Example_7:_Rapidly-adjusted_.28micro.29payments_to_a_pre-determined_party}".
 
 \bibitem{Wust2017}
 Karl W{\"{u}}st and Arthur Gervais.

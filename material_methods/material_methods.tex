@@ -1,8 +1,16 @@
 \begin{document}
 	\chapter{Materials and Methods}
-	Talking about btcd client, LND client, LNCLI, Raspberry node, Networkx suite, how the data is represented and the assumption over the data.
+	This chapter describes how the Lightning Network's base information are gathered and which tools will be used for the analysis of the said network. The Lightning Network is essentially composed of a client/daemon running on a Linux-based machine that act as a \textit{watchdog} over the Bitcoin blockchain in case any attacker decides to act maliciously. Since the Lightning Network is a \textit{trustless} off-chain payment network, it is not yet possible to watch on a third-party blockchain, that is, a full Bitcoin node and its blockchain are required to run locally and cannot be delegated to an external arbiter.
+	
+	Downloading and maintaining a blockchain requires a server that is constantly up and running: for this reason a Raspberry Pi 2 model B with a custom Debian based distribution was setup along with a storage unit of 1 Terabyte. The main Bitcoin blockchain size is 181,223 Gigabyte as the time of writing\footnote{https://www.blockchain.com/charts/blocks-size}, while the testing blockchain (the Bitcoin developer environment) is only 25,975 Gigabyte. Lightning Network is both implemented for the main and the testing blockchain but this work will refer only to the testnet environment; nonetheless, everything that is presented here can be replicated on the main network.
+	
 	\section{Clients}
+	
+	There are two main daemons running on the Raspberry Pi, the btcd and lnd clients, with the first one being a particular implementation of the Bitcoin protocol that included a fix to a very serious security threat known as \textit{transaction malleability} \cite{Andrychowicz2015} that caused the Mt. Gox bankrupt in 2014 \cite{Decker2014}, the fix was later implemented in the Bitcoin official client during the Segwit update. Both the clients are written in Go, a programming language created by Google that puts emphasis on multithreading.
+	
 	\subsection{btcd}
+	
+	btcd\footnote{https://github.com/btcsuite/btcd} is a Go Bitcoin client which was the first to include a fix to the malleability problem. The client is able to relay every Bitcoin transaction, process the same blocks and transaction of the official one without causing blockchain forks. This implementation corrects a design flaw in which the wallet functionality is integrated within the Bitcoin client in a 1-to-1 relationship with the user, i.e two user using the same device must run two different Bitcoin clients; instead with btcd it is possible to build a 1-to-many relationship allowing for multiple user to share the same Bitcoin blockchain on the device they have in common.
 	\subsection{lnd}
 	\section{Data Representation}
 	\section{Analisys Tools}
