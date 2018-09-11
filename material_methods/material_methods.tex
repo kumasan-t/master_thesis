@@ -6,12 +6,19 @@
 	
 	\section{Clients}
 	
-	There are two main daemons running on the Raspberry Pi, the btcd and lnd clients, with the first one being a particular implementation of the Bitcoin protocol that included a fix to a very serious security threat known as \textit{transaction malleability} \cite{Andrychowicz2015} that caused the Mt. Gox bankrupt in 2014 \cite{Decker2014}, the fix was later implemented in the Bitcoin official client during the Segwit update. Both the clients are written in Go, a programming language created by Google that puts emphasis on multithreading.
+	There are two main daemons running on the Raspberry Pi, the btcd and lnd clients, with the first one being a particular implementation of the Bitcoin protocol that included a fix to a very serious security threat known as \textit{transaction malleability} \cite{Andrychowicz2015} that caused the Mt. Gox bankrupt in 2014 \cite{Decker2014}, the fix was later implemented in the Bitcoin official client during the Segwit update. Both clients are written in Go, a programming language created by Google that puts emphasis on multithreading.
 	
 	\subsection{btcd}
 	
-	btcd\footnote{https://github.com/btcsuite/btcd} is a Go Bitcoin client which was the first to include a fix to the malleability problem. The client is able to relay every Bitcoin transaction, process the same blocks and transaction of the official one without causing blockchain forks. This implementation corrects a design flaw in which the wallet functionality is integrated within the Bitcoin client in a 1-to-1 relationship with the user, i.e two user using the same device must run two different Bitcoin clients; instead with btcd it is possible to build a 1-to-many relationship allowing for multiple user to share the same Bitcoin blockchain on the device they have in common.
+	btcd\footnote{https://github.com/btcsuite/btcd} is a Go Bitcoin client which was the first to include a fix to the malleability problem. The client is able to relay every Bitcoin transaction, process the same blocks and transaction of the official one without causing blockchain forks. This implementation corrects a design flaw in which the wallet functionality is integrated within the Bitcoin client in a 1-to-1 relationship with the user, i.e two user using the same device must run two different Bitcoin clients; instead with btcd it is possible to build a 1-to-many relationship allowing for multiple user to share the same Bitcoin blockchain on the device they have in common. btcd was the first client to implement the SegWit update that was essential to the success of the Lighting Network. The usage of btcd was later considered not mandatory after the official SegWit update that has been activated on August 24th, 2017. The clients offers a large set of commands to help monitoring the blockchain
+	
 	\subsection{lnd}
+	
+	lnd is the official Lightning Network client and let the user to participate to the micropayment network. In order to make partecipate to the network, lnd client has to be synced to the Bitcoin client before starting the channel creation phase. lnd provides also a wallet functionality, enabling to manage a user funds and to create the very first channels; the whole channel creation is automated and by default it picks random nodes across the network to create channels, by contacting bootstraps nodes. 
+	
+	Through an automated system called \textit{autopilot}, an agent will attempt to automatically open up channels to put the user current node in a good spot with respect to the network topology, that is a more central position in the network. It is also possible to set the maximum number of channels a user wants to open (default is 5) and how many funds should be allocated from the bitcoin wallet to the channel establishment wallet (for example, having autopilot.allocation = 0.6 menas that 60\% of the funds of the wallet should automatically be used in the channel establishment).
+	
+	It is also possible to manually manage the channels through a subroutine called \textit{lncli}, which is a command line interface that exposes a set of API calls %Parlare delle API calls, mostrarne qualcuna
 	\section{Data Representation}
 	\section{Analisys Tools}
 	\subsection{Networkx}

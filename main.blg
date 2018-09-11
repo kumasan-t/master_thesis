@@ -3,10 +3,15 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: main.aux
 The style file: plain.bst
 Database file #1: bibliography.bib
-Warning--I didn't find a database entry for "Buterin2014"
+I was expecting a `,' or a `}'---line 512 of file bibliography.bib
+ : 
+ : title = {{A Thought for Your Pennies: Micropayment and the Liberation of Content}},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
 Warning--I didn't find a database entry for "Micropayments:Online"
 Warning--I didn't find a database entry for "Micropayments:Bitcoinj"
 Warning--empty booktitle in Andrychowicz2015
+Warning--there's a number but no volume in Buterin2014
 Warning--empty journal in Croman
 Warning--empty year in Croman
 Warning--empty journal in Decker
@@ -14,45 +19,45 @@ Warning--empty year in Decker
 Warning--there's a number but no volume in Decker2013
 Warning--empty journal in Decker2014
 Warning--empty publisher in Pass2016
-You've used 13 entries,
+You've used 15 entries,
             2118 wiz_defined-function locations,
-            581 strings with 6300 characters,
-and the built_in function-call counts, 4796 in all, are:
-= -- 468
-> -- 243
+            588 strings with 6427 characters,
+and the built_in function-call counts, 5249 in all, are:
+= -- 510
+> -- 257
 < -- 7
-+ -- 95
-- -- 82
-* -- 332
-:= -- 786
-add.period$ -- 39
-call.type$ -- 13
-change.case$ -- 79
++ -- 101
+- -- 86
+* -- 357
+:= -- 860
+add.period$ -- 43
+call.type$ -- 15
+change.case$ -- 86
 chr.to.int$ -- 0
-cite$ -- 21
-duplicate$ -- 191
-empty$ -- 346
-format.name$ -- 82
-if$ -- 1006
+cite$ -- 24
+duplicate$ -- 209
+empty$ -- 392
+format.name$ -- 86
+if$ -- 1100
 int.to.chr$ -- 0
-int.to.str$ -- 13
-missing$ -- 14
-newline$ -- 66
-num.names$ -- 26
-pop$ -- 99
+int.to.str$ -- 15
+missing$ -- 15
+newline$ -- 74
+num.names$ -- 30
+pop$ -- 110
 preamble$ -- 1
-purify$ -- 67
+purify$ -- 73
 quote$ -- 0
-skip$ -- 141
+skip$ -- 158
 stack$ -- 0
-substring$ -- 264
-swap$ -- 51
+substring$ -- 290
+swap$ -- 53
 text.length$ -- 7
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 50
-warning$ -- 8
-while$ -- 48
-width$ -- 15
-write$ -- 136
-(There were 11 warnings)
+type$ -- 58
+warning$ -- 9
+while$ -- 54
+width$ -- 17
+write$ -- 152
+(There was 1 error message)
