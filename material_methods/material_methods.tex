@@ -1,12 +1,12 @@
 \begin{document}
-	\chapter{Materials and Methods}
+	\chapter{Methodology}
 	This chapter describes how the Lightning Network's base information are gathered and which tools will be used for the analysis of the said network. The Lightning Network is essentially composed of a client/daemon running on a Linux-based machine that act as a \textit{watchdog} over the Bitcoin blockchain in case any attacker decides to act maliciously. Since the Lightning Network is a \textit{trustless} off-chain payment network, it is not yet possible to watch on a third-party blockchain, that is, a full Bitcoin node and its blockchain are required to run locally and cannot be delegated to an external arbiter.
 	
-	Downloading and maintaining a blockchain requires a server that is constantly up and running: for this reason a Raspberry Pi 2 model B with a custom Debian based distribution was setup along with a storage unit of 1 Terabyte. The main Bitcoin blockchain size is 181,223 Gigabyte as the time of writing\footnote{https://www.blockchain.com/charts/blocks-size}, while the testing blockchain (the Bitcoin developer environment) is only 25,975 Gigabyte. Lightning Network is both implemented for the main and the testing blockchain but this work will refer only to the testnet environment; nonetheless, everything that is presented here can be replicated on the main network.
+	Downloading and maintaining a blockchain requires a server that is constantly up and running: for this reason a Raspberry Pi 2 model B with a custom Debian based distribution was setup along with a storage unit of 1 TeraByte. The main Bitcoin blockchain size is 181,223 Gigabyte as the time of writing\footnote{https://www.blockchain.com/charts/blocks-size}, while the testing blockchain (the Bitcoin developer environment) is only 25,975 Gigabyte. Lightning Network is both implemented for the main and the testing blockchain but this work will refer only to the testnet environment; nonetheless, everything that is presented here can be replicated on the main network.
 	
 	\section{Clients}
 	
-	There are two main daemons running on the Raspberry Pi, the btcd and lnd clients, with the first one being a particular implementation of the Bitcoin protocol that included a fix to a very serious security threat known as \textit{transaction malleability} \cite{Andrychowicz2015} that caused the Mt. Gox bankrupt in 2014 \cite{Decker2014}, the fix was later implemented in the Bitcoin official client during the Segwit update. Both clients are written in Go, a programming language created by Google that puts emphasis on multithreading.
+	There are two main daemons running on the Raspberry Pi, the btcd and lnd clients, with the first one being a particular implementation of the Bitcoin protocol that included a fix to a very serious security threat known as \textit{transaction malleability} \cite{Andrychowicz2015} that caused the Mt. Gox bankrupt in 2014 \cite{Decker2014}, the fix was later implemented in the Bitcoin official client during the Segwit update. Both clients are written in Go, a programming language created by Google that puts emphasis on multithreading. It is important to notice that lnd isn't the only implementation of the Lightning Network, though it is the only repository where the original inventors of the Lightning Network are directly involved. Different declinations such as \textit{c-lightning} or \textit{eclair} are valid alternatives that are compliant to the lightning network specifications known as \textit{lightning-rfc}, consisting in twelve BOLTs (Basis of Lightning Technology) describing the requirements to be satisfied in order to be able to use the network.
 	
 	\subsection{btcd}
 	
@@ -14,13 +14,93 @@
 	
 	\subsection{lnd}
 	
-	lnd is the official Lightning Network client and let the user to participate to the micropayment network. In order to make partecipate to the network, lnd client has to be synced to the Bitcoin client before starting the channel creation phase. lnd provides also a wallet functionality, enabling to manage a user funds and to create the very first channels; the whole channel creation is automated and by default it picks random nodes across the network to create channels, by contacting bootstraps nodes. 
+	lnd is the official Lightning Network client which let the user to participate to the micropayment network. In order to participate to the network, lnd client has to be synced to the Bitcoin client before starting the channel creation phase. lnd provides also a wallet functionality, enabling to manage a user funds and to create the very first channels; the whole channel creation is automated and by default it picks random nodes across the network to create channels, by contacting bootstraps nodes. 
 	
-	Through an automated system called \textit{autopilot}, an agent will attempt to automatically open up channels to put the user current node in a good spot with respect to the network topology, that is a more central position in the network. It is also possible to set the maximum number of channels a user wants to open (default is 5) and how many funds should be allocated from the bitcoin wallet to the channel establishment wallet (for example, having autopilot.allocation = 0.6 menas that 60\% of the funds of the wallet should automatically be used in the channel establishment).
+	Through an automated system called \textit{autopilot}, an agent will attempt to automatically open up channels to put the user current node in a good spot with respect to the network topology, that is a more central position in the network. It is also possible to set the maximum number of channels a user wants to open (default is 5) and how many funds should be allocated from the bitcoin wallet to the lightning network wallet (for example, having autopilot.allocation = 0.6 means that 60\% of the funds of the wallet should automatically be used as channel funds).
 	
-	It is also possible to manually manage the channels through a subroutine called \textit{lncli}, which is a command line interface that exposes a set of API calls %Parlare delle API calls, mostrarne qualcuna
+	It is also possible to manually manage the channels through a subroutine called \textit{lncli}, which is a command line interface that exposes a set of API calls that help the node management. These APIs were fundamental to retrieve the current state of the network as they are able to retrieve the entire network information. These API are also remotely reachable, running by default on port 10009, allowing to provide Lightning Network services for third parties (which need to be trusted) and the authentication is performed through a system knows as \textit{macaroons}\footnote{https://github.com/rescrv/libmacaroons}, an evolution of the cookie authentication mechanism. 
+	
+	To pay through the Lightning Network the payee must create a new invoice which is a well formatted bech32 encoded string as specified in lightning-rfc 11\footnote{https://github.com/lightningnetwork/lightning-rfc/blob/master/11-payment-encoding.md} by using the command \textit{addinvoice} provided by the lncli client. The invoice is then passed to the payer which is able to decode it using \text{decodepayreq}, revealing the destination, payment hash and value of the payment request. Once the payer has verified the validity of the information it proceeds to perform the payment by calling the \textit{payinvoice} method; the payment route can either be chosen by the client according to their metrics or be open to user preferences.	
+	
+	As a matter of fact, the entire network topology can be obtained through the command \textit{describegraph} that returns a JSON file containing nodes and edges informations (the details will be shown in the next section). Therefore, it is clear that every node of the network has a priori knowledge of the network when it comes to choosing the payment path. The discovery of the network is performed through a \textit{gossip} protocol where peers in the network exchange messages containing channel and nodes announcement/updates as specified lightning-rfc 7\footnote{https://github.com/lightningnetwork/lightning-rfc/blob/master/07-routing-gossip.md}. Because of that, there are plenty of network explorers across the internet which can be examined for a quick network representation.
+	
 	\section{Data Representation}
+	
+	The lncli method \textit{describegraph} returns a JSONObject composed of two JSONArrays, \textit{nodes} and \textit{edges} inside of which every tuple is a JSONObject containing all the informations of nodes and channels respectively. The more significant properties resides in the channel object as the nodes informations (except for the public key parameter that act as an unique identifier) are just fancy customization set by user preferences; on the contrary, the channel object holds the fundamental properties that define and shape  the Lightning Network:
+	\newpage
+	\begin{itemize}
+		\item \textit{capacity}: is the total amount of coins invested in the channel. The exact allocation of the money (i.e. the exact channel balance) is not possible to know due to privacy as overall system security.
+		
+		\item \textit{nodeX\_policy}: describes the requirement under which every payer must adhere in case the node becomes an active participant of a payment route. These information are:
+		\begin{itemize}
+			\item \textit{time\_lock\_delta}: the locktime after which a pending payment is not to be considered valid anymore.
+			
+			\item \textit{min\_htlc}: the minimum number of coins that this channel accept to deliver.
+			
+			\item \textit{fee\_base\_msat}: the base fee that the channel will retain after completing a deliver regardless the total amount delivered .
+			
+			\item \textit{fee\_rate\_milli\_msat}: a scaling factor that adds to the base rate depending on the size of the delivered amount of satoshi.
+		\end{itemize}
+	\end{itemize}
+
+	\lstset{
+		basicstyle=\small\ttfamily,
+		string=[s]{"}{"},
+		stringstyle=\color{weborange}\bfseries,
+		comment=[l]{:},
+		commentstyle=\color{black},
+		numbers=left,
+		numberstyle=\small,
+		numbersep=5pt,
+		frame = lines,
+		backgroundcolor=\color{backgroundgray},
+		framexleftmargin=15pt,
+		caption=JSON schema of  the network topology.,
+		captionpos=b,
+	}
+	
+	\singlespacing
+	\begin{lstlisting}
+{
+  "nodes": [
+    {
+      "last_update": integer,
+      "pub_key": string,
+      "alias": string,
+      "addresses": [
+        {
+          "network": string,
+          "addr": string
+        }
+      ],
+      "color": string
+    }
+  ],
+  "edges": [
+    {
+      "channel_id": string,
+      "chan_point": string,
+      "last_update": integer,
+      "node1_pub": string,
+      "node2_pub": string,
+      "capacity": "string,
+      "node1_policy": {
+        "time_lock_delta": integer,
+        "min_htlc": string,
+        "fee_base_msat": string,
+        "fee_rate_milli_msat": string
+      },
+      "node2_policy": {
+      "time_lock_delta": integer,
+      "min_htlc": string,
+      "fee_base_msat": string,
+      "fee_rate_milli_msat": string
+    }
+  ]
+}
+	\end{lstlisting}
+	\onehalfspacing
+		
 	\section{Analisys Tools}
-	\subsection{Networkx}
-	\subsection{Gephi}
+		
 \end{document}

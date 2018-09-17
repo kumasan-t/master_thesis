@@ -1,16 +1,29 @@
 \begin{thebibliography}{10}
 
+\bibitem{Simon1957}
+{A Thought for Your Pennies: Micropayment and the Liberation of Content}.
+
 \bibitem{Andrychowicz2015}
 Marcin Andrychowicz, Stefan Dziembowski, Daniel Malinowski, and {\L}ukasz
   Mazurek.
 \newblock {On the Malleability of Bitcoin Transactions}.
 \newblock pages 1--18. Springer, Berlin, Heidelberg, 2015.
 
+\bibitem{Barabasi1999}
+Albert~L{\'{a}}szl{\'{o}} Barab{\'{a}}si and R{\'{e}}ka Albert.
+\newblock {Emergence of scaling in random networks}.
+\newblock {\em Science}, 286(5439):509--512, 1999.
+
 \bibitem{Buterin2014}
 Vitalik Buterin.
 \newblock {A next-generation smart contract and decentralized application
   platform}.
 \newblock {\em Etherum}, (January):1--36, 2014.
+
+\bibitem{Casteigts2012}
+Arnaud Casteigts, Paola Flocchini, Walter Quattrociocchi, and Nicola Santoro.
+\newblock {Time-Varying Graphs and Dynamic Networks *}.
+\newblock 2012.
 
 \bibitem{Croman}
 Kyle Croman, Christian Decker, Ittay Eyal, Adem~Efe Gencer, Ari Juels, Ahmed
@@ -38,6 +51,11 @@ Cynthia Dwork and Moni Naor.
 \newblock {Pricing via Processing or Combatting Junk Mail}.
 \newblock In {\em Advances in Cryptology — CRYPTO' 92}, pages 139--147.
   Springer Berlin Heidelberg, Berlin, Heidelberg, 1992.
+
+\bibitem{Erdos1959}
+P~Erd{\"{o}}s and a~R{\'{e}}nyi.
+\newblock {On random graphs}.
+\newblock {\em Publicationes Mathematicae}, 6:290--297, 1959.
 
 \bibitem{Eyal2013}
 Ittay Eyal and Emin~Gun Sirer.
@@ -78,6 +96,11 @@ Nelson.
 Rafael Pass, Lior Seeman, and Abhi Shelat.
 \newblock {\em {Analysis of the Blockchain Protocol in Asynchronous Networks}}.
 \newblock 2016.
+
+\bibitem{Watts1998}
+Duncan~J. Watts and Steven~H. Strogatz.
+\newblock {Collective dynamics of ‘small-world' networks}.
+\newblock {\em Nature}, 393(6684):440--442, 1998.
 
 \bibitem{Wust2017}
 Karl W{\"{u}}st and Arthur Gervais.
