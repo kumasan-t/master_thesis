@@ -28,22 +28,10 @@
 	
 	The lncli method \textit{describegraph} returns a JSONObject composed of two JSONArrays, \textit{nodes} and \textit{edges} inside of which every tuple is a JSONObject containing all the informations of nodes and channels respectively. The more significant properties resides in the channel object as the nodes informations (except for the public key parameter that act as an unique identifier) are just fancy customization set by user preferences; on the contrary, the channel object holds the fundamental properties that define and shape  the Lightning Network:
 	\newpage
-	\begin{itemize}
-		\item \textit{capacity}: is the total amount of coins invested in the channel. The exact allocation of the money (i.e. the exact channel balance) is not possible to know due to privacy as overall system security.
-		
-		\item \textit{nodeX\_policy}: describes the requirement under which every payer must adhere in case the node becomes an active participant of a payment route. These information are:
-		\begin{itemize}
-			\item \textit{time\_lock\_delta}: the locktime after which a pending payment is not to be considered valid anymore.
-			
-			\item \textit{min\_htlc}: the minimum number of coins that this channel accept to deliver.
-			
-			\item \textit{fee\_base\_msat}: the base fee that the channel will retain after completing a deliver regardless the total amount delivered .
-			
-			\item \textit{fee\_rate\_milli\_msat}: a scaling factor that adds to the base rate depending on the size of the delivered amount of satoshi.
-		\end{itemize}
-	\end{itemize}
 
 	\lstset{
+		float=tp,
+		floatplacement=tbp,
 		basicstyle=\small\ttfamily,
 		string=[s]{"}{"},
 		stringstyle=\color{weborange}\bfseries,
@@ -100,7 +88,30 @@
 }
 	\end{lstlisting}
 	\onehalfspacing
+
+	\begin{itemize}
+		\item \textit{capacity}: is the total amount of coins invested in the channel. The exact allocation of the money (i.e. the exact channel balance) is not possible to know due to privacy as overall system security.
 		
+		\item \textit{nodeX\_policy}: describes the conditions under which every payer must adhere in case the node becomes an active participant of a payment route. The policy are two, one for each node of the channel. These information are:
+		\begin{itemize}
+			\item \textit{time\_lock\_delta}: the locktime after which a pending payment is not to be considered valid anymore.
+			
+			\item \textit{min\_htlc}: the minimum number of coins that this channel accept to deliver.
+			
+			\item \textit{fee\_base\_msat}: the base fee that the channel will retain after completing a deliver regardless the total amount delivered .
+			
+			\item \textit{fee\_rate\_milli\_msat}: a scaling factor that adds to the base rate depending on the size of the delivered amount of satoshi.
+		\end{itemize}
+	\end{itemize}
+	
+	\section{Data Collection}
+	
+	The period of observation went from May 15th to July 30th (2018), but the analysis of the data are carried on the timespan that goes from May 25th to June 27th and comprises one snapshot per day. Every snapshot was taken at 4:00pm CEST in order to minimize the discrepancy between Europe worktime and US worktime, however there are no significant changes between nighttime and daytime due to the Lightning Network channels nature. 
+	
+	Snapshots of the network were taken initially every 10 minutes, but since there were no appreciable changes between consecutive snapshots and because of the size of each snapshot (about 4MB each), the snapshots intervals were increased to 30 minutes. A bash script, set to be running every 30 minutes thanks to the \textit{cron} daemon task scheduler, uses the lncli client to retrieve the current state of the Lightning Network; data is then stored in folders according to the time they were taken. 
+	Data as it is comprises isolated nodes (nodes without channels) and several connected components, for this reason it has been necessary to trim the graph from these superfluous data and this task is performed by a Python script that removes every isolated node and selects the largest component of the graph.
+	
 	\section{Analisys Tools}
-		
+	
+	The tools used to carry the data analysis were Matlab and NetworkX, a framework written in Python designed around graph exploration that offer plenty of functionalities in terms of state of the art techniques and methodologies, allowing the study of the dynamics, structures and functions of complex network and their creation and manipulation. A special version of Python was installed for this task, the Anaconda platform, which comprises more than one thousand and four hundred ready-to-use scientific packages alongside with matplotlib package for plotting graphs. All the code that was written ran on Python Jupiter Notebook, an interactive environment in which is possible to combine code to be executed, markdown formatted text, and media visualization.
 \end{document}

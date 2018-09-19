@@ -122,10 +122,11 @@
 		
 		\section{Lightning Network}
 		
-		In early 2016, J. Poon and T. Dryja released a white paper where a Bitcoin layer 2 decentralized payment system, called Lightning Network, is proposed. The goal of the Lightning Network is addressing the scaling problem not on the Bitcoin protocol itself, but by building on top of the Bitcoin system a network of peer-to-peer micro-payment channels where each transactions takes place off-chain.
-		A micropayment channel is a trustless relationship between two peers of the Bitcoin network, where these two party continuously exchange coins and update their balances, avoiding to broadcast the transaction until both reach an agreement over a final state. This means that between two peers could occur almost infinite transactions without hitting the blockchain (and therefore without incurring in the scaling issues mentioned before), updating the channel balance everytime the two peers wish to perform a transaction and publishing onto the blockchain the final state agreed by the two users.
+		In early 2016, J. Poon and T. Dryja released a white paper where a Bitcoin layer 2 decentralized payment system, called Lightning Network, is proposed. The goal of the Lightning Network is to address the scaling problem not on the Bitcoin protocol itself, but by building on top of the Bitcoin system a network of peer-to-peer micro-payment channels where each transactions takes place off-chain.
 		
-		 The idea of micropayment channels is not new in the Bitcoin community and it has been around since 2013\cite{Micropayments:Online}\cite{Micropayments:Bitcoinj}. The intuition in Lightning Network was to connect the channels each other in which those who want to send a payment to any other peer in the network, ask other users to cooperate in a trustless way to route the payment to the desired receiver.
+		A micropayment channel is a trustless relationship between two peers of the Bitcoin network, where these two party continuously exchange coins and update their balances, avoiding to broadcast the transaction until both reach an agreement over a final state. This means that almost infinite transactions can occur between two peers without hitting the blockchain (and therefore without incurring in the scaling issues mentioned before), updating the channel balance everytime the two peers wish to perform a transaction and publishing onto the blockchain only the final state agreed by the two users.
+		
+		 The idea of micropayment channels is not new in the Bitcoin community and it has been around since 2013\cite{Micropayments:Online}\cite{Micropayments:Bitcoinj}. The intuition in Lightning Network was to connect the channels each other in order to allow for those who want to send a payment to any other peer in the network, to ask other users to cooperate in a trustless way to route the payment to the desired receiver.
 		
 		\subsection{Bi-Directional Payment Channels}
 		
