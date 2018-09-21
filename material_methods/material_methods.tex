@@ -24,14 +24,25 @@
 	
 	As a matter of fact, the entire network topology can be obtained through the command \textit{describegraph} that returns a JSON file containing nodes and edges informations (the details will be shown in the next section). Therefore, it is clear that every node of the network has a priori knowledge of the network when it comes to choosing the payment path. The discovery of the network is performed through a \textit{gossip} protocol where peers in the network exchange messages containing channel and nodes announcement/updates as specified lightning-rfc 7\footnote{https://github.com/lightningnetwork/lightning-rfc/blob/master/07-routing-gossip.md}. Because of that, there are plenty of network explorers across the internet which can be examined for a quick network representation.
 	
+	\section{Data Collection}
+	
+	The period of observation went from May 15th to July 30th (2018), but the analysis of the data are carried on the timespan that goes from May 25th to June 27th and comprises one snapshot per day. Every snapshot was taken at 4:00pm CEST in order to minimize the discrepancy between Europe worktime and US worktime, however there are no significant changes between nighttime and daytime due to the Lightning Network channels nature. 
+	
+	Snapshots of the network were taken initially every 10 minutes, but since there were no appreciable changes between consecutive snapshots and because of the size of each snapshot (about 4MB each), the snapshots intervals were increased to 30 minutes. A bash script, set to be running every 30 minutes thanks to the \textit{cron} daemon task scheduler, uses the lncli client to retrieve the current state of the Lightning Network; data is then stored in folders according to the time they were taken. 
+	Data as it is comprises isolated nodes (nodes without channels) and several connected components, for this reason it has been necessary to trim the graph from these superfluous data and this task is performed by a Python script that removes every isolated node and selects the largest component of the graph.
+	
 	\section{Data Representation}
 	
 	The lncli method \textit{describegraph} returns a JSONObject composed of two JSONArrays, \textit{nodes} and \textit{edges} inside of which every tuple is a JSONObject containing all the informations of nodes and channels respectively. The more significant properties resides in the channel object as the nodes informations (except for the public key parameter that act as an unique identifier) are just fancy customization set by user preferences; on the contrary, the channel object holds the fundamental properties that define and shape  the Lightning Network:
-	\newpage
+
+	\lstdefinestyle{toplisting}{
+		float=ht!,
+		floatplacement=th,
+	}
 
 	\lstset{
-		float=tp,
-		floatplacement=tbp,
+		float=t,
+		floatplacement=t,
 		basicstyle=\small\ttfamily,
 		string=[s]{"}{"},
 		stringstyle=\color{weborange}\bfseries,
@@ -48,7 +59,8 @@
 	}
 	
 	\singlespacing
-	\begin{lstlisting}
+	
+	\begin{lstlisting}[style=toplisting]
 {
   "nodes": [
     {
@@ -104,12 +116,6 @@
 		\end{itemize}
 	\end{itemize}
 	
-	\section{Data Collection}
-	
-	The period of observation went from May 15th to July 30th (2018), but the analysis of the data are carried on the timespan that goes from May 25th to June 27th and comprises one snapshot per day. Every snapshot was taken at 4:00pm CEST in order to minimize the discrepancy between Europe worktime and US worktime, however there are no significant changes between nighttime and daytime due to the Lightning Network channels nature. 
-	
-	Snapshots of the network were taken initially every 10 minutes, but since there were no appreciable changes between consecutive snapshots and because of the size of each snapshot (about 4MB each), the snapshots intervals were increased to 30 minutes. A bash script, set to be running every 30 minutes thanks to the \textit{cron} daemon task scheduler, uses the lncli client to retrieve the current state of the Lightning Network; data is then stored in folders according to the time they were taken. 
-	Data as it is comprises isolated nodes (nodes without channels) and several connected components, for this reason it has been necessary to trim the graph from these superfluous data and this task is performed by a Python script that removes every isolated node and selects the largest component of the graph.
 	
 	\section{Analisys Tools}
 	
