@@ -2,6 +2,7 @@
 
 \bibitem{Simon1957}
 {A Thought for Your Pennies: Micropayment and the Liberation of Content}.
+\newblock \url{http://transcopyright.org/hcoinRemarks-D28.html}.
 
 \bibitem{Andrychowicz2015}
 Marcin Andrychowicz, Stefan Dziembowski, Daniel Malinowski, and {\L}ukasz
@@ -64,6 +65,11 @@ Ittay Eyal and Emin~Gun Sirer.
   Notes in Artificial Intelligence and Lecture Notes in Bioinformatics)},
   8437:436--454, nov 2013.
 
+\bibitem{Freeman1977}
+Linton~C. Freeman.
+\newblock {A Set of Measures of Centrality Based on Betweenness}.
+\newblock {\em Sociometry}, 40(1):35, mar 1977.
+
 \bibitem{Garay2015}
 Juan Garay, Aggelos~Kiayias B, and Nikos Leonardos.
 \newblock {The Bitcoin Backbone Protocol : Analysis and Applications}.
@@ -91,6 +97,14 @@ Satoshi Nakamoto.
 
 \bibitem{Nelson1960}
 Nelson.
+
+\bibitem{Amp2018}
+Conner~Fromknecht Olaoluwa~Osuntokun.
+\newblock {AMP: Atomic Multi-Path Payments over Lightning}.
+\newblock
+  \url{https://lists.linuxfoundation.org/pipermail/lightning-dev/2018-February/000993.html},
+  2018.
+\newblock [Online; Tue Feb 6 05:26:30 UTC 2018].
 
 \bibitem{Pass2016}
 Rafael Pass, Lior Seeman, and Abhi Shelat.
