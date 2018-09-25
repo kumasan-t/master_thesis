@@ -15,6 +15,12 @@ Albert~L{\'{a}}szl{\'{o}} Barab{\'{a}}si and R{\'{e}}ka Albert.
 \newblock {Emergence of scaling in random networks}.
 \newblock {\em Science}, 286(5439):509--512, 1999.
 
+\bibitem{Brandes2001}
+Ulrik Brandes.
+\newblock {A faster algorithm for betweenness centrality*}.
+\newblock {\em The Journal of Mathematical Sociology}, 25(2):163--177, jun
+  2001.
+
 \bibitem{Buterin2014}
 Vitalik Buterin.
 \newblock {A next-generation smart contract and decentralized application
@@ -46,6 +52,7 @@ Christian Decker and Roger Wattenhofer.
 Christian Decker and Roger Wattenhofer.
 \newblock {Bitcoin Transaction Malleability and MtGox}.
 \newblock mar 2014.
+
 
 \bibitem{Dwork1992}
 Cynthia Dwork and Moni Naor.
@@ -97,6 +104,8 @@ Satoshi Nakamoto.
 
 \bibitem{Nelson1960}
 Nelson.
+\newblock {A Thought for Your Pennies: Micropayment and the Liberation of
+  Content}.
 
 \bibitem{Amp2018}
 Conner~Fromknecht Olaoluwa~Osuntokun.

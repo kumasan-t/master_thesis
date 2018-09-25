@@ -60,10 +60,9 @@
 		\end{tabulary}
 	\end{center}
 	
-	\newpage
 	\subsection{Daily edges variation}
 
-	\begin{figure}[t]
+	\begin{figure}[h]
 		\centering
 		\begin{subfigure}{0.45\textwidth}
 			\centering
@@ -109,13 +108,10 @@
 	\end{tabulary}
 	\end{center}
 
-	\newpage
 	\subsection{Daily average degree variation}
 
-	The daily average degree score appears to be confined between an all time highest of 1.59\% and -0.12\% among the days in exam and it is coherent with the number of nodes and edges fluctuation. By putting in relation the number of nodes and average degree variation it is possible to learn more about what kind of nodes are joining or leaving the network: for example data from (\ref{daily_node0}) and (\ref{daily_edges0}) show a negative edges and nodes fluctuation while the average degree variation of (\ref{daily_degree0}) is overall increased, suggesting that the nodes that left the network were actually single-channels node.
-
-	\begin{figure}[t]
-		\centering
+	\begin{figure}[h]
+	\centering
 		\begin{subfigure}{0.45\textwidth}
 			\centering
 			\includegraphics[width=\linewidth]{daily_average_degree0}
@@ -140,10 +136,14 @@
 			\caption{Snapshot, June 2nd}
 			\label{daily_degree3}
 		\end{subfigure}
-		
-		\caption{Average degree on a daily basis}
-		\label{daily_degree _variation}
+	
+	\caption{Average degree on a daily basis}
+	\label{daily_degree _variation}
 	\end{figure}
+
+	The daily average degree score appears to be confined between an all time highest of 1.59\% and -0.12\% among the days in exam and it is coherent with the number of nodes and edges fluctuation. By putting in relation the number of nodes and average degree variation it is possible to learn more about what kind of nodes are joining or leaving the network: for example data from (\ref{daily_node0}) and (\ref{daily_edges0}) show a negative edges and nodes fluctuation while the average degree variation of (\ref{daily_degree0}) is overall increased, suggesting that the nodes that left the network were actually single-channels node.
+
+
 	\begin{center}
 		\begin{tabulary}{\linewidth}{| L | C | C | C | C |}
 			\hline	
@@ -159,44 +159,42 @@
 	
 	\subsection{Daily diameter}
 	
+		\begin{figure}[h]
+		\centering
+		\begin{subfigure}{0.45\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{daily_diameter0}
+			\caption{Snapshot, May 16th}
+			\label{daily_diameter0}
+		\end{subfigure}
+		\begin{subfigure}{0.45\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{daily_diameter1}
+			\caption{Snapshot, May 21th}
+			\label{daily_diameter1}
+		\end{subfigure}
+		\begin{subfigure}{0.45\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{daily_diameter2}
+			\caption{Snapshot, May 26th}
+			\label{daily_diameter2}
+		\end{subfigure}
+		\begin{subfigure}{0.45\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{daily_diameter3}
+			\caption{Snapshot, June 2nd}
+			\label{daily_diameter3}
+		\end{subfigure}
+		
+		\caption{Diameter trends on a daily basis}
+		\label{daily_diameter}
+	\end{figure}
+	
 	The graph diameter is a measures that is derived from the wider notion of \textit{eccentricity} $\epsilon$ which is defined as the greatest shortest distance between a vertex \(v\) and every other vertex and expresses how much a node \(v\) is distant from the farthest node of the graph. The diameter \(d\) is the greatest shortest path among all the pair of nodes, i.e. it is the maximum eccentricity of any vertex in the graph.
 	
 	\[d = \max_{v \in V} \epsilon(v)\]
 	
-	The churn rate of the network in all four snapshots is too low to justify a variation resulting in a constant behavior during 144 snapshots. These trends were actually showed to justify a wider period of observation as it is hard to infer any properties from the gathered data. In the following sections, the very same trends will be showed with respect to a 32 days period. 
-	
-	\begin{figure}[t]
-	\centering
-	\begin{subfigure}{0.45\textwidth}
-		\centering
-		\includegraphics[width=\linewidth]{daily_diameter0}
-		\caption{Snapshot, May 16th}
-		\label{daily_diameter0}
-	\end{subfigure}
-	\begin{subfigure}{0.45\textwidth}
-		\centering
-		\includegraphics[width=\linewidth]{daily_diameter1}
-		\caption{Snapshot, May 21th}
-		\label{daily_diameter1}
-	\end{subfigure}
-	\begin{subfigure}{0.45\textwidth}
-		\centering
-		\includegraphics[width=\linewidth]{daily_diameter2}
-		\caption{Snapshot, May 26th}
-		\label{daily_diameter2}
-	\end{subfigure}
-	\begin{subfigure}{0.45\textwidth}
-		\centering
-		\includegraphics[width=\linewidth]{daily_diameter3}
-		\caption{Snapshot, June 2nd}
-		\label{daily_diameter3}
-	\end{subfigure}
-	
-	\caption{Diameter trends on a daily basis}
-	\label{daily_diameter}
-	\end{figure}
-
-	\newpage
+	The churn rate of the network in all four snapshots is too low to justify a variation, resulting in a constant behavior during each 144 snapshots. These trends were actually showed to justify a wider period of observation as it is hard to infer any properties from the gathered data. In the following sections, the very same trends will be showed with respect to a 32 days period. 
 
 	\subsection{Monthly nodes variation}
 	
@@ -209,6 +207,14 @@
 	
 	Figure \ref{monthly_nodes} displays the trend of the churning nodes from May 15th to June 27h. Differently from what has been observed on the daily trends, here the gaps between the number of nodes across the various snapshot is more pronounced even though the overall variation at the end of the observation period results only to be +1.03\%, however the maximum size the network reached was 886 nodes while the lowest was 682.
 	
+	\begin{center}
+		\begin{tabulary}{\linewidth}{| L | C | C | C | C | C |}
+			\hline	
+			& Starting nodes & Final nodes  & Variation(\%) & Max num. of nodes & Min num. of nodes \\ \hline
+			May 15th - June 27th & 771 & 779 & +1.03\% & 886 & 682 \\ \hline
+		\end{tabulary}
+	\end{center}
+	
 	\subsection{Monthly edges variation}
 	\begin{figure}
 		\centering
@@ -217,14 +223,38 @@
 		\label{monthly_edges}
 	\end{figure}
 
-	Edges trend follow the same nodes trend as it has been also showed with the daily trends.
+	Edges trend follow the same nodes trend as it has been already showed with the daily trends. Here the gap between highs and lows are even more pronounced due to the fact that it is likely that nodes have more than one channel towards other nodes. This graph helps to understand better the dynamic nature of the Lightning Network channels, as the churning rate of edges is higher than the one accounting for the nodes. 
+	
+	\begin{center}
+		\begin{tabulary}{\linewidth}{| L | C | C | C | C | C |}
+			\hline	
+			& Starting channels & Final channels  & Variation(\%) & Max num. of channels & Min num. of channels \\ \hline
+			May 15th - June 27th & 2304 & 2420 & +5.03\% & 2886 & 1910 \\ \hline
+		\end{tabulary}
+	\end{center}
+	
 	\subsection{Monthly average degree variation}
-		\begin{figure}
+	
+	\begin{figure}
 		\centering
 		\includegraphics[width=\linewidth]{average_degree}
+		\caption{Monthly average degree.}
+		\label{monthly_degree}
 	\end{figure}
-
+	
+	As a consequences for these rates, the average degree of the network oscillates between a higher gap with respect to what has been observed during the daily analysis where the fluctuation was on average +0,67\%. Later it will be showed the actual degree distribution of the graph, and an interesting property that will emerge is that it resembles a power-law distribution. Thanks to this intuition it will be possible to play around this feature in the building of an equivalent model. The following table shows the main characteristics emerged from the overall average degree analysis.
+	
+	\begin{center}
+		\begin{tabulary}{\linewidth}{| L | C | C | C | C | C |}
+			\hline	
+			& Starting degree (avg.) & Final degree (avg.)  & Variation(\%) & Max avg.degree & Min avg. degree \\ \hline
+			May 15th - June 27th & 5.97 & 6..21 & +3.95\% & 6.56 & 5.60 \\ \hline
+		\end{tabulary}
+	\end{center}
+	
 	\subsection{Monthly diameter}
+	
+	The diameter essentially falls within the already known bounds found during their analysis over a daily time window, although, thanks to a wider observation period, it is possible to see how frequent the oscillation between different diameters are. The network diameter oscillates between 7 and 8 and the importance of this data will be better explained in the next session, but shortly, if a payment uses the geodesic distance as the preferred method to deliver funds, then it would mean that in the worst case there is the need to cross 7 (or 8) channels before reaching the desired peer. Keeping track of this feature may help to balance the network in a way so that new channels can fill the gap between less connected clusters.
 	
 	\begin{figure}
 		\centering
@@ -241,14 +271,85 @@
 	
 	The Lightning Network is a payment system based on routes between peers that delegates the payment task to their neighbors thanks to a special contract called HTLC. However, it may happen that a fund that is being processed may end up kept in hostage by a faulty node; therefore, in order to prevent this disruptive scenario a timelock (namely nLockTime parameter) is applied for each HTLC transactions that occur during the payment in order to have the certainty that, after a fixed amount of time, the payment can be considered valid. The best case scenario occurs when all the nodes of a payment path are cooperative and fulfill their duties (i.e. the payment is resolved almost instantly), while the worst case scenario occurs when each node acts maliciously by waiting until the expiration date of the HTLC approaches and then fulfilling their task, as the fidelity bonds between two parties enforce to adhere to the protocol (penalty, the lose of all the liquidity in the channel in favor of the offended party). 
 	
-	By default, the nLockTime parameter is set to 144 blocks which are approximately 24 hours (the Bitcoin blockchain can be seen as a timestamp service, hence the two expressions are mutual) and we've seen so far that the diameter of the network is around 7 and 8 as showed in Figure \ref{monthly_diameter}. Thus, if the path between two peers has only malicious participant it would mean that a transactions can be considered valid only if 7 days are passed, and the funds gets locked out as well. This is the reason why it is advised to pay only for small amounts of Bitcoins, as larger sums could be locked for several days as they are still considered involved in an open payment operation: if the same situation should happen with larger sums, the consequences would be disruptive for the network as it may prevent peers to fulfill any payment for days; another reason for small payments is that large transfers of money would drain a channel balance instantly, forcing the settlement of the channel after few transactions. A new approach to payments called AMP \cite{Amp2018} - Atomic Multipaths Payment - has been proposed as a workaround to this problem. It should be clear to the reader then that a payer has the necessity to minimize the distance between him and his payee, as it will minimize the time required to process a transaction in case of adversarial nodes along the path and also will minimize the time he has to wait before getting his channel funds unlocked and ready to use for a new transaction.
+	By default, the nLockTime parameter is set to 144 blocks which are approximately 24 hours (the Bitcoin blockchain can be seen as a timestamp service, hence the two expressions are mutual) and we've seen so far that the diameter of the network is around 7 and 8 as showed in Figure \ref{monthly_diameter}. Thus, if the path between two peers has only malicious participant it would mean that a transactions can be considered valid only if 7 days are passed, and the funds gets locked out as well. This is the reason why it is advised to pay only for small amounts of Bitcoins, as larger sums could be locked for several days as they are still considered involved in an open payment operation: if the same situation should happen with larger sums, the consequences would be disruptive for the network as it may prevent peers to fulfill any payment for days; another reason for small payments is that large transfers of money would drain a channel balance instantly, forcing the settlement of the channel after few transactions. A new approach to payments called AMP \cite{Amp2018} - Atomic Multipaths Payment - has been proposed as a workaround to the latter problem. It should be clear to the reader then that a payer has the necessity to minimize the distance between him and his payee, as it will minimize the time required to process a transaction in case of adversarial nodes along the path and also will minimize the time he has to wait before getting his channel funds unlocked and ready to use for a new transaction.
 	
-	It has been observed that more than 90\% of nodes policies carried the default timelock delta value of 144. Since the analysis was carried on the testnet environment it is probable that the policies of the remaining 10\% of the edges were modified for research activities as the Lightning Network authors strongly suggest to stick with the default value for safety reason. After having removed all the edges whose timelock was different from 144, it was safe to assume that the traversal cost of an edge was equal to 1 without loss of generality.
+	\begin{figure}
+		\centering
+		\begin{subfigure}{0.45\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{daily_betweenness_centrality0}
+			\caption{Snapshot, May 16th}
+			\label{daily_beetwenness0}
+		\end{subfigure}
+		\begin{subfigure}{0.45\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{daily_betweenness_centrality1}
+			\caption{Snapshot, May 21th}
+			\label{daily_betweenness1}
+		\end{subfigure}
+		\begin{subfigure}{0.45\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{daily_betweenness_centrality2}
+			\caption{Snapshot, May 26th}
+			\label{daily_betweenness2}
+		\end{subfigure}
+		\begin{subfigure}{0.45\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{daily_betweenness_centrality3}
+			\caption{Snapshot, June 2nd}
+			\label{daily_betweenness3}
+		\end{subfigure}
+		
+		\caption{Betweenness centrality}
+		\label{daily_betweenness}
+	\end{figure}
 	
-	\subsection{Daily betweenness centrality - top 5}
-	\subsection{Gantt chart - day}
-	\subsection{Weekly betweenness centrality - top 5}
-	\subsection{Gantt chart - week}
+	It has been observed that more than 90\% of nodes policies carried the default timelock delta value of 144. Since the analysis was carried on the testnet environment it is probable that the policies of the remaining 10\% of the edges were modified for research activities since the Lightning Network authors strongly suggest to stick with the default value for safety reason. After having removed all the edges whose timelock was different from 144, it was safe to assume that the traversal cost of an edge was equal to 1 without loss of generality.
+	
+	
+	As for the algorithm itself that will be used, the Networkx has its own implementation based on the Ulrik Brandes \cite{Brandes2001} variant that computes the betweenness centrality running in $\theta(nm)$ and $\theta(n + m)$ space where $n$ is the number of nodes and $m$ the number of edges whereas the fastest known algorithm at the time required $\theta(n^3)$ time and $\theta(n^2)$ space.	Generally speaking, the betweenness centrality is evaluated according to the formula 
+	\begin{equation}
+		g(v) = \sum_{s \neq v \neq t}{\frac{\sigma_{st}(v) }{\sigma_st}}
+	\end{equation}
+	where $\sigma_st$ is the total number of shortest paths from node $s$ and node $t$ and $\sigma_{st}(v)$ is the number of paths that pass through $v$. In order to have $g(v) \in [0, 1]$ it is necessary to normalize the values by dividing (for undirected graphs) by $(N-1)(N-2)/2$ where $N$ is the total number of nodes.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=\linewidth]{monthy_gantt_chart}
+		\caption{The graph represents the nodes that occupied the first 5 position whose score was the best among the rest of the other nodes.}
+		\label{monthly_gantt}
+	\end{figure}		
+	
+	The data in Figure \ref{daily_betweenness} picks the top 5 nodes according to their betweenness centrality aggregated score. The aggregated score means that the centrality gets first evaluated for every node of the intersection $V = \{V_1 \cap V_2 \cap \cdots V_k \}$, where $k$ is the number of snapshot and $V_i$ being the set of nodes of each snapshot, then
+	\begin{equation}
+		B_i(V) = \{ g_i(v) \mid \forall v \in V \}
+	\end{equation}
+	is computed, such that $B_i$ is the betweenness centrality score for all the nodes of the $i$-th snapshot. Then the nodes are sorted according to the aggregated score
+	\begin{equation}
+		B(V) = sort(\{ \sum_{j = 0}^{k}g_j(v) \mid g_j(v) \in B_i(V), \forall i= 0,1,2 \cdots k\})
+	\end{equation}
+	and the top five elements by score are picked. The reason why this metric has been evaluated over the intersection of nodes is because of the interest in finding the stable backbone of the network.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=\linewidth]{monthly_betweenness_centrality}
+		\caption{Betweenness Centrality (Monthly)}
+		\label{monthly_betweenness_centrality}
+	\end{figure}
+
+	As expected, the scores appear to be constant or with low variations along the 144 snapshots. The nodes are identified by the first five characters of their public key, and by looking at those IDs it emerges that the set is different for all their snapshot meaning that indeed new nodes joined the network during the five days elapsed between each snapshot and attached to already well established nodes. 
+	
+	Figure \ref{monthly_gantt} shows which nodes occupied the first five positions during the period that goes from May 15th to June 27th. For each day, the nodes that scored the highest betweenness centrality score are showed here, for a total of 9 nodes that alternates each other throughout the observation period. This plot helps to keep track of the different set of nodes observed in the daily plots, and to understand better the mobility of a node in the network since the betweenness centrality largely depends essentially on how many open channels are between the node and the rest of the network.
+	
+	This aspect is even more pronounced if we look at Figure \ref{monthly_betweenness_centrality} where the monthly behavior is displayed and thanks to this metric is possible to investigate deeper on nodes and events that occurred during the observation period. 
+	
+	For example it has been noted that, on average, the total number of neighbors of these five nodes is 486.125, accounting for 62,7\% of the overall size of network. Such a high centrality score also suggests that the neighbors may only have a single channel that keeps them connected to the largest connected component. By removing these five nodes from the latest snapshot, the graph gets partitioned into 234 subgraphs: the largest subgraph among these contain 532 nodes (which is the Lightning Network itself) while the number of nodes of the remaining subgraphs is 242. Of these 242 nodes, 228 were single channel nodes.
+
+	
+	Furthermore, it is possible to investigate over some peculiar events like the one happened during snapshot 9 and 10, where node \textit{03e5f9} jumped on top of nodes for betweenness score: during snapshot 9, the node had 31 neighbors and ranked fairly low for betweenness centrality score; the day after (snapshot 10) has seen 199 new nodes joining the network and 175 of these nodes connected to \textit{03e5f9}, making it the most central node of the network. Since an event like this, 175 new nodes in a day, is quite unusual for this payment system, it emerged that out of this 175 new nodes, 172 of them were already neighbors of node \textit{03e5f9} during snapshot 0, so it may be possible that the node willingly forced most of its channel to close on day 2, and this behavior is repeated on day 11th and day 22th.
+	
+	By looking at the history of the betweenness centrality is then possible to understand better the reliability of a particular nodes. It also helps preventing that nodes get too centralized as the network becomes more similar to a centralized hubs network rather than a decentralized one: the autopilot feature of Lightning Network may check the whole network betweenness centrality to balance out the new channels establishment with the current topology in order to decrease the centrality and the maximum diameter of the network.
+	
 	\section{\textit{k}-vertex connectivity}
 	\subsection{Components size}
 	\subsection{Betweenness inclusion}
