@@ -205,13 +205,13 @@
 		\label{monthly_nodes}
 	\end{figure}
 	
-	Figure \ref{monthly_nodes} displays the trend of the churning nodes from May 15th to June 27h. Differently from what has been observed on the daily trends, here the gaps between the number of nodes across the various snapshot is more pronounced even though the overall variation at the end of the observation period results only to be +1.03\%, however the maximum size the network reached was 886 nodes while the lowest was 682.
+	Figure \ref{monthly_nodes} displays the trend of the churning nodes from May 15th to June 27h. Differently from what has been observed on the daily trends, here the overall variation at the end of the observation period is, as expected, more pronounced as the size of the network has seen a +13.73\% joining rate.
 	
 	\begin{center}
 		\begin{tabulary}{\linewidth}{| L | C | C | C | C | C |}
 			\hline	
 			& Starting nodes & Final nodes  & Variation(\%) & Max num. of nodes & Min num. of nodes \\ \hline
-			May 15th - June 27th & 771 & 779 & +1.03\% & 886 & 682 \\ \hline
+			May 15th - June 27th & 779 & 886 & +13.73\% & 886 & 682 \\ \hline
 		\end{tabulary}
 	\end{center}
 	
@@ -223,13 +223,13 @@
 		\label{monthly_edges}
 	\end{figure}
 
-	Edges trend follow the same nodes trend as it has been already showed with the daily trends. Here the gap between highs and lows are even more pronounced due to the fact that it is likely that nodes have more than one channel towards other nodes. This graph helps to understand better the dynamic nature of the Lightning Network channels, as the churning rate of edges is higher than the one accounting for the nodes. 
+	Edges trend follow the same nodes trend as it has been already showed with the daily trends. Here the gap between highs and lows are even more pronounced due to the fact that it is likely that nodes have more than one channel towards other nodes and this is reflected by the variation observed with respect to the nodes, being it +19.25\%. This graph helps to understand better the dynamic nature of the Lightning Network channels, as the churning rate of edges is higher than the one accounting for the nodes. 
 	
 	\begin{center}
 		\begin{tabulary}{\linewidth}{| L | C | C | C | C | C |}
 			\hline	
 			& Starting channels & Final channels  & Variation(\%) & Max num. of channels & Min num. of channels \\ \hline
-			May 15th - June 27th & 2304 & 2420 & +5.03\% & 2886 & 1910 \\ \hline
+			May 15th - June 27th & 2420 & 2886 & +19.25\% & 2886 & 1910 \\ \hline
 		\end{tabulary}
 	\end{center}
 	
@@ -248,13 +248,13 @@
 		\begin{tabulary}{\linewidth}{| L | C | C | C | C | C |}
 			\hline	
 			& Starting degree (avg.) & Final degree (avg.)  & Variation(\%) & Max avg.degree & Min avg. degree \\ \hline
-			May 15th - June 27th & 5.97 & 6..21 & +3.95\% & 6.56 & 5.60 \\ \hline
+			May 15th - June 27th & 6.21 & 6.51 & +4.85\% & 6.56 & 5.60 \\ \hline
 		\end{tabulary}
 	\end{center}
 	
 	\subsection{Monthly diameter}
 	
-	The diameter essentially falls within the already known bounds found during their analysis over a daily time window, although, thanks to a wider observation period, it is possible to see how frequent the oscillation between different diameters are. The network diameter oscillates between 7 and 8 and the importance of this data will be better explained in the next session, but shortly, if a payment uses the geodesic distance as the preferred method to deliver funds, then it would mean that in the worst case there is the need to cross 7 (or 8) channels before reaching the desired peer. Keeping track of this feature may help to balance the network in a way so that new channels can fill the gap between less connected clusters.
+	The diameter essentially falls within the already known bounds found during their analysis over a daily time window, although, thanks to a wider observation period, it is possible to see how frequent the oscillation between different diameters are. In the case in exam, the plot shows a period in which the network has seen an increase that lasted for 22 days. the importance of this data will be better explained in the next session, but shortly, if a payment uses the geodesic distance as the preferred method to deliver funds, then it would mean that in the worst case there is the need to cross 7 (or 8) channels before reaching the desired peer. Keeping track of this feature may help to balance the network in a way so that new channels can fill the gap between less connected clusters or to be aware of failures of central nodes.
 	
 	\begin{figure}
 		\centering
@@ -315,9 +315,9 @@
 	
 	\begin{figure}
 		\centering
-		\includegraphics[width=\linewidth]{monthy_gantt_chart}
-		\caption{The graph represents the nodes that occupied the first 5 position whose score was the best among the rest of the other nodes.}
-		\label{monthly_gantt}
+		\includegraphics[width=\linewidth]{monthly_betweenness_centrality}
+		\caption{Betweenness Centrality (Monthly)}
+		\label{monthly_betweenness_centrality}
 	\end{figure}		
 	
 	The data in Figure \ref{daily_betweenness} picks the top 5 nodes according to their betweenness centrality aggregated score. The aggregated score means that the centrality gets first evaluated for every node of the intersection $V = \{V_1 \cap V_2 \cap \cdots V_k \}$, where $k$ is the number of snapshot and $V_i$ being the set of nodes of each snapshot, then
@@ -332,25 +332,60 @@
 	
 	\begin{figure}
 		\centering
-		\includegraphics[width=\linewidth]{monthly_betweenness_centrality}
-		\caption{Betweenness Centrality (Monthly)}
-		\label{monthly_betweenness_centrality}
+		\includegraphics[width=\linewidth]{monthly_gantt_chart}
+		\caption{The graph represents the nodes that occupied the first 5 position whose score was the best among the rest of the other nodes.}
+		\label{monthly_gantt}
 	\end{figure}
 
 	As expected, the scores appear to be constant or with low variations along the 144 snapshots. The nodes are identified by the first five characters of their public key, and by looking at those IDs it emerges that the set is different for all their snapshot meaning that indeed new nodes joined the network during the five days elapsed between each snapshot and attached to already well established nodes. 
 	
-	Figure \ref{monthly_gantt} shows which nodes occupied the first five positions during the period that goes from May 15th to June 27th. For each day, the nodes that scored the highest betweenness centrality score are showed here, for a total of 9 nodes that alternates each other throughout the observation period. This plot helps to keep track of the different set of nodes observed in the daily plots, and to understand better the mobility of a node in the network since the betweenness centrality largely depends essentially on how many open channels are between the node and the rest of the network.
-	
 	This aspect is even more pronounced if we look at Figure \ref{monthly_betweenness_centrality} where the monthly behavior is displayed and thanks to this metric is possible to investigate deeper on nodes and events that occurred during the observation period. 
 	
-	For example it has been noted that, on average, the total number of neighbors of these five nodes is 486.125, accounting for 62,7\% of the overall size of network. Such a high centrality score also suggests that the neighbors may only have a single channel that keeps them connected to the largest connected component. By removing these five nodes from the latest snapshot, the graph gets partitioned into 234 subgraphs: the largest subgraph among these contain 532 nodes (which is the Lightning Network itself) while the number of nodes of the remaining subgraphs is 242. Of these 242 nodes, 228 were single channel nodes.
+	For example it has been noted that, on average, the total number of neighbors of these five nodes is 486.125, accounting for 62,7\% of the overall size of network. Such a high centrality score also suggests that the neighbors may only have a single channel that keeps them connected to the largest connected component. By removing these five nodes from the latest snapshot, the graph gets partitioned into 234 subgraphs: the largest subgraph among these contains 532 nodes (which is the Lightning Network itself) while the number of nodes of the remaining subgraphs is 242. Of these 242 nodes, 228 were single channel nodes.
 
+	It is then possible to investigate over some peculiar events like the one happened during snapshot 10 and 11, where node \textit{03e5f9} lost suddenly its centrality over 24 hours: 
+	from day 0 through day 10 the node was performing first among the others for betweenness centrality score. On day 11, the node dropped from 196 nodes to 37 as it closed channels with 159 peers; out of these 159 peers, 98 of them were single channel nodes, effectively disconnecting them from the rest of the network making node \textit{03e5f9} the single point of failure for the 12\% of the total nodes. Unfortunately it's impossible to determine the causes that led to such a drop as it may be happened because of saturated channel balances, unresponsive nodes or internal errors on their server.
 	
-	Furthermore, it is possible to investigate over some peculiar events like the one happened during snapshot 9 and 10, where node \textit{03e5f9} jumped on top of nodes for betweenness score: during snapshot 9, the node had 31 neighbors and ranked fairly low for betweenness centrality score; the day after (snapshot 10) has seen 199 new nodes joining the network and 175 of these nodes connected to \textit{03e5f9}, making it the most central node of the network. Since an event like this, 175 new nodes in a day, is quite unusual for this payment system, it emerged that out of this 175 new nodes, 172 of them were already neighbors of node \textit{03e5f9} during snapshot 0, so it may be possible that the node willingly forced most of its channel to close on day 2, and this behavior is repeated on day 11th and day 22th.
+	Contrary to Figure \ref{monthly_betweenness_centrality}, Figure \ref{monthly_gantt} shows which nodes occupied the first five positions during the very same period, independently from their aggregated score, that is, the graph shows only the node that were top 5 for each day of the time interval in exam, for a total of 9 nodes that alternates each other throughout the observation period. This plot helps better to understand the stability of a node, since a central node will likely perform better than peripheral nodes when it comes to payments delegation, also we'd like a node that is stable because as it has been showed with node \textit{03e5f9} a crash would be disruptive for the network health.
 	
-	By looking at the history of the betweenness centrality is then possible to understand better the reliability of a particular nodes. It also helps preventing that nodes get too centralized as the network becomes more similar to a centralized hubs network rather than a decentralized one: the autopilot feature of Lightning Network may check the whole network betweenness centrality to balance out the new channels establishment with the current topology in order to decrease the centrality and the maximum diameter of the network.
+	By looking at the history of the betweenness centrality is then possible to understand better the reliability of particular nodes. It also helps preventing that nodes get too centralized as the network becomes more similar to a centralized hubs network rather than a decentralized one: the autopilot feature of Lightning Network may check the whole network betweenness centrality to balance out the new channels establishment with the current topology in order to decrease the centrality and the maximum diameter of the network. On the other hand, clients may want to give up the decentralization feature to embrace a more reliable 
+	
+	\newpage
 	
 	\section{\textit{k}-vertex connectivity}
+	
+	\textit{k}-vertex connectivity gives an important outlook when it comes to robustness. In graph theory a graph $G = (V,E)$ is said to be \textit{k}-vertex connected if for every pair of vertices there are \textit{k}-vertex indipendent paths connecting these vertices, or in other words, \textit{k} is the size of the smallest subset of vertices such that the graph becomes disconnected if deleted. It is trivial then that complete graphs do not fall into this definition since a complete graph cannot be disconnected by removing vertices. Furthemore, if a complete graph has n-vertices, then by the above definition it falls in the class of \textit{(n - 1)}-vertex connectivity.
+	
+	However, computing the k-vertex connectivity alone over the snapshots is not particulary useful as the Lightning Network, being a connnected network, will always be a 1-vertex connected graph. Nonetheless, it's very likely that inside the 1-vertex connected component there may be others, stronger, connected components, i.e. there may exists subgraphs whose k-vertex connectivities are higher than their supergraph. This kind of reasoning can be applied iteratively until it's impossible to find any new subgraph whose k-vertex connectivity is higher than their subgraphs.
+	
+	The algorithm used to perform this task has been proposed by James Moody and Douglas R. White \cite{Moody2003} based on their research over cohesion in social groups. It returns the k-component structure of a graph G, where a k-component is a maximal subgraph of G that has at least node connectivity k. The algorithm works as follow:
+	\begin{enumerate}
+		\item Compute node connectivity k of the input graph.
+		\item Identify all k-cutsets at the current level of connectivity. 
+		\item Generate new graph components based on the removal of these cutsets. Nodes in a cutset belong to both sides of the induced cut.
+		\item If the graph is neither complete nor trivial, return to 1; else end.
+	\end{enumerate}
+	
+	The algorithm has been running over the 32 snapshots. What emerged is an inherent hierarchical structure of the network where the innermost components shows a high k-vertex connectivity (or cohesive degree) compared to the most peripheral nodes. Trivially, as the connectivity increases, the vulnerability to isolated actions performed unilaterally by some (byzantine) nodes decreases such that the degree of actions of any malicious attacker depends on at least $k$ components of the subgraph.
+	
+	\begin{figure}
+		\includegraphics[width=\linewidth]{k_connectivity_average_size}\\
+		\caption{Average size for each components for every snapshot taken from May 15th to June 27th}
+		\label{monthly_connectivity_average}
+	\end{figure}
+	
+	The data presented in Figure \ref{monthly_connectivity_average} represents the average size of each component over the 32 snapshots in exam. The orange bars represent the mean value of every component while the black lines represent their standard deviation. Even though there are represented up to 15 components, it is not necessary true that the maximum k-vertex size is indeed 15. What the graph suggest is that if there exists a k-component over a particular snapshot, it is likely that the $k$-th component size will be on average like the corresponding value depicted in Figure \ref{monthly_connectivity_average}.
+	
+	The 1-connected component is trivially the average of the graph sizes over the 32 captures; indeed every 1-connected component size is equal to the graph order of the relative snapshot. More than 50\% of the network is a biconnected subgraph (2-vertex connected graph) meaning that it is resilient up to one node failure and as we move right in the plot the graph gets more and more resistant to node failures. 
+	
+	
+	Dove è stato applicato questo algoritmo
+	Cosa ne è uscito fuori (struttura)
+	Come è possibile rappresentarne la struttura
+	interessanti proprietà (inclusione con la betweenness centrality)
+	perchè è interessante analizzarlo
+	utilità: sponsorizzare nodi in cui viene promosso il fatto di far parte di una cricca resiliente ai failure
+		
 	\subsection{Components size}
 	\subsection{Betweenness inclusion}
 	\section{Max-Cut}

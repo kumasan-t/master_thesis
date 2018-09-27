@@ -16,45 +16,45 @@ Warning--empty year in Decker
 Warning--there's a number but no volume in Decker2013
 Warning--empty journal in Decker2014
 Warning--empty publisher in Pass2016
-You've used 24 entries,
+You've used 25 entries,
             2118 wiz_defined-function locations,
-            653 strings with 7970 characters,
-and the built_in function-call counts, 7685 in all, are:
-= -- 757
-> -- 348
+            662 strings with 8016 characters,
+and the built_in function-call counts, 8109 in all, are:
+= -- 800
+> -- 372
 < -- 7
-+ -- 138
-- -- 114
-* -- 511
-:= -- 1266
-add.period$ -- 72
-call.type$ -- 24
-change.case$ -- 128
++ -- 147
+- -- 122
+* -- 557
+:= -- 1341
+add.period$ -- 74
+call.type$ -- 25
+change.case$ -- 135
 chr.to.int$ -- 0
-cite$ -- 35
-duplicate$ -- 295
-empty$ -- 605
-format.name$ -- 114
-if$ -- 1608
+cite$ -- 36
+duplicate$ -- 310
+empty$ -- 630
+format.name$ -- 122
+if$ -- 1687
 int.to.chr$ -- 0
-int.to.str$ -- 24
-missing$ -- 21
-newline$ -- 121
-num.names$ -- 46
-pop$ -- 158
+int.to.str$ -- 25
+missing$ -- 23
+newline$ -- 125
+num.names$ -- 48
+pop$ -- 155
 preamble$ -- 1
-purify$ -- 105
+purify$ -- 111
 quote$ -- 0
-skip$ -- 220
+skip$ -- 230
 stack$ -- 0
-substring$ -- 441
-swap$ -- 61
+substring$ -- 478
+swap$ -- 62
 text.length$ -- 7
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 94
+type$ -- 98
 warning$ -- 11
-while$ -- 79
-width$ -- 26
-write$ -- 248
+while$ -- 84
+width$ -- 27
+write$ -- 259
 (There were 13 warnings)
