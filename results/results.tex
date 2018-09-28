@@ -321,7 +321,7 @@
 	\end{figure}		
 	
 	The data in Figure \ref{daily_betweenness} picks the top 5 nodes according to their betweenness centrality aggregated score. The aggregated score means that the centrality gets first evaluated for every node of the intersection $V = \{V_1 \cap V_2 \cap \cdots V_k \}$, where $k$ is the number of snapshot and $V_i$ being the set of nodes of each snapshot, then
-	\begin{equation}
+	\begin{equation}\label{eq:betwenness}
 		B_i(V) = \{ g_i(v) \mid \forall v \in V \}
 	\end{equation}
 	is computed, such that $B_i$ is the betweenness centrality score for all the nodes of the $i$-th snapshot. Then the nodes are sorted according to the aggregated score
@@ -353,10 +353,16 @@
 	\newpage
 	
 	\section{\textit{k}-vertex connectivity}
+
+	\begin{figure}
+		\includegraphics[width=\linewidth]{monthly_completeness}
+		\caption{Density of the graphs. Density is calculated as $\frac{m}{n(n-1)}$}
+		\label{monthly_completeness}
+	\end{figure}
 	
-	\textit{k}-vertex connectivity gives an important outlook when it comes to robustness. In graph theory a graph $G = (V,E)$ is said to be \textit{k}-vertex connected if for every pair of vertices there are \textit{k}-vertex indipendent paths connecting these vertices, or in other words, \textit{k} is the size of the smallest subset of vertices such that the graph becomes disconnected if deleted. It is trivial then that complete graphs do not fall into this definition since a complete graph cannot be disconnected by removing vertices. Furthemore, if a complete graph has n-vertices, then by the above definition it falls in the class of \textit{(n - 1)}-vertex connectivity.
-	
-	However, computing the k-vertex connectivity alone over the snapshots is not particulary useful as the Lightning Network, being a connnected network, will always be a 1-vertex connected graph. Nonetheless, it's very likely that inside the 1-vertex connected component there may be others, stronger, connected components, i.e. there may exists subgraphs whose k-vertex connectivities are higher than their supergraph. This kind of reasoning can be applied iteratively until it's impossible to find any new subgraph whose k-vertex connectivity is higher than their subgraphs.
+	\textit{k}-vertex connectivity gives an important outlook when it comes to robustness. In graph theory a graph $G = (V,E)$ is said to be \textit{k}-vertex connected if for every pair of vertices there are \textit{k}-vertex indipendent paths connecting these vertices, or in other words, \textit{k} is the size of the smallest subset of vertices such that the graph becomes disconnected if deleted. Complete graphs do not fall into this definition since a complete graph cannot be disconnected by removing vertices. Furthemore, if a complete graph has n-vertices, then by the above definition it falls in the class of (n-1)-vertex connectivity, but as Figure \ref{monthly_completeness} shows, the network is far to be complete.
+
+	Computing the k-vertex connectivity alone over the snapshots is not particularly useful as the Lightning Network, being a connected network, will always be a 1-vertex connected graph. Nonetheless, it's very likely that inside the 1-vertex connected component there may be others, stronger, connected components, i.e. there may exists subgraphs whose k-vertex connectivities are higher than their supergraph. This kind of reasoning can be applied iteratively until it's impossible to find any new subgraph whose k-vertex connectivity is higher than their subgraphs.
 	
 	The algorithm used to perform this task has been proposed by James Moody and Douglas R. White \cite{Moody2003} based on their research over cohesion in social groups. It returns the k-component structure of a graph G, where a k-component is a maximal subgraph of G that has at least node connectivity k. The algorithm works as follow:
 	\begin{enumerate}
@@ -376,8 +382,28 @@
 	
 	The data presented in Figure \ref{monthly_connectivity_average} represents the average size of each component over the 32 snapshots in exam. The orange bars represent the mean value of every component while the black lines represent their standard deviation. Even though there are represented up to 15 components, it is not necessary true that the maximum k-vertex size is indeed 15. What the graph suggest is that if there exists a k-component over a particular snapshot, it is likely that the $k$-th component size will be on average like the corresponding value depicted in Figure \ref{monthly_connectivity_average}.
 	
-	The 1-connected component is trivially the average of the graph sizes over the 32 captures; indeed every 1-connected component size is equal to the graph order of the relative snapshot. More than 50\% of the network is a biconnected subgraph (2-vertex connected graph) meaning that it is resilient up to one node failure and as we move right in the plot the graph gets more and more resistant to node failures. 
+	\begin{figure}
+		\includegraphics[width=\linewidth]{k_connectivity_max_size}
+		\caption{Highest connectivity value for each snapshot.}
+		\label{monthly_connectivity_max_size}
+	\end{figure}
 	
+	The 1-connected component is trivially the average of the graph sizes over the 32 captures; indeed every 1-connected component size is equal to the graph order of the relative snapshot. More than 50\% of the network is a biconnected subgraph (2-vertex connected graph) meaning that every node inside it is resilient up to two opportunely selected node failures (that is, nodes selected according to the well-known min-cut criteria) and, as we move right in the plot, the graphs get more and more resistant to node failures. Figure \ref{monthly_connectivity_max_size} depicts the highest value k obtained for each snapshot and shows a dynamic behavior of k-connectivity, ranging from a lower bound of 12 to an upper bound of 15.
+	
+	It is interesting to see which nodes belong to the top connected component. The intuition is that nodes that scored best in betweenness centrality will likely to belong to the highest k-component. The results were achieved in the following way:
+	\begin{enumerate}
+		\item Calculate $B_i(V)$ for each snapshot as seen in \ref{eq:betwenness}. Sort the result in a descending fashion. 
+		\item For each $B_i(V)$ selects the first $s$ elements, where $s = |C_i|$ and $C_i$ being the set of nodes that belong to highest k-vertex component of the snapshot $i$.
+		\item Compute the intersection between the two sets.
+	\end{enumerate}
+	
+	\begin{figure}
+		\includegraphics[width=\linewidth]{k_connectivity_beetwenness}
+		\caption{text}
+		\label{monthyl_k_connectivity_betweenness}
+	\end{figure}
+	
+	The results are showed in Figure \ref{monthyl_k_connectivity_betweenness} and as expect a large portion of the top performing central nodes are inside the innermost connected component.
 	
 	Dove è stato applicato questo algoritmo
 	Cosa ne è uscito fuori (struttura)
