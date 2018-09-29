@@ -83,6 +83,13 @@ Juan Garay, Aggelos~Kiayias B, and Nikos Leonardos.
   Lecture Notes in Artificial Intelligence and Lecture Notes in
   Bioinformatics)}, volume~2, pages 281--310, 2015.
 
+\bibitem{Gurcan2017}
+{\"{O}}nder G{\"{u}}rcan, Antonella {Del Pozzo}, and Sara Tucci-Piergiovanni.
+\newblock {On the bitcoin limitations to deliver fairness to users}.
+\newblock In {\em Lecture Notes in Computer Science (including subseries
+  Lecture Notes in Artificial Intelligence and Lecture Notes in
+  Bioinformatics)}, volume 10573 LNCS, pages 589--606, 2017.
+
 \bibitem{Hagberg2008}
 Aric~a. Hagberg, Daniel~a. Schult, and Pieter~J. Swart.
 \newblock {Exploring network structure, dynamics, and function using NetworkX}.

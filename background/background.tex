@@ -59,7 +59,9 @@
 		
 		\subsection{Producing a block}
 		
-		A node who decides to actively participate by creating new blocks is called \textit{miner}. What a miner does is to gather the maximum number of transactions that can fit in a block (whose size is fixed) and to find a value (\textit{nonce}) that hashes the block and in the meantime whose hash is lesser than a target. More precisely, in order for a block to be valid, the SHA-256 hash of a block's header must be lower to the current \textit{target}, with this last one being a 256-bit number that all the Bitcoin clients share. Finding a block is a cryptographic puzzle, a simple brute force attack on the SHA-256 protocol, whose goal, by picking nonces at random, is to find a hash with \(d\) consecutive zero bits, where \(d\) is called \textit{difficulty} and is derived from the target value in the following way:
+		A node who decides to actively participate by creating new blocks is called \textit{miner}. What a miner does is to gather the maximum number of transactions that can fit in a block (whose size is fixed) and to find a value (\textit{nonce}) that hashes the block and in the meantime whose hash is lesser than a target. More precisely, in order for a block to be valid, the SHA-256 hash of a block's header must be lower to the current \textit{target}, with this last one being a 256-bit number that all the Bitcoin clients share. To increase the possibilities for a transaction to be included in a block, users pay a fee to the miners in proportion to the size of the transaction. As showed in \cite{Gurcan2017}, fairness with respect to the probability for a transaction to be processed is not a guaranteed property as long as the transaction fees are large enough to incentivize a miner to include the transaction in a block.
+		
+		Finding a block is a cryptographic puzzle, a simple brute force attack on the SHA-256 protocol, whose goal, by picking nonces at random, is to find a hash with \(d\) consecutive zero bits, where \(d\) is called \textit{difficulty} and is derived from the target value in the following way:
 		
 		\[ d = 8 + \frac{log(D)}{16}\] 
 		where

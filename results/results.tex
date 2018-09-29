@@ -374,6 +374,8 @@
 	
 	The algorithm has been running over the 32 snapshots. What emerged is an inherent hierarchical structure of the network where the innermost components shows a high k-vertex connectivity (or cohesive degree) compared to the most peripheral nodes. Trivially, as the connectivity increases, the vulnerability to isolated actions performed unilaterally by some (byzantine) nodes decreases such that the degree of actions of any malicious attacker depends on at least $k$ components of the subgraph.
 	
+	\subsection{Components size}
+	
 	\begin{figure}
 		\includegraphics[width=\linewidth]{k_connectivity_average_size}\\
 		\caption{Average size for each components for every snapshot taken from May 15th to June 27th}
@@ -390,6 +392,8 @@
 	
 	The 1-connected component is trivially the average of the graph sizes over the 32 captures; indeed every 1-connected component size is equal to the graph order of the relative snapshot. More than 50\% of the network is a biconnected subgraph (2-vertex connected graph) meaning that every node inside it is resilient up to two opportunely selected node failures (that is, nodes selected according to the well-known min-cut criteria) and, as we move right in the plot, the graphs get more and more resistant to node failures. Figure \ref{monthly_connectivity_max_size} depicts the highest value k obtained for each snapshot and shows a dynamic behavior of k-connectivity, ranging from a lower bound of 12 to an upper bound of 15.
 	
+	\subsection{Betweenness inclusion}
+	
 	It is interesting to see which nodes belong to the top connected component. The intuition is that nodes that scored best in betweenness centrality will likely to belong to the highest k-component. The results were achieved in the following way:
 	\begin{enumerate}
 		\item Calculate $B_i(V)$ for each snapshot as seen in \ref{eq:betwenness}. Sort the result in a descending fashion. 
@@ -403,16 +407,14 @@
 		\label{monthyl_k_connectivity_betweenness}
 	\end{figure}
 	
-	The results are showed in Figure \ref{monthyl_k_connectivity_betweenness} and as expect a large portion of the top performing central nodes are inside the innermost connected component.
+	The results are showed in Figure \ref{monthyl_k_connectivity_betweenness} and as expected a large portion of the top performing central nodes are inside the innermost connected component. Data shows that on average the 72,34\% of the current top central nodes by betweenness centrality score belong to the most cohesive group of each snapshot, with a standard deviation of $\sigma = 2.76$. 
 	
-	Dove è stato applicato questo algoritmo
-	Cosa ne è uscito fuori (struttura)
-	Come è possibile rappresentarne la struttura
-	interessanti proprietà (inclusione con la betweenness centrality)
-	perchè è interessante analizzarlo
-	utilità: sponsorizzare nodi in cui viene promosso il fatto di far parte di una cricca resiliente ai failure
-		
-	\subsection{Components size}
-	\subsection{Betweenness inclusion}
-	\section{Max-Cut}
+	This aspect has several possible implications: as the network grows in size it will be unfeasible for each nodes to obtain and maintain the evolution of the whole network topology; a solution would be to organize the various Lightning Network nodes in a way similar to the Internet Network where backbone routers, which have a higher capacity, tie together various large subnetwork. Of course such a solution should be implemented according to the Bitcoin "no-trusted-third-parties" philosophy in mind. Central nodes inside this subgraph could be elected to actively participate in this backbone, and it is possible to extend this reasoning to lower k-connected components everytime the network grows in size to form a hierarchical structure as seen on computer networks. 
+	
+	The downsides in having so many central nodes tied together in such a strong connected component is that they may organize into cartels and decide to offer fast and reliable transaction processing only to nodes who adhere (by paying a fee or by submitting to some conditions) to their payment subnetwork while they act as gateways when it comes to route incoming and outgoing payments, in contrast with the decentralization principles of the network. Also such a scenario would suffer from low fairness when it comes to transaction processing as they could refuse to process transaction that don't belong to their cartel.
+
+	\section{Lightning Network as a Scale-free network}
+	
+	
+	
 \end{document}
