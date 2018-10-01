@@ -415,6 +415,74 @@
 
 	\section{Lightning Network as a Scale-free network}
 	
+	Many features that has been showed so far suggests that the Lightning Network is a complex network: the hierarchical fault tolerance showed in the k-vertex connectivity analysis, a high centrality of some high degree nodes making them hubs, the low diameter of the network compared to its number of nodes and edges are common features in scale free networks. Such networks are random graphs whose degree distribution follows a power law such that 
+	$$P(k) \sim k^{-\gamma}$$
+	where $\gamma$ is a parameter whose value is usually $2 < \gamma < 3$. For this reason the degree distribution has been evaluated for all the snapshot of the period of observation. Given a graph $G = (V,E)$, $P(k)$ is defined as the probability for a node in V drawn at random of having exactly $k$ edges. Mathematically, it can be expressed as:
+	$$P(k) = \frac{|\{ v_i \in V : \deg v_i = k \}}{|V|}$$
+	where $k = \{0,1 ... n - 1\}$ and $n = |G|$. 
 	
+	\begin{figure}
+	\centering
+	\begin{subfigure}{\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{graph_28_scatter}
+		\caption{log-log plot of the degree probability.}
+		\label{graph_28_scatter}
+	\end{subfigure}
+	\begin{subfigure}{\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{graph_28_fit}
+		\caption{Curve fitting over the probability distribution.}
+		\label{graph_28_degree}
+	\end{subfigure}
+		\caption{Degree distributions from snapshot 28 in log-log scale and standard scale}
+	\end{figure}
+	
+	
+	Using the curve fit tool from Matlab, it has been possible to evaluate the gamma value of the fitting curve for each snapshot such that $\Gamma = \{\gamma_1, \gamma_2, ... , \gamma_d\}$ where $d$ is the number of snapshots, using Bisquare as robust regression and the Trust-Region algorithm; Figure \ref{graph_28_degree} shows the result over one of the graph of the observation period. Then mean, variance and standard deviation has been evaluated over $\Gamma$.
+	
+	\begin{center}
+		\begin{tabulary}{0.75\linewidth}{| L | C | C | C | }
+			\hline
+			& Mean & Variance & Standard Deviation \\ \hline
+			$\gamma$ & 2.0453 & 0.226 & 0.1503  \\ \hline
+		\end{tabulary}
+	\end{center}
+	
+	A random network following the power law degree distribution has been generated yielding very promising results. From the $\gamma$ value, a new graph has been created with a number of nodes in the order of the sizes seen until now, specifically 886 nodes which is the maximum number of nodes observed so far, using the NetworkX function \textit{powerlaw\_sequence} that generates a sample sequence of desired length from a power law distribution with custom exponent. The generated graph comes without self-loops, but also with nodes without edges and smaller components. After removing these nodes, 745 nodes and 2081 edges are left. One of the peculiarity of scale-free networks is that the clustering coefficient is usually low: the result show indeed a clustering coefficient that follows the same trend of the real network.
+	
+	\begin{center}
+		\begin{tabulary}{0.75\linewidth}{| C | C |}
+			\hline
+			Real World avg. Clust. Coeff. & Random Network Clust. Coeff. \\ \hline
+			0.205911 & 0.19151 \\ \hline
+		\end{tabulary}
+	\end{center} 
+	
+	Another important aspect of scale-free networks is the \textit{small world} property, where a network is said to be a small world if its diameter is low compared to the total number of nodes. It has already been observed that the current diameter for the Lightning Network is around 7 and 8; results on the generated network still carries this aspect, having a diameter of 8 and an average eccentricity of 3.12.
+	
+	\begin{center}
+		\begin{tabulary}{0.9\linewidth}{| C | C | C | C |}
+			\hline
+			Real World avg. diameter & Real World avg. eccentricity & Random Network diameter & Random network avg. eccentricity \\ \hline
+			7.656 & 3.098 & 8 & 3.129 \\ \hline
+		\end{tabulary}
+	\end{center}
+	
+	As the size grows, the properties showed so far grow accordingly to the nature of the network. Testing the generated model against 10'000 nodes produced very interesting results, reported in the table below. Like before, the generated graph produced many isolated nodes and small size components, so it has been necessary to prepare the network  by removing these unnecessary entities before running the evaluation.
+	
+	\begin{center}
+		\begin{tabulary} {\linewidth}{| C | C | C | C | C |}
+			\hline
+			Num. of nodes & Num. of edges & Clustering Coefficient & Diameter & Avg. eccentricity \\ \hline
+			8420 & 29969 & 0.1038 & 9 & 3.4679\\ \hline
+		\end{tabulary}
+	\end{center} 
+	
+	Results show a decreased average clustering coefficient, as the scale-free networks are supposed to perform, and overall the other parameters are in line with the values observed in the real network. It must be reminded however that data are based over the Testnet environment: unfortunately, generating an equivalent network for the Main-Net has been showed to be not accurate, as the average degree of the Main-Net appears to be higher than the one presented here, therefore the $\gamma$ value discovered so far is only representative of the testing network. However, the methodologies here presented are compatible with the real network environment so it should not be hard to see if they applies for a real world scenario.
+	
+	\subsection{Lightning Network as a Time Varying Graph}
+	
+	The generation process of an equivalent of the Lightning Network presented above lacks of the intrinsic nature of the edges, which are temporary 
 	
 \end{document}
