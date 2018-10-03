@@ -415,7 +415,7 @@
 
 	\section{Lightning Network as a Scale-free network}
 	
-	Many features that has been showed so far suggests that the Lightning Network is a complex network: the hierarchical fault tolerance showed in the k-vertex connectivity analysis, a high centrality of some high degree nodes making them hubs, the low diameter of the network compared to its number of nodes and edges are common features in scale free networks. Such networks are random graphs whose degree distribution follows a power law such that 
+	Many features that has been showed so far suggests that the Lightning Network is a complex network: the hierarchical fault tolerance showed in the k-vertex connectivity analysis, a high centrality of some high degree nodes making them hubs, the low diameter of the network compared to its number of nodes and edges are common features in scale-free networks. Such networks are random graphs whose degree distribution follows a power law such that 
 	$$P(k) \sim k^{-\gamma}$$
 	where $\gamma$ is a parameter whose value is usually $2 < \gamma < 3$. For this reason the degree distribution has been evaluated for all the snapshot of the period of observation. Given a graph $G = (V,E)$, $P(k)$ is defined as the probability for a node in V drawn at random of having exactly $k$ edges. Mathematically, it can be expressed as:
 	$$P(k) = \frac{|\{ v_i \in V : \deg v_i = k \}}{|V|}$$
@@ -438,8 +438,9 @@
 		\caption{Degree distributions from snapshot 28 in log-log scale and standard scale}
 	\end{figure}
 	
+	Figure \ref{graph_28_scatter} and \ref{graph_28_degree} shows the degree distribution for a single capture of the graph, in  a log-log and normal scale respectively. Unfortunately since the adoption of the network is still low and because the network has been studied on the testnet environment due to size constraints, the amount of data results to be scarce and many outliers occur. For this reason it has been chosen to use the Bisquare weights regression where weight is given to each data point based on how far the point sits from the fitted curve, thus minimizing the effect of outliers points.
 	
-	Using the curve fit tool from Matlab, it has been possible to evaluate the gamma value of the fitting curve for each snapshot such that $\Gamma = \{\gamma_1, \gamma_2, ... , \gamma_d\}$ where $d$ is the number of snapshots, using Bisquare as robust regression and the Trust-Region algorithm; Figure \ref{graph_28_degree} shows the result over one of the graph of the observation period. Then mean, variance and standard deviation has been evaluated over $\Gamma$.
+	Using the curve fit tool from Matlab, it has been possible to evaluate the gamma value of the fitting curve for each snapshot such that $\Gamma = \{\gamma_1, \gamma_2, ... , \gamma_d\}$ where $d$ is the number of snapshots, using Bisquare as robust regression and the Trust-Region algorithm, then mean, variance and standard deviation has been evaluated over $\Gamma$.
 	
 	\begin{center}
 		\begin{tabulary}{0.75\linewidth}{| L | C | C | C | }
@@ -449,8 +450,10 @@
 		\end{tabulary}
 	\end{center}
 	
-	A random network following the power law degree distribution has been generated yielding very promising results. From the $\gamma$ value, a new graph has been created with a number of nodes in the order of the sizes seen until now, specifically 886 nodes which is the maximum number of nodes observed so far, using the NetworkX function \textit{powerlaw\_sequence} that generates a sample sequence of desired length from a power law distribution with custom exponent. The generated graph comes without self-loops, but also with nodes without edges and smaller components. After removing these nodes, 745 nodes and 2081 edges are left. One of the peculiarity of scale-free networks is that the clustering coefficient is usually low: the result show indeed a clustering coefficient that follows the same trend of the real network.
 	
+	From the $\gamma$ value, a new graph has been created with a number of nodes in the order of the sizes seen until now, specifically 886 nodes which is the maximum number of nodes observed so far: firstly, a degree sequence that follows a power-law distribution with a given exponent has been calculated, then the graph was generated through an algorithm modeled around preferential attachment property of scale-free networks by F. Chung and L. Lu, \cite{Chung2002}, which performed best with respect to the \textit{configuration model} from M. Newman \cite{Newman2003} where graphs with self-loops and parallel edges are a possible outcome of the generation process; manually removing these would cause an important structural bias. The newly created graph however has more than one connected component and for this reason it was necessary to select the largest one. After removing these, the graph accounted for 745 nodes and 2081 edges. 
+	
+	One of the peculiarity of scale-free networks is that the clustering coefficient is usually low: the result show indeed a clustering coefficient that follows the same trend of the real network.
 	\begin{center}
 		\begin{tabulary}{0.75\linewidth}{| C | C |}
 			\hline
@@ -480,9 +483,5 @@
 	\end{center} 
 	
 	Results show a decreased average clustering coefficient, as the scale-free networks are supposed to perform, and overall the other parameters are in line with the values observed in the real network. It must be reminded however that data are based over the Testnet environment: unfortunately, generating an equivalent network for the Main-Net has been showed to be not accurate, as the average degree of the Main-Net appears to be higher than the one presented here, therefore the $\gamma$ value discovered so far is only representative of the testing network. However, the methodologies here presented are compatible with the real network environment so it should not be hard to see if they applies for a real world scenario.
-	
-	\subsection{Lightning Network as a Time Varying Graph}
-	
-	The generation process of an equivalent of the Lightning Network presented above lacks of the intrinsic nature of the edges, which are temporary 
-	
+
 \end{document}

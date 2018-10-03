@@ -32,6 +32,12 @@ Arnaud Casteigts, Paola Flocchini, Walter Quattrociocchi, and Nicola Santoro.
 \newblock {Time-Varying Graphs and Dynamic Networks *}.
 \newblock 2012.
 
+\bibitem{Chung2002}
+Fan Chung and Linyuan Lu.
+\newblock {Connected Components in Random Graphs with Given Expected Degree
+  Sequences}.
+\newblock {\em Annals of Combinatorics}, 6(2):125--145, nov 2002.
+
 \bibitem{Croman}
 Kyle Croman, Christian Decker, Ittay Eyal, Adem~Efe Gencer, Ari Juels, Ahmed
   Kosba, Andrew Miller, Prateek Saxena, Elaine Shi, Emin~G{\"{u}}n Sirer, Dawn
@@ -125,6 +131,11 @@ Nelson.
 \newblock {A Thought for Your Pennies: Micropayment and the Liberation of
   Content}.
 
+\bibitem{Newman2003}
+Mark E~J Newman.
+\newblock {The Structure and Function of Complex Networks}.
+\newblock {\em Other}, 45(2):167--256, 2003.
+
 \bibitem{Amp2018}
 Conner~Fromknecht Olaoluwa~Osuntokun.
 \newblock {AMP: Atomic Multi-Path Payments over Lightning}.
@@ -136,6 +147,12 @@ Conner~Fromknecht Olaoluwa~Osuntokun.
 \bibitem{Pass2016}
 Rafael Pass, Lior Seeman, and Abhi Shelat.
 \newblock {\em {Analysis of the Blockchain Protocol in Asynchronous Networks}}.
+\newblock 2016.
+
+\bibitem{Prihodko2016}
+Pavel Prihodko, Slava Zhigulin, Mykola Sahno, Aleksei Ostrovskiy, and Olaoluwa
+  Osuntokun.
+\newblock {Flare: An Approach to Routing in Lightning Network}.
 \newblock 2016.
 
 \bibitem{Watts1998}
