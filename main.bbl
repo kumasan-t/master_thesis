@@ -1,8 +1,16 @@
 \begin{thebibliography}{10}
 
-\bibitem{Simon1957}
-{A Thought for Your Pennies: Micropayment and the Liberation of Content}.
-\newblock \url{http://transcopyright.org/hcoinRemarks-D28.html}.
+\bibitem{micropayments:BitcoinOrg}
+{Bitcoin.org: Micropayment Channel}.
+\newblock \url{https://bitcoin.org/en/developer-guide#micropayment-channel}.
+
+\bibitem{BlocksizeIncrease2015}
+{Implementation of BIP 101 : maximum block size increase }.
+\newblock \url{https://github.com/bitcoin/bitcoin/pull/6341}.
+
+\bibitem{Micropayments:Bitcoinj}
+{Working with micropayment channels}.
+\newblock \url{https://bitcoinj.github.io/working-with-micropayments}.
 
 \bibitem{Andrychowicz2015}
 Marcin Andrychowicz, Stefan Dziembowski, Daniel Malinowski, and {\L}ukasz
@@ -15,11 +23,24 @@ Albert~L{\'{a}}szl{\'{o}} Barab{\'{a}}si and R{\'{e}}ka Albert.
 \newblock {Emergence of scaling in random networks}.
 \newblock {\em Science}, 286(5439):509--512, 1999.
 
+\bibitem{Bonneau2015}
+Joseph Bonneau, Andrew Miller, Jeremy Clark, Arvind Narayanan, Joshua~A. Kroll,
+  and Edward~W. Felten.
+\newblock {SoK: Research perspectives and challenges for bitcoin and
+  cryptocurrencies}.
+\newblock In {\em Proceedings - IEEE Symposium on Security and Privacy}, volume
+  2015-July, pages 104--121. IEEE, 2015.
+
 \bibitem{Brandes2001}
 Ulrik Brandes.
 \newblock {A faster algorithm for betweenness centrality*}.
 \newblock {\em The Journal of Mathematical Sociology}, 25(2):163--177, jun
   2001.
+
+\bibitem{CHECKSEQUENCEVERIFY}
+BtcDrak, Mark Friedenbach, and Eric Lombrozo.
+\newblock {CHECKSEQUENCEVERIFY}.
+\newblock \url{https://github.com/bitcoin/bips/blob/master/bip-0112.mediawiki}.
 
 \bibitem{Buterin2014}
 Vitalik Buterin.
@@ -127,9 +148,10 @@ Satoshi Nakamoto.
 \newblock {\em Www.Bitcoin.Org}, page~9, 2008.
 
 \bibitem{Nelson1960}
-Nelson.
+Theodor~Holm Nelson.
 \newblock {A Thought for Your Pennies: Micropayment and the Liberation of
   Content}.
+\newblock \url{http://transcopyright.org/hcoinRemarks-D28.html}.
 
 \bibitem{Newman2003}
 Mark E~J Newman.
@@ -149,11 +171,21 @@ Rafael Pass, Lior Seeman, and Abhi Shelat.
 \newblock {\em {Analysis of the Blockchain Protocol in Asynchronous Networks}}.
 \newblock 2016.
 
+\bibitem{SFBitcoinDevs2015}
+Joseph Poon and Thaddeus Dryja.
+\newblock {Lightning Network presentation slide}.
+\newblock \url{http://lightning.network/lightning-network.pdf}.
+
 \bibitem{Prihodko2016}
 Pavel Prihodko, Slava Zhigulin, Mykola Sahno, Aleksei Ostrovskiy, and Olaoluwa
   Osuntokun.
 \newblock {Flare: An Approach to Routing in Lightning Network}.
 \newblock 2016.
+
+\bibitem{CHECKLOCKTIMEVERIFY}
+Peter Todd.
+\newblock {CHECKLOCKTIMEVERIFY}.
+\newblock \url{https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki}.
 
 \bibitem{Watts1998}
 Duncan~J. Watts and Steven~H. Strogatz.
