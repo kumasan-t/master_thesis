@@ -1,12 +1,28 @@
 \begin{document}
-	\chapter{Dynamic Networks}
+	\chapter{Network Representation}
 
 	
 	\section{Complex Networks}
 	
-	Communication networks, transportation systems, social studies, biology and neuroscience all presents some characterization element that can be related to a social network. Social networks are structures were social actors interact with each other and through the \textit{social network analysis} it is possible to undergo deeply on the characterization of the network itself. While social network emerged as a prominent sociology topic in 1908 by Georg Simmel, it was later re-discovered by physicists and mathematically formalized in late 1950s. Through the years many researchers developed newer and more fine-grained models for these networks (Barabási–Albert\cite{Barabasi1999}, Erdős–Rényi\cite{Erdos1959}, Watts–Strogatz\cite{Watts1998}) producing a vast literature on the topic and several unique models that would capture essential properties of different scenarios.
+	Communication networks, transportation systems, social studies, biology and neuroscience all presents some characteristic elements that can be related to a social network. Social networks are structures were social actors interact with each other and through the \textit{social network analysis} it is possible to undergo deeply on the characterization of the network itself. While social network emerged as a prominent sociology topic in 1908 by Georg Simmel, it was later re-discovered by physicists and mathematically formalized in late 1950s. Through the years many researchers developed newer and more fine-grained models for these networks (Barabási–Albert\cite{Barabasi1999}, Erdős–Rényi\cite{Erdos1959}, Watts–Strogatz\cite{Watts1998}) producing a vast literature on the topic and several unique models that would capture essential properties of different scenarios.
 	
-	Social networks are usually complex networks, networks whose structure features non-trivial topology. Scale-free networks are of particular interest as they are random graphs (graphs whose degree distribution is regulated by a probability function) governed by a power-law probability function. The results is that in these particular networks some nodes exhibit a degree that can be order of magnitudes with respect to other nodes of the network. The terms scale-free was coined by Barabàsi and collaborators to indicate network whose probability distribution looks the same regardless the size of the network. The degree probability of a scale-free network is always defined as $$P(k) \sim k^{\gamma}$$ that is the probability for a node of a graph picked at random to have $k$ edges.
+	Social networks are usually complex networks, networks whose structure features non-trivial topology. Scale-free networks are complex networks of particular interest as they are random graphs (graphs whose degree distribution is regulated by a probability function) governed by a power-law probability function. The first scale-free network to be ever observed and formalized was the WWW network by Barabàsi, A.L. and Albert, R. \cite{Barabasi1999} which were the first to notice the lack of expressive power of the existing models that were failing to capture essential properties such as the growth factor or the preferential attachment which are characteristic features of real networks.
+	
+	The fundamental results of their work in WWW and, later, in many other real networks, is that some nodes manifest a degree that can be order of magnitudes with respect to other nodes of the network. The terms scale-free was coined by Barabàsi and collaborators to indicate network whose probability distribution looks the same regardless the size of the network. 
+	
+	Such probability density function brings some characteristic features unique to scale-free networks that can't be observed on random graph models such as Erdős–Rényi, where degree distribution responds to a Poisson distribution, or Watts-Strogatz model that produces a degree distribution that follows a Dirac delta function. Typical features of a scale-free network are:
+	\begin{itemize}
+		\item Preferential attachment: it's the likelihood expressed by a node of receiving new edges proportional to its degree k and it's often referred as $\Pi(k)$. In their work, the BA-model assumes the preferential attachment to be a linear probability defined as $$\Pi(k_i) = \frac{k_i}{\sum_{j}k_j}$$ and express the probability that a new node will be connected to node $i$, based on its degree $k$ and it has been demonstrated that with this preferential attachment, the degree probability distribution converges to $$P(k) \sim k^{\gamma}, \gamma = 3$$
+		As proved in \cite{Krapivsky2000} by Krapivsky, Redner and Leyvraz, for every $\Pi(k)$ that is asymptotically linear, the graph is scale free with degree distribution $$P(k) \sim k^{\gamma}, 2 < \gamma < \infty $$
+		
+		\item  Small World Property: expresses the fact that the length of any shortest path between a pair of nodes is always small compared to the size of the network. Cohen and Havlin proved that a power-law graph with $2 < \gamma < 3$ will have diameter $d \sim \ln\ln N$ where $N$ is the order of the network \cite{Cohen2002}. 
+		
+		\item Clustering: depending on the network topology, scale-free networks may presents many clusters or cliques inside of which the density of links is very high with respect to the number of links that connect the various clusters.
+		
+		\item Network resilience: disconnecting random nodes from the network, even a large portion, does not impact the connectedness of the graph. Usually high-degree vertices take place in the middle of the network, while lower-degree nodes occupy the peripheral regions.
+	\end{itemize}
+	
+	\section{Dynamic Networks}
 	
 	The strict relationship between time and money in the Lightning Network puts it in an incredibly interesting spot regarding the dynamic properties of it: there must exist channels connecting pair of nodes along a payment path and every node involved in the payment path must be online in the moment a transaction is performed. A third constraint on a payment procedure is that every node involved in the payment process must have enough funds to transfer.
 	

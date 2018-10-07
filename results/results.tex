@@ -280,7 +280,7 @@
 		g(v) = \sum_{s \neq v \neq t}{\frac{\sigma_{st}(v) }{\sigma_st}}
 	\end{equation}
 	where $\sigma_st$ is the total number of shortest paths from node $s$ and node $t$ and $\sigma_{st}(v)$ is the number of paths that pass through $v$. In order to have $g(v) \in [0, 1]$ it is necessary to normalize the values by dividing (for undirected graphs) by $(N-1)(N-2)/2$ where $N$ is the total number of nodes.
-	
+
 	\begin{figure}
 		\centering
 		\begin{subfigure}{0.45\textwidth}
@@ -320,7 +320,7 @@
 	\begin{equation}
 		B(V) = sort(\{ \sum_{j = 0}^{k}g_j(v) \mid g_j(v) \in B_i(V), \forall i= 0,1,2 \cdots k\})
 	\end{equation}
-	and the top five elements by score are picked otherwise it would be impossible to visually put in relation the betweenness centrality scores and the respective nodes. Also, computing the intersection between the set of nodes gives us the opportunity to speculate over a possible backbone structure composed by nodes with higher centrality score and to observe significant events occurred during an observation period over central nodes.
+	and the top five elements by score are picked otherwise it would be impossible to visually put in relation the betweenness centrality scores and the respective nodes. Also, computing the intersection between the set of nodes gives us the opportunity to speculate over a possible backbone structure composed by nodes with higher centrality score and to observe significant events occurred during an observation period over central players.
 	
 	As expected, the scores appear to be constant or with low variations along the 144 snapshots. The nodes are identified by the first five characters of their public key, and by looking at those IDs it emerges that the set is different for all their snapshot meaning that indeed new nodes joined the network during the five days elapsed between each snapshot and attached to already well established nodes. This aspect is even more pronounced if we look at Figure \ref{monthly_betweenness_centrality} where the monthly behavior is displayed and thanks to this metric is possible to investigate deeper on nodes and events that occurred during the observation period. 
 	
@@ -331,27 +331,16 @@
 		\label{monthly_betweenness_centrality}
 	\end{figure}		
 	
-	For example it has been noted that, on average, the total number of neighbors of these five nodes is 486.125, accounting for 62,7\% of the overall size of network. Such a high centrality score also suggests that a portion of neighbors may only have a single channel that keeps them connected to the rest of the network. To test this hypothesis we removed these five top nodes from the latest snapshot, and the result was that the graph got partitioned into 234 subgraphs: the largest subgraph among these contained 532 nodes (which is the Lightning Network itself) while the number of nodes of the remaining subgraphs is 242. Out of these 242 nodes, 228 were single channel nodes.
+	For example it has been noted that, on average, the total number of neighbors of these five nodes is 486.125, accounting for 62,7\% of the overall size of network. Such a high centrality score also suggests that a portion of neighbors may only have a single channel that keeps them connected to the rest of the network. To test this hypothesis we removed these five top nodes from the latest snapshot, and the result was that the graph got partitioned into 234 subgraphs: the largest subgraph among these contained 532 nodes (which is the Lightning Network itself) while the number of nodes of the remaining subgraphs is 242. Out of these 242 nodes, 228 were single channel nodes. However, given the nature of the network, disconnecting central nodes has no effect on the network connectivity as the giant connected component still remains connected.
 
 	It is then possible to investigate over some peculiar events like the one happened during snapshot 10 and 11, where node \textit{03e5f9} lost suddenly its centrality over 24 hours: 
 	from day 0 through day 10 the node was performing first among the others for betweenness centrality score. On day 11, the node dropped from 196 nodes to 37 as it closed channels with 159 peers; out of these 159 peers, 98 (12\% of the total nodes) of them were single channel nodes, effectively disconnecting them from the rest of the network. Unfortunately it's impossible to determine the causes that led to such a drop as it may be happened because of saturated channel balances, unresponsive nodes or internal errors on their server.
 	
-	\begin{figure}[ht!]
-		\centering
-		\includegraphics[width=\linewidth]{monthly_gantt_chart}
-		\caption{The graph represents the nodes that occupied the first 5 position whose score was the best among the rest of the other nodes.}
-		\label{monthly_gantt}
-	\end{figure}
-	
-	Contrary to Figure \ref{monthly_betweenness_centrality}, Figure \ref{monthly_gantt} shows which nodes occupied the first five positions during the very same period, independently from their aggregated score, that is, the graph shows only the node that were top 5 for each day of the time interval in exam, for a total of 9 nodes that alternates each other throughout the observation period. This plot helps better to understand the stability of a node, since a central node will likely perform better than peripheral nodes when it comes to payments delegation; also clients like a node that is stable because as it has been showed with node \textit{03e5f9} a crash would be disruptive for the network health. \textit{Questa parte non mi piace}
-	
-	By looking at the history of the betweenness centrality is then possible to understand better the reliability of particular nodes and to track nodes that get too centralized around very few nodes with the risk of making the network more and more similar to the current transaction processors like VISA or Mastercard: the autopilot feature of the Lightning Network might check the whole network betweenness centrality to regulate the new channels establishment process in order to decrease the centralization around greedy nodes. 
-	
-	\newpage
+	By looking at the history of the betweenness centrality score is then possible to understand better the reliability of particular nodes, and to track nodes that get too centralized around hubs, thus making the network more and more similar to the current transaction processors like VISA or Mastercard: the autopilot feature of the Lightning Network might check the whole network betweenness centrality to regulate the new channels establishment process in order to decrease the centralization around greedy players. Another risk factor for centralization is given by the fact that central nodes are subjected to increased computational processing since each routed payment processed has a computational cost associated (albeit being low); collecting Lightning Network fees is less profitable than mining blocks, hence the need to maximize the earnings by reducing the operational costs in terms of energy spent, and this will likely force active members of the Lightning Network to opt for devices with lower performances: overloading such devices with routing tasks may drastically increase the fault probability, thus impacting on the overall network quality of life.
 	
 	\section{\textit{k}-vertex connectivity}
 
-	\begin{figure}
+	\begin{figure}[h!]
 		\includegraphics[width=\linewidth]{monthly_completeness}
 		\caption{Density of the graphs. Density is calculated as $\frac{m}{n(n-1)}$}
 		\label{monthly_completeness}
@@ -373,13 +362,11 @@
 	
 	\subsection{Components size}
 	
-	\begin{figure}
+	\begin{figure}[ht!]
 		\includegraphics[width=\linewidth]{k_connectivity_average_size}\\
 		\caption{Average size for each components for every snapshot taken from May 15th to June 27th}
 		\label{monthly_connectivity_average}
 	\end{figure}
-	
-	The data presented in Figure \ref{monthly_connectivity_average} represents the average size of each component over the 32 snapshots in exam. The orange bars represent the mean value of every component while the black lines represent their standard deviation. Even though there are represented up to 15 components, it is not necessary true that the maximum k-vertex size is indeed 15. What the graph suggest is that if there exists a k-component over a particular snapshot, it is likely that the $k$-th component size will be on average like the corresponding value depicted in Figure \ref{monthly_connectivity_average}.
 	
 	\begin{figure}
 		\includegraphics[width=\linewidth]{k_connectivity_max_size}
@@ -387,7 +374,7 @@
 		\label{monthly_connectivity_max_size}
 	\end{figure}
 	
-	The 1-connected component is trivially the average of the graph sizes over the 32 captures; indeed every 1-connected component size is equal to the graph order of the relative snapshot. More than 50\% of the network is a biconnected subgraph (2-vertex connected graph) meaning that every node inside it is resilient up to two opportunely selected node failures (that is, nodes selected according to the well-known min-cut criteria) and, as we move right in the plot, the graphs get more and more resistant to node failures. Figure \ref{monthly_connectivity_max_size} depicts the highest value k obtained for each snapshot and shows a dynamic behavior of k-connectivity, ranging from a lower bound of 12 to an upper bound of 15.
+	The data presented in Figure \ref{monthly_connectivity_average} represents the average size of each component over the 32 snapshots in exam. The orange bars represent the mean value of every component while the black lines represent their standard deviation.	The 1-connected component is trivially the average of the graph sizes over the 32 captures; indeed every 1-connected component size is equal to the graph order of the relative snapshot. More than 50\% of the network is a biconnected subgraph (2-vertex connected graph) meaning that every node inside it is resilient up to two opportunely selected node failures (that is, nodes selected according to the well-known min-cut criteria) and, as we move right in the plot, the graphs get more and more resistant to node failures. What emerges from the analysis of the k-vertex-connectivity structure is a concentric configuration in which every k-component is included inside the (k-1)-component: this key aspect stresses the resilience to failures typical of scale-free networks as it would be impossible for attackers to disconnect a reasonable number of nodes in order to provoke any serious damage to the network. Figure \ref{monthly_connectivity_max_size} depicts the highest value k obtained for each snapshot and shows a dynamic behavior of k-connectivity, ranging from a lower bound of 12 to an upper bound of 15.
 	
 	\subsection{Betweenness inclusion}
 	
@@ -437,7 +424,7 @@
 	
 	The autopilot feature of the Lightning Network shows a preference towards higher degree nodes when it comes to open new payment channels and indeed it uses the Barabàsi-Albert model preferential attachment to perform this task, which assumes $\gamma=3$ for the degree distribution. However, many nodes of the real network are configured to custom parameters such as the maximum number of channels allowed, therefore introducing a bias in the network structure that makes the system diverge from the ideal representation. It is of interest then to compare different models based on a power-law distribution to see which one fits better the nature of the network. Thus, the first attempt was to generate a new network using the BA-model with 886 nodes and 2649 edges, which is the maximum size of the Lightning Network encountered so far. This will later be put in comparison to another power-law model.
 	
-	In order to build a graph that responds to a power-law degree distribution, it is necessary to first figure out the value of $\gamma$ from the data gathered so far using the definition of degree distribution $P(k)$ shown above. For the sake of clarity, Figure \ref{graph_28_scatter} and \ref{graph_28_degree} shows the degree distribution for a single capture of the graph, in  a log-log and normal scale respectively. Unfortunately since the adoption of the network is still low and because the network has been studied on the testnet environment due to size constraints, the amount of data results to be scarce and many outliers occur. As a consequence it has been chosen to use the Bisquare weights regression where weight is given to each data point based on how far the point sits from the fitted curve, thus minimizing the effect of outliers points.
+	In order to build a graph that responds to a power-law degree distribution, it is necessary to first figure out the value of $\gamma$ from the data gathered so far using the definition of degree distribution $P(k)$ shown above. For the sake of clarity, Figure \ref{graph_28_scatter} and \ref{graph_28_degree} shows the degree distribution for a single capture of the graph, in a log-log and normal scale respectively. Unfortunately since the adoption of the network is still low and because the network has been studied on the testnet environment due to size constraints, the amount of data results to be scarce and many outliers occur. As a consequence it has been chosen to use the Bisquare weights regression where weight is given to each data point based on how far the point sits from the fitted curve, thus minimizing the effect of outliers points.
 	
 	By using the curve fit tool from Matlab, it has been possible to evaluate the gamma value of the fitting curve for each snapshot such that $\Gamma = \{\gamma_1, \gamma_2, ... , \gamma_d\}$ where $d$ is the number of snapshots, using Bisquare as robust regression and the Trust-Region algorithm, then mean, variance and standard deviation has been evaluated over $\Gamma$.
 	
@@ -450,17 +437,17 @@
 	\end{center}
 	
 	
-	From the $\gamma$ value, a new graph has been created with a number of nodes in the order of the sizes seen until now, specifically 886 nodes as it has been done with the BA-model: firstly, a degree sequence that follows a power-law distribution with a given exponent has been calculated, then the graph was generated through an algorithm modeled around the preferential attachment property of scale-free networks by F. Chung and L. Lu, \cite{Chung2002}, which performed best with respect to the \textit{configuration model} from M. Newman \cite{Newman2003}, where graphs with self-loops and parallel edges are a possible outcome of the generative process; manually removing these would cause an important structural bias. The newly created graph however has more than one connected component and for this reason it was necessary to select the largest one. 
+	From the $\gamma$ value, a new graph has been created with a number of nodes in the order of the sizes seen until now, specifically 886 nodes as it has been done with the BA-model: firstly, a degree sequence that follows a power-law distribution with a given exponent has been calculated, then the graph was generated through an algorithm modeled around the preferential attachment property of scale-free networks by W. Aiello, F. Chung and L. Lu, \cite{Aiello2001} \cite{Chung2002}, which performed best with respect to the \textit{configuration model} from M. Newman \cite{Newman2003}, where graphs with self-loops and parallel edges are a possible outcome of the generative process; manually removing these would cause an important structural bias. The Chung-Lu generative approach doesn't explain why a graph has a particular degree sequence, rather, this model tries to derive the structural properties of a real network, starting from a power-law degree sequence.
 	
 	The features we are interested in are the one that describe the topology of a graph. Because of the random generative process, the data here showed is the average results for each metric gathered by 100 random graphs generated by the BA and Chung-Lu models. An important aspect of scale-free networks is the \textit{small world} property, where a network is said to be a small world if its diameter is low compared to the total number of nodes. It has already been observed that the current diameter for the Lightning Network is around 7 and 8; results on the generated networks still carries this aspect, as showed on the table below.
 	
 	\begin{center}
-		\begin{tabulary}{0.9\linewidth}{| C | C | C |}
+		\begin{tabulary}{\linewidth}{| C | C | C | C | C |}
 			\hline
-			& Diameter & Average eccentricity \\ \hline
-			Real World & 7.656 (avg.) & 3.098 \\ \hline
-			Chung-Lu model & 6.55 &  4.794 \\ \hline
-			BA-model & 6 & 4.9188 \\ 
+			& Radius & Diameter & Eccentricity & Shortest Path \\ \hline
+			Real World & 4.0 & 7.656 & 5.50 & 3.098 \\ \hline
+			Chung-Lu model & 3.48 & 6.54 &  4.778 &  2.719 \\ \hline
+			BA-model & 3.87 & 6 & 4.9188 & 3.487 \\ 
 			\hline
 		\end{tabulary}
 	\end{center}
@@ -484,11 +471,14 @@
 	\begin{center}
 		\begin{tabulary} {\linewidth}{| C | C | C | C | C |}
 			\hline
-			Num. of nodes & Num. of edges & Clustering Coefficient & Diameter & Avg. eccentricity \\ \hline
+			Num. of nodes & Num. of edges & Clustering Coefficient & Diameter & Avg. shortest path \\ \hline
 			8420 & 29969 & 0.1038 & 9 & 3.4679\\ \hline
 		\end{tabulary}
 	\end{center} 
 	
 	Results show a decreased average clustering coefficient, as the scale-free networks are supposed to perform when they grow in size, and overall the other parameters are in line with the values observed in the real network. It must be reminded however that data are based over the Testnet environment: unfortunately, generating an equivalent network for the Main-Net has been showed to be not accurate, as the average degree of the Main-Net appears to be higher than the one presented here, therefore the $\gamma$ value discovered so far is only representative of the testing network. However, the methodologies here presented are compatible with the real network environment so it should not be hard to see if they applies for a real world scenario.
 
+	\section{Lightning Network as a Time-Varying Graph}
+	
+	
 \end{document}

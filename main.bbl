@@ -12,6 +12,11 @@
 {Working with micropayment channels}.
 \newblock \url{https://bitcoinj.github.io/working-with-micropayments}.
 
+\bibitem{Aiello2001}
+William Aiello, Fan Chung, and Linyuan Lu.
+\newblock {A random graph model for power law graphs}.
+\newblock {\em Experimental Mathematics}, 10(1):53--66, 2001.
+
 \bibitem{Andrychowicz2015}
 Marcin Andrychowicz, Stefan Dziembowski, Daniel Malinowski, and {\L}ukasz
   Mazurek.
@@ -58,6 +63,11 @@ Fan Chung and Linyuan Lu.
 \newblock {Connected Components in Random Graphs with Given Expected Degree
   Sequences}.
 \newblock {\em Annals of Combinatorics}, 6(2):125--145, nov 2002.
+
+\bibitem{Cohen2002}
+Reuven Cohen and Shlomo Havlin.
+\newblock {Scale-Free Networks are Ultrasmall}.
+\newblock may 2002.
 
 \bibitem{Croman}
 Kyle Croman, Christian Decker, Ittay Eyal, Adem~Efe Gencer, Ari Juels, Ahmed
@@ -122,6 +132,11 @@ Aric~a. Hagberg, Daniel~a. Schult, and Pieter~J. Swart.
 \newblock {Exploring network structure, dynamics, and function using NetworkX}.
 \newblock {\em Proceedings of the 7th Python in Science Conference
   (SciPy2008)}, 836:11----15, 2008.
+
+\bibitem{Krapivsky2000}
+P.~L. Krapivsky, S.~Redner, and F.~Leyvraz.
+\newblock {Connectivity of growing random networks}.
+\newblock {\em Physical Review Letters}, 85(21):4629--4632, 2000.
 
 \bibitem{Lamport1982}
 Leslie Lamport, Robert Shostak, and Marshall Pease.

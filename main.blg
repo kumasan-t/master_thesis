@@ -9,6 +9,7 @@ Warning--to sort, need author or key in Micropayments:Bitcoinj
 Warning--empty booktitle in Andrychowicz2015
 Warning--there's a number but no volume in Buterin2014
 Warning--empty journal in Casteigts2012
+Warning--empty journal in Cohen2002
 Warning--empty journal in Croman
 Warning--empty year in Croman
 Warning--empty journal in Decker
@@ -17,45 +18,45 @@ Warning--there's a number but no volume in Decker2013
 Warning--empty journal in Decker2014
 Warning--empty publisher in Pass2016
 Warning--empty journal in Prihodko2016
-You've used 35 entries,
+You've used 38 entries,
             2118 wiz_defined-function locations,
-            716 strings with 9752 characters,
-and the built_in function-call counts, 11210 in all, are:
-= -- 1104
-> -- 511
+            736 strings with 10134 characters,
+and the built_in function-call counts, 12179 in all, are:
+= -- 1200
+> -- 560
 < -- 11
-+ -- 203
-- -- 168
-* -- 747
-:= -- 1821
-add.period$ -- 104
-call.type$ -- 35
-change.case$ -- 188
++ -- 222
+- -- 184
+* -- 823
+:= -- 1987
+add.period$ -- 113
+call.type$ -- 38
+change.case$ -- 205
 chr.to.int$ -- 0
-cite$ -- 49
-duplicate$ -- 423
-empty$ -- 895
-format.name$ -- 168
-if$ -- 2361
+cite$ -- 53
+duplicate$ -- 455
+empty$ -- 966
+format.name$ -- 184
+if$ -- 2554
 int.to.chr$ -- 0
-int.to.str$ -- 35
-missing$ -- 28
-newline$ -- 174
-num.names$ -- 64
-pop$ -- 231
+int.to.str$ -- 38
+missing$ -- 31
+newline$ -- 189
+num.names$ -- 70
+pop$ -- 246
 preamble$ -- 1
-purify$ -- 154
+purify$ -- 168
 quote$ -- 0
-skip$ -- 332
+skip$ -- 354
 stack$ -- 0
-substring$ -- 642
-swap$ -- 93
+substring$ -- 707
+swap$ -- 95
 text.length$ -- 11
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 138
-warning$ -- 14
-while$ -- 110
-width$ -- 37
-write$ -- 358
-(There were 14 warnings)
+type$ -- 150
+warning$ -- 15
+while$ -- 120
+width$ -- 40
+write$ -- 389
+(There were 15 warnings)
