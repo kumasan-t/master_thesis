@@ -264,6 +264,7 @@
 	\end{figure}
 
 	\section{Betwenness	centrality}
+	\label{sec:betweenness}
 	
 	The betweenness centrality is a measure of centrality in graph theory based on shortest paths and it was first formalized in 1977 by Freeman, L.\cite{Freeman1977}. The betweenness centrality indicates how much a node in a graph stand between each other shortest paths, and it is a fundamental tool to evaluate the importance of nodes in several fields: for example, in telecommunication systems, a node with a high betweenness centrality means that a large portion of the traffic passes through it, that is, it effectively controls an appreciable part of the network but it also finds applications in biology, social networks, transport networks and many other research fields. 
 	
@@ -336,7 +337,31 @@
 	It is then possible to investigate over some peculiar events like the one happened during snapshot 10 and 11, where node \textit{03e5f9} lost suddenly its centrality over 24 hours: 
 	from day 0 through day 10 the node was performing first among the others for betweenness centrality score. On day 11, the node dropped from 196 nodes to 37 as it closed channels with 159 peers; out of these 159 peers, 98 (12\% of the total nodes) of them were single channel nodes, effectively disconnecting them from the rest of the network. Unfortunately it's impossible to determine the causes that led to such a drop as it may be happened because of saturated channel balances, unresponsive nodes or internal errors on their server.
 	
+	\begin{figure}
+		\centering
+		\begin{subfigure}{0.8\textwidth}
+			\centering
+			\includegraphics[height=0.8\linewidth]{scatter_plot_betweenness_centrality}
+			\caption{normal scale}
+		\end{subfigure}
+		\begin{subfigure}{0.8\textwidth}
+			\centering
+			\includegraphics[height=0.8\linewidth]{scatter_plot_betweenness_centrality_semilog}
+			\caption{semi-log scale}
+		\end{subfigure}
+		\caption{Betweenness centrality degree distribution in normal and semi-log plot with normalized betweenness centrality value. }
+		\label{betweenness_centrality_degree}
+	\end{figure}
+	
+	Cases like the one observed before suggest that in this network the more a node is connected towards single channel nodes (i.e. nodes with degree equals to 1), the more those nodes will be central since they will act as bridges for every single channel node that is connected to the rest of the network. Figure \ref{betweenness_centrality_degree} shows the relation between the normalized betweenness centrality score and the degree of each nodes: the highest performing nodes are also the ones whose degree his higher as expected because they act as gateways for peripheral nodes. 
+	
+	The previous intuition gave us the opportunity 
+	
 	By looking at the history of the betweenness centrality score is then possible to understand better the reliability of particular nodes, and to track nodes that get too centralized around hubs, thus making the network more and more similar to the current transaction processors like VISA or Mastercard: the autopilot feature of the Lightning Network might check the whole network betweenness centrality to regulate the new channels establishment process in order to decrease the centralization around greedy players. Another risk factor for centralization is given by the fact that central nodes are subjected to increased computational processing since each routed payment processed has a computational cost associated (albeit being low); collecting Lightning Network fees is less profitable than mining blocks, hence the need to maximize the earnings by reducing the operational costs in terms of energy spent, and this will likely force active members of the Lightning Network to opt for devices with lower performances: overloading such devices with routing tasks may drastically increase the fault probability, thus impacting on the overall network quality of life.
+	
+	degree in relazione con lo score della betweenness centrality
+	
+	Nuove cose: tagli iterativi sulla rete effettivamente la smontano per bene. La rete non si partiziona equamente ma mostra sottografi da poco e niente (size 1 e 2)
 	
 	\section{\textit{k}-vertex connectivity}
 
@@ -479,6 +504,57 @@
 	Results show a decreased average clustering coefficient, as the scale-free networks are supposed to perform when they grow in size, and overall the other parameters are in line with the values observed in the real network. It must be reminded however that data are based over the Testnet environment: unfortunately, generating an equivalent network for the Main-Net has been showed to be not accurate, as the average degree of the Main-Net appears to be higher than the one presented here, therefore the $\gamma$ value discovered so far is only representative of the testing network. However, the methodologies here presented are compatible with the real network environment so it should not be hard to see if they applies for a real world scenario.
 
 	\section{Lightning Network as a Time-Varying Graph}
+	
+	
+	We introduce a formalism to describe the dynamic behavior of the network from nodes and edges points of view. The network evolution is described in a time interval defined as a set of integer $\{t_0, t_1, t_2 .... t_k \}$. Since the network was observed at fixed time interval  we can assume that for $\forall \: 0 < i \leq k,\: t_i-t_{i-1} = c$ and specifically in this work $c = 1$, hence we can refer to each time instant either by $t_i$ or its integer $i$ without loss of generality. For every time instant $t$, there is a graph $G_{t}= (V_t,E_t)$ where $V_t$ and $E_t$ represents the set of nodes and edges at time $t$ respectively. Nodes that constantly enter and leave the network are called \textit{churning nodes}. To characterize these two behaviors with respect to the time parameter we define two functions:
+	\begin{definition}
+		Join function. $\lambda(t)$ is defined as a discrete time, deterministic function that returns the number of nodes that joined the network at time $t$, i.e. they opened a payment channel with \textit{at least} one node of the network.
+	\end{definition}
+	\begin{definition}
+		Leave function. $\mu(t)$ is defined as a discrete time, deterministic function that returns the number of nodes that left the network at time $t$, i.e. they closed \textit{every} payment channel with previously connected nodes.
+	\end{definition}
+	The join and leave rate has been evaluated through set differences between the vertices V of the various instance of the network such that
+	$$\lambda(t_i) = |V_{t_i} \setminus V_{t_{i-1}}|$$
+	$$\mu(t_i) = |V_{t_{i-1}} \setminus V_{t_i}| $$
+	For initial time $t_0$ and for every $t \leq t_0$ the two functions returns 0.
+	\begin{figure}[h!]
+		\includegraphics[width=\linewidth]{churn}
+		\caption{$\lambda(t)$ and $\mu(t)$ functions over the observed time interval}
+		\label{churn}
+	\end{figure}
+
+	Figure \ref{churn} shows the observed churn rates along the period of observation, putting in evidence a relatively small churning rates with respect to the number of nodes of each snapshot as previously displayed by Figure \ref{monthly_nodes}.
+	
+	If $\lambda(t)$, $\mu(t)$ and $N(t_0)$ are known, with $N(t_0)$ being the number of nodes at time $t_0$, it is then possible to know the size of the network thanks to
+	\begin{definition}
+		Nodes function. Let $N(t_0) = n_0$, the nodes function returns the number of nodes belonging to the system at time $t$ for every $t \geq t_0$, such that 
+		$$N(t_0) = n_0$$
+		$$N(t) = N(t-1) + \lambda(t) - \mu(t)$$
+	\end{definition}
+	We can proceed to calculate the actual churn rate of the network through
+	\begin{definition}
+		Join churn rate. Let $T = t_k - t_0$ being the interval of observation. The join churn rate is defined as
+		$$\lambda_{rate} = \frac{\sum_{i = 1}^{k}\frac{\lambda(t_i)}{N_{t_i}}}{k},$$
+	\end{definition} 
+	\begin{definition}
+		Leave churn rate. Let $T = t_k - t_0$ being the interval of observation. The leave churn rate is defined as
+		$$\mu_{rate} = \frac{\sum_{i = 1}^{k}\frac{\lambda(t_i)}{N_{t_{i}}}}{k}.$$
+	\end{definition}
+
+	\begin{figure}[h!]
+		\includegraphics[width=\linewidth]{percentage_static_nodes}
+		\caption{Percentage of stable nodes inside each $G_t$.}
+		\label{percentage_static_nodes}
+	\end{figure}
+
+	Data shows a modest churn rate being it $\lambda_{rate}=1.87\%$ and
+	$\lambda_{rate}=1.51\%$. The largest portion of the network has been observed to be stable throughout the entire time interval. The static nodes of the Lightning Network have been evaluated by computing the intersection between the vertices of the various graph $G_t$, such that
+	$$N_{static}(T) = |V_{t_0} \cap V_{t_1} \cap V_{t_2} ... \cap V_{t_k}|$$
+	with $T = t_k - t_0$, defined as the interval of observation.
+	
+	The size has been found to be $N_{static} = 503$ nodes and Figure \ref{percentage_static_nodes} shows the fraction of nodes that are stable with respect to the total number of nodes for each graph $G_t$ but results may be skewed by two particular event as observed in Figure \ref{churn}, where we can first appreciate a severe drop in $\mu(t_{11})$, and that has already been addressed in Section \ref{sec:betweenness} where we commented on the behavior of the most central node shutting down 159 channels, and second, in $\lambda(t_{26})$, where 167 new nodes joined the network; the unexpected churn can be explained by a real fact that happened during the observation period where a user tried and succeeded to become the most important node per capacity score in the main-net environment in July 2018\footnote{https://medium.com/andreas-tries-blockchain/bitcoin-lightning-network-1-can-i-compile-and-run-a-node-cd3138c68c15}, so it is plausible that he performed some test over the testing environment before approaching the real network.
+	
+	train model può essere utile per modellizzare un batch di nodi che entrano nella rete ogni 10 minuti?
 	
 	
 \end{document}
