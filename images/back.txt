@@ -1,0 +1,23 @@
+	\subsection{Attack strategy on Betweenness Centrality}
+	
+	Cases like the one observed before suggest that in this network the more a node is connected towards single channel nodes (i.e. nodes with degree equals to 1), the more those nodes will be central since they will act as bridges for every single channel node that is connected to the rest of the network. Figure \ref{betweenness_centrality_degree} shows the relation between the normalized betweenness centrality score and the degree of each nodes for 4 different time instant of the graph (0, 10, 20, 30): the highest performing nodes are also the ones whose degree his higher as expected because they act as gateways for peripheral nodes. 
+	
+	The previous intuition gave us the opportunity to stress the network against an attack strategy based on the removal of central nodes. The focus in this work is on the effect of such an attack rather than the causes, so the attack here is carried under the assumption that every node of the network can be shut down at every instant. It is also worth to stress the fact that while we may hypothetically be able to provoke a DoS over nodes of the network, there's no way to enforce the closure of a channel except by forcing a node to stay offline until the time-lock of a Commitment Transaction runs off, that is because a channel is a cryptographically secure contract exclusively between two parties. The attack is performed by removing from the graph the node that scored the highest betweenness centrality value and all the nodes that got disconnected by such removal from the most connected component of the graph. Afterwards, the betweenness centrality is re-evaluated over the new graph and the process is iterated until there are no more nodes left to remove. 
+	
+	\begin{figure}
+		\centering
+		\begin{subfigure}[0.5\textwidth]
+			\centering
+			\includegraphics[width=0.5\linewidth]{monthly_betweenness_centrality_attack}
+		\end{subfigure}
+		\begin{subfigure}[0.5\textwidth]
+			\centering
+			\includegraphics[width=0.5\linewidth]{monthly_betweenness_centrality_attack_percentage}
+		\end{subfigure}
+		\caption{Number of iterations for each snapshot needed to disconnect every node of the network.}
+		\label{betweenness_attack}
+	\end{figure}
+	
+	The algorithm was performed over every snapshot of the network, and the result exceeded our optimistic previsions as the number of nodes required to completely destroy the network is fairly low compared to its size. Figure \ref{betweenness_attack} shows	how many iterations (i.e. nodes to be removed since every iteration removes at least one node) are needed to shut-down the network for each snapshot. The removal of a nodes produces many subgraphs whose size is usually 1, thus it's hard to determine a cut that produces large size partitions. Setting up and perform such an attack should be a feasible task: indeed, to the best of our knowledge, a successful DDoS attack has been already carried over the real network in March 2018, and resulted in 200 nodes disconnected from the network when the network size was of about 1000 nodes, thus disconnecting the 20\% of the clients which is actually higher than the average of 7.86\% of nodes found with this method. Details on this attack have not been revealed but is said to be leveraging on \textit{open-channel requests} in order to open as many TCP/IP connections as possible.
+	
+	By looking at the history of the betweenness centrality score is then possible to understand better the reliability of particular nodes, and to track nodes that get too centralized around hubs, thus making the network more and more similar to the current transaction processors like VISA or Mastercard: the autopilot feature of the Lightning Network might check the whole network betweenness centrality to regulate the new channels establishment process in order to decrease the centralization around greedy players. Another risk factor for centralization is given by the fact that central nodes are subjected to increased computational processing since each routed payment processed has a computational cost associated (albeit being low); collecting Lightning Network fees is less profitable than mining blocks, hence the need to maximize the earnings by reducing the operational costs in terms of energy spent, and this will likely force active members of the Lightning Network to opt for devices with lower performances: overloading such devices with routing tasks may drastically increase the fault probability, thus impacting on the overall network quality of life.

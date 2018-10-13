@@ -349,23 +349,40 @@
 			\includegraphics[height=0.8\linewidth]{scatter_plot_betweenness_centrality_semilog}
 			\caption{semi-log scale}
 		\end{subfigure}
-		\caption{Betweenness centrality degree distribution in normal and semi-log plot with normalized betweenness centrality value. }
+		\caption{Betweenness centrality degree distribution in normal and semi-log plot with normalized betweenness centrality values. }
 		\label{betweenness_centrality_degree}
 	\end{figure}
 	
-	Cases like the one observed before suggest that in this network the more a node is connected towards single channel nodes (i.e. nodes with degree equals to 1), the more those nodes will be central since they will act as bridges for every single channel node that is connected to the rest of the network. Figure \ref{betweenness_centrality_degree} shows the relation between the normalized betweenness centrality score and the degree of each nodes: the highest performing nodes are also the ones whose degree his higher as expected because they act as gateways for peripheral nodes. 
+	\subsection{Attack strategy on Betweenness Centrality}
 	
-	The previous intuition gave us the opportunity 
+	Cases like the one observed before suggest that in this network the more a node is connected towards single channel nodes (i.e. nodes with degree equals to 1), the more those nodes will be central since they will act as bridges for every single channel node that is connected to the rest of the network. Figure \ref{betweenness_centrality_degree} shows the relation between the normalized betweenness centrality score and the degree of each nodes for 4 different time instant of the graph (0, 10, 20, 30): the highest performing nodes are also the ones whose degree his higher as expected because they act as gateways for peripheral nodes. 
+	
+	The previous intuition gave us the opportunity to stress the network against an attack strategy based on the removal of central nodes. The focus in this work is on the effect of such an attack rather than the causes, so the attack here is carried under the assumption that every node of the network can be shut down at every instant. It is also worth to stress the fact that while we may hypothetically be able to provoke a DoS over nodes of the network, there's no way to enforce the closure of a channel except by forcing a node to stay offline until the time-lock of a Commitment Transaction runs off, that is because a channel is a cryptographically secure contract exclusively between two parties. The attack is performed by removing from the graph the node that scored the highest betweenness centrality value and all the nodes that got disconnected by such removal from the most connected component of the graph. Afterwards, the betweenness centrality is re-evaluated over the new graph and the process is iterated until there are no more nodes left to remove. 
+	
+	\begin{figure}[h]
+		\centering
+		\begin{subfigure}{0.45\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{monthly_betweenness_centrality_attack}
+			\caption{Number of nodes needed to disconnect the network}
+		\end{subfigure}
+		\begin{subfigure}{0.45\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{monthly_betweenness_centrality_attack_percentage}
+			\caption{Percentage of nodes wrt graph size of current snapshot.}
+		\end{subfigure}
+		\caption{Number of iterations for each snapshot needed to disconnect every node of the network.}
+		\label{betweenness_attack}
+	\end{figure}
+	
+	The algorithm was performed over every snapshot of the network, and the result exceeded our optimistic previsions as the number of nodes required to completely destroy the network is fairly low compared to its size. Figure \ref{betweenness_attack} shows	how many iterations (i.e. nodes to be removed since every iteration removes at least one node) are needed to shut-down the network for each snapshot. The removal of a nodes produces many subgraphs whose size is usually 1, thus it's hard to determine a cut that produces large size partitions. Setting up and perform such an attack should be a feasible task: indeed, to the best of our knowledge, a successful DDoS attack has been already carried over the real network in March 2018, and resulted in 200 nodes disconnected from the network when the network size was of about 1000 nodes, thus disconnecting the 20\% of the clients which is actually higher than the average of 7.86\% of nodes found with this method. Details on this attack have not been revealed but is said to be leveraging on \textit{open-channel requests} in order to open as many TCP/IP connections as possible.
 	
 	By looking at the history of the betweenness centrality score is then possible to understand better the reliability of particular nodes, and to track nodes that get too centralized around hubs, thus making the network more and more similar to the current transaction processors like VISA or Mastercard: the autopilot feature of the Lightning Network might check the whole network betweenness centrality to regulate the new channels establishment process in order to decrease the centralization around greedy players. Another risk factor for centralization is given by the fact that central nodes are subjected to increased computational processing since each routed payment processed has a computational cost associated (albeit being low); collecting Lightning Network fees is less profitable than mining blocks, hence the need to maximize the earnings by reducing the operational costs in terms of energy spent, and this will likely force active members of the Lightning Network to opt for devices with lower performances: overloading such devices with routing tasks may drastically increase the fault probability, thus impacting on the overall network quality of life.
 	
-	degree in relazione con lo score della betweenness centrality
-	
-	Nuove cose: tagli iterativi sulla rete effettivamente la smontano per bene. La rete non si partiziona equamente ma mostra sottografi da poco e niente (size 1 e 2)
-	
 	\section{\textit{k}-vertex connectivity}
 
-	\begin{figure}[h!]
+	\begin{figure}
+		\centering
 		\includegraphics[width=\linewidth]{monthly_completeness}
 		\caption{Density of the graphs. Density is calculated as $\frac{m}{n(n-1)}$}
 		\label{monthly_completeness}
@@ -488,8 +505,38 @@
 			BA-model & 0.03322 \\
 			\hline
 		\end{tabulary}
-	\end{center} 
-	Here the differences between the two models are more pronounced. While the Chung-Lu model shows an average clustering coefficient in line with the real case scenario, the BA-model lacks on the aspect of centralized hubs which are a fundamental characteristic of scale-free networks. As already shown in \cite{Watts1998}, random graphs clustering coefficients are usually smaller with respect to real network ones because of the inability to describe at best the inevitable unpredictability of some phenomena. Hence a deeper understanding of the probability distribution with the exact $\gamma$ value was necessary to obtain an equivalent model able to show the same behavior of the real network.
+	\end{center}
+
+	Here the differences between the two models are more pronounced. While the Chung-Lu model shows an average clustering coefficient in line with the real case scenario, the BA-model lacks on catching properly the aspect of centralized hubs which are a fundamental characteristic of the Lightning Network. Furthermore, this aspect is also reflected by degree distribution in relation to the betweenness centrality that we already seen in Section \ref{sec:betweenness}. Figure \ref{betweenness_centrality_degree_models} shows degree betweenness centrality distributions of two random generated graphs both in linear and semilogarithmic scale. What emerges is that the betweenness score from BA-model is quite lower than the Chung-Lu and real network, and this was kinda expected given the that the average clustering coefficient has been shown to be low, suggesting that nodes in BA do not model the central hubs as well as in Chung-Lu.
+	
+	\begin{figure}[]
+		\centering
+		\begin{subfigure}{0.49\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{scatter_plot_betweenness_centrality_chung_lu}
+			\caption{Chung-Lu model}
+		\end{subfigure}
+		\begin{subfigure}{0.49\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{scatter_plot_betweenness_centrality_chung_lu_semilog}
+			\caption{Chung-Lu model (semilog)}
+		\end{subfigure}
+	
+		\begin{subfigure}{0.49\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{scatter_plot_betweenness_centrality_barabasi}
+			\caption{BA model}
+		\end{subfigure}
+		\begin{subfigure}{0.49\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{scatter_plot_betweenness_centrality_barabasi_semilog}
+			\caption{BA model (semilog)}
+		\end{subfigure}
+		\caption{Betweenness centrality degree distribution for BA and Chung-Lu generated networks.}
+		\label{betweenness_centrality_degree_models}
+	\end{figure}
+	
+	As already stated in \cite{Watts1998}, random graphs clustering coefficients are usually smaller with respect to real network ones because of the inability to describe at best the inevitable unpredictability of some phenomena. Hence a deeper understanding of the probability distribution with the exact $\gamma$ value was necessary to obtain an equivalent model able to show the same behavior of the real network.
 	
 	With this in mind, it's possible then to generate equivalent models of desired sizes based on the Chung-Lu generative approach, that has been showed to fit better with respect to the BA-model. As the size grows, the properties showed so far grow accordingly to the nature of the network. Testing the generated model against 10'000 nodes produced very interesting results, reported in the table below. Like before, the generated graph produced many isolated nodes and small size components, so it has been necessary to prepare the network  by removing these unnecessary entities before running the evaluation.
 	
