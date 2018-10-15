@@ -564,12 +564,16 @@
 	$$\lambda(t_i) = |V_{t_i} \setminus V_{t_{i-1}}|$$
 	$$\mu(t_i) = |V_{t_{i-1}} \setminus V_{t_i}| $$
 	For initial time $t_0$ and for every $t \leq t_0$ the two functions returns 0.
-	\begin{figure}[h!]
+	\begin{figure}[h]
 		\includegraphics[width=\linewidth]{churn}
 		\caption{$\lambda(t)$ and $\mu(t)$ functions over the observed time interval}
 		\label{churn}
 	\end{figure}
-
+	\begin{figure}
+		\includegraphics[width=\linewidth]{percentage_static_nodes}
+		\caption{Percentage of stable nodes inside each $G_t$.}
+		\label{percentage_static_nodes}
+	\end{figure}
 	Figure \ref{churn} shows the observed churn rates along the period of observation, putting in evidence a relatively small churning rates with respect to the number of nodes of each snapshot as previously displayed by Figure \ref{monthly_nodes}.
 	
 	If $\lambda(t)$, $\mu(t)$ and $N(t_0)$ are known, with $N(t_0)$ being the number of nodes at time $t_0$, it is then possible to know the size of the network thanks to
@@ -588,12 +592,6 @@
 		$$\mu_{rate} = \frac{\sum_{i = 1}^{k}\frac{\lambda(t_i)}{N_{t_{i}}}}{k}.$$
 	\end{definition}
 
-	\begin{figure}[h!]
-		\includegraphics[width=\linewidth]{percentage_static_nodes}
-		\caption{Percentage of stable nodes inside each $G_t$.}
-		\label{percentage_static_nodes}
-	\end{figure}
-
 	Data shows a modest churn rate being it $\lambda_{rate}=1.87\%$ and
 	$\lambda_{rate}=1.51\%$. The largest portion of the network has been observed to be stable throughout the entire time interval. The static nodes of the Lightning Network have been evaluated by computing the intersection between the vertices of the various graph $G_t$, such that
 	$$N_{static}(T) = |V_{t_0} \cap V_{t_1} \cap V_{t_2} ... \cap V_{t_k}|$$
@@ -601,7 +599,32 @@
 	
 	The size has been found to be $N_{static} = 503$ nodes and Figure \ref{percentage_static_nodes} shows the fraction of nodes that are stable with respect to the total number of nodes for each graph $G_t$ but results may be skewed by two particular event as observed in Figure \ref{churn}, where we can first appreciate a severe drop in $\mu(t_{11})$, and that has already been addressed in Section \ref{sec:betweenness} where we commented on the behavior of the most central node shutting down 159 channels, and second, in $\lambda(t_{26})$, where 167 new nodes joined the network; the unexpected churn can be explained by a real fact that happened during the observation period where a user tried and succeeded to become the most important node per capacity score in the main-net environment in July 2018\footnote{https://medium.com/andreas-tries-blockchain/bitcoin-lightning-network-1-can-i-compile-and-run-a-node-cd3138c68c15}, so it is plausible that he performed some test over the testing environment before approaching the real network.
 	
-	train model può essere utile per modellizzare un batch di nodi che entrano nella rete ogni 10 minuti?
+	\begin{figure}[h]
+		\includegraphics[width=\linewidth]{edge_churn_plot}
+		\caption{Edges join and leave variation.}
+		\label{fig:edge_churn}
+	\end{figure}
+
+	\begin{figure}[t]
+		\includegraphics[width=\linewidth]{edge_stable_ratio}
+		\caption{Static edges and number of edges per snapshot ratio.}
+		\label{fig:edge_stable_ratio}
+	\end{figure}
+	
+	\section{Addressing edge dynamicity}
+	
+	As more and more nodes join and leave the network, the channel structures changes accordingly (Figure \ref{fig:edge_churn}) with new channels being opened and closed between nodes. The network is characterized by a stable edge component that accounts for $E_{static} = 1202$ nodes and Figure \ref{fig:edge_stable_ratio} shows that, on average,  only 52.55\% of the edges of each snapshot are going to stay through all the observation period.	To better express the dynamic behavior of the network, we introduce a formalism that takes into account the edge variability of a graph with respect to time. This framework is known as TVG or Time Varying Graph, and it is a unified model which is the integration of various existing models and concepts proposed in the literature for dynamic graphs.
+	
+	We define our TVG as $\mathcal{G} = (V, E, \mathcal{T}, \rho, \zeta, A(e))$ where $V$ and $E$ are the set of nodes of our network respectively, $\mathcal{T} \subset \mathbb{T}$ is the lifetime of the model, $\rho$ is the edge presence function such that $\rho: E \times \mathcal{T} \to \{0,1\}$, $\zeta$ is the latency function such that $\zeta: E \times \mathcal{T} \to \mathbb{T}$.
+	Each edge is defined as $E \subseteq V \times V$ and every edges has attributes $A$ where  $A(e_{ij}) = [k_1(e_{ij}),\, k_2(e_{ij})]$ is an array of integers which maps to <\textit{capacity}, \textit{htlc}>. The Time Varying Graph takes place on the \textit{lifespan} $\mathcal{T}  \subset \mathbb{T}$ where the domain of $\mathbb{T}$ is assumed to be $\mathbb{N}$, i.e. the system is discrete-time,and the underlying graph $G = (V, E)$ represents a \textit{footprint} of the graph in which the time aspect of a node is flatten out. \\
+	The payment in the worst scenario:
+	A payment can be carried out by the following function
+	\begin{definition}
+		\textit{pay}(u,v,s). Defines a payment function. A payment can be performed at time instant $t_n$ if $\exists$ a path between node $u$ and $v$, denoted as $\pi =  \{(e_1,t_1), (e_2, t_2), ... (e_k, t_n)\}$ such that $\forall e \in \pi, \, k_{tot} = \sum k_2(e)$  and $\rho(e, t_{n+i}) = 1, \, \forall n < i < n + k_{tot}$ (i.e. there must exists a path between u and v and it must remains open for the duration of the payment).
+	\end{definition}
+	
+		
+	
 	
 	
 \end{document}
