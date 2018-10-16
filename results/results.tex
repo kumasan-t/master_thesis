@@ -550,7 +550,7 @@
 	
 	Results show a decreased average clustering coefficient, as the scale-free networks are supposed to perform when they grow in size, and overall the other parameters are in line with the values observed in the real network. It must be reminded however that data are based over the Testnet environment: unfortunately, generating an equivalent network for the Main-Net has been showed to be not accurate, as the average degree of the Main-Net appears to be higher than the one presented here, therefore the $\gamma$ value discovered so far is only representative of the testing network. However, the methodologies here presented are compatible with the real network environment so it should not be hard to see if they applies for a real world scenario.
 
-	\section{Lightning Network as a Time-Varying Graph}
+	\section{Addressing node dynamicity}
 	
 	
 	We introduce a formalism to describe the dynamic behavior of the network from nodes and edges points of view. The network evolution is described in a time interval defined as a set of integer $\{t_0, t_1, t_2 .... t_k \}$. Since the network was observed at fixed time interval  we can assume that for $\forall \: 0 < i \leq k,\: t_i-t_{i-1} = c$ and specifically in this work $c = 1$, hence we can refer to each time instant either by $t_i$ or its integer $i$ without loss of generality. For every time instant $t$, there is a graph $G_{t}= (V_t,E_t)$ where $V_t$ and $E_t$ represents the set of nodes and edges at time $t$ respectively. Nodes that constantly enter and leave the network are called \textit{churning nodes}. To characterize these two behaviors with respect to the time parameter we define two functions:
@@ -613,18 +613,36 @@
 	
 	\section{Addressing edge dynamicity}
 	
-	As more and more nodes join and leave the network, the channel structures changes accordingly (Figure \ref{fig:edge_churn}) with new channels being opened and closed between nodes. The network is characterized by a stable edge component that accounts for $E_{static} = 1202$ nodes and Figure \ref{fig:edge_stable_ratio} shows that, on average,  only 52.55\% of the edges of each snapshot are going to stay through all the observation period.	To better express the dynamic behavior of the network, we introduce a formalism that takes into account the edge variability of a graph with respect to time. This framework is known as TVG or Time Varying Graph, and it is a unified model which is the integration of various existing models and concepts proposed in the literature for dynamic graphs.
+	As more and more nodes join and leave the network, the channel structures changes accordingly (Figure \ref{fig:edge_churn}) with new channels being opened and closed between nodes. The network is characterized by a stable edge component that accounts for $E_{static} = 1202$ nodes and Figure \ref{fig:edge_stable_ratio} shows that, on average,  only 52.55\% of the edges of each snapshot are going to stay through all the observation period.	To better capture the dynamic behavior of the network, we introduce a formalism that takes into account the edge variability of a graph with respect to time. This framework is known as TVG or Time Varying Graph, and it is a unified model which is the integration of various existing models and concepts proposed in the literature for dynamic graphs. \\
+	We define our TVG as a directed graph $\mathcal{G} = (V, E, \mathcal{T}, \rho, \mathcal{C}, A)$ where:
+	\begin{itemize}
+		\item $V$ and $E$ are the set of nodes of our network respectively. 
+		\item $E: V \times V$ and each edge has a set of attributes $A(e) = [k_1(e),\, k_2(e)]$ which maps to <\textit{balance, htlc}> which is the htlc and balance value for node $i$. $A$ is a matrix of attributes accounting for every edge in $\mathcal{G}$.
+		\item $\mathcal{T} \subset \mathbb{T}$ is the lifetime of the model.
+		\item $\rho$ is the edge presence function such that $\rho: E \times \mathcal{T} \to \{0,1\}$.
+		\item $\mathcal{C}$ is the set of channels: a channel $c_{u,v} = c_{v,u}$ between two nodes $u$ and $v$, is represented as two edges $e_{u,v}$ and $e_{v,u}$ such that $c_{u,v} = (e_{u,v}, e_{v,u})$. Furthermore, an edge $e_{ij}$ from node $i$ to $j$ exists iff there is an edge $e_{ji}$  from node $j$ to $i$.
+	\end{itemize}
 	
-	We define our TVG as $\mathcal{G} = (V, E, \mathcal{T}, \rho, \zeta, A(e))$ where $V$ and $E$ are the set of nodes of our network respectively, $\mathcal{T} \subset \mathbb{T}$ is the lifetime of the model, $\rho$ is the edge presence function such that $\rho: E \times \mathcal{T} \to \{0,1\}$, $\zeta$ is the latency function such that $\zeta: E \times \mathcal{T} \to \mathbb{T}$.
-	Each edge is defined as $E \subseteq V \times V$ and every edges has attributes $A$ where  $A(e_{ij}) = [k_1(e_{ij}),\, k_2(e_{ij})]$ is an array of integers which maps to <\textit{capacity}, \textit{htlc}>. The Time Varying Graph takes place on the \textit{lifespan} $\mathcal{T}  \subset \mathbb{T}$ where the domain of $\mathbb{T}$ is assumed to be $\mathbb{N}$, i.e. the system is discrete-time,and the underlying graph $G = (V, E)$ represents a \textit{footprint} of the graph in which the time aspect of a node is flatten out. \\
-	The payment in the worst scenario:
-	A payment can be carried out by the following function
+	The channel capacity is defined as $cap_{c_{u,v}} = k_1(e_{u,v}) + k_1(e_{v,u})$ and its constant through all the life window of the channel.
+	The Time Varying Graph takes place on the \textit{lifespan} $\mathcal{T}  \subset \mathbb{T}$ where the domain of $\mathbb{T}$ is assumed to be $\mathbb{N}$, i.e. the system is discrete-time,and the underlying graph $G = (V, E)$ represents a \textit{footprint} of the graph in which the time aspect of a node is flatten out. 
+	
+	From a graph-centric point of view the evolution of $\mathcal{G}$ is described as a sequence of graphs $\mathcal{S}_{\mathcal{G}} = G_1, G_2, ... $ where a graph $G_i$ can be seen as a static snapshot of $\mathcal{G}$ at time $t_i$ and it is easy to see how this model perfectly fits with the data collected for this work, where each characteristic graph of $\mathcal{S}_{\mathcal{G}}$ corresponds to the snapshots observed so far. The power of expressiveness of this model resides on the fact that the granularity in which edges appear in the network can be adjusted in order to provide a more punctual information over the dynamic topology of the network: for example we could see how the model evolves when each time instant is considered to be 10 minutes, 30 minutes or 24 hours.
+
+	In this model we addressed the problem of performing payments in the worst scenario (i.e. nodes uncooperative until payment expiration). We define an uncooperative payment function as follows:
 	\begin{definition}
-		\textit{pay}(u,v,s). Defines a payment function. A payment can be performed at time instant $t_n$ if $\exists$ a path between node $u$ and $v$, denoted as $\pi =  \{(e_1,t_1), (e_2, t_2), ... (e_k, t_n)\}$ such that $\forall e \in \pi, \, k_{tot} = \sum k_2(e)$  and $\rho(e, t_{n+i}) = 1, \, \forall n < i < n + k_{tot}$ (i.e. there must exists a path between u and v and it must remains open for the duration of the payment).
+		\textit{uncooperativePayment}(u,v,s). Defines a payment function. A payment can be performed at time instant $t_n$ if:
+		\begin{itemize}
+			
+			\item $\exists$ a path between node $u$ and $v$, denoted as $\pi =  \{c_{u,1} ... {c_{i,v}}\}$.
+			\item $\forall$ edges $e$ in $\pi$ that connects $u$ to $v$, $k_{tot} = \sum_{e} k_2(e)$ such that $\rho(e, t_{n+i}) = 1, \, \forall n < i < n + k_{tot}$, that is a path must remain open for the duration of the payment.
+			\item $\forall$ edges $e$ in $\pi$ that connects $u$ to $v$, $k_1(e) >= s$, i.e. an edge carries enough funds to allow the transfer of money.
+			\item For every payment operation $\pi_i$ that is taking place in any instant between $[t_n, t_{n + k_{tot}})$ it must hold that $\pi \cap \pi_i = \emptyset$, meaning that there can't be two or more payments occurring on any edges that belong to $\pi$.
+			\item at the end of the payment, $\forall$ edges $e_{ij}$ in $\pi$ that connects $u$ to $v$ it must hold that $cap_{i,j} = k_1(e_{i,j}) + k_1(e_{j,i})$ and $k_1(e_{j,i}) = cap_{i,j} - (k_1(e_{i,j}) - s)$.
+		\end{itemize}
 	\end{definition}
+
+	The cooperative payment scenario between $u$ and $v$ can be modeled trivially by requiring $\forall$ edge $e$ that participates to the payment path $\pi$ to have at time $t_n$ $\rho(e, t_n) = 1$. The payment is resolved instantly and each channel from $u$ to $v$ updates its balance according to the amount of money transferred. 
 	
-		
 	
-	
-	
+
 \end{document}
