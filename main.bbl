@@ -191,6 +191,11 @@ Joseph Poon and Thaddeus Dryja.
 \newblock {Lightning Network presentation slide}.
 \newblock \url{http://lightning.network/lightning-network.pdf}.
 
+\bibitem{Poon2016}
+Joseph Poon and Thaddeus Dryja.
+\newblock {The Bitcoin Lightning Network: Scalable Off-Chain Instant Payments}.
+\newblock {\em Technical Report (draft)}, page~59, 2016.
+
 \bibitem{Prihodko2016}
 Pavel Prihodko, Slava Zhigulin, Mykola Sahno, Aleksei Ostrovskiy, and Olaoluwa
   Osuntokun.
