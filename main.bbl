@@ -23,6 +23,13 @@ Marcin Andrychowicz, Stefan Dziembowski, Daniel Malinowski, and {\L}ukasz
 \newblock {On the Malleability of Bitcoin Transactions}.
 \newblock pages 1--18. Springer, Berlin, Heidelberg, 2015.
 
+\bibitem{Baldoni2010}
+Roberto Baldoni, Silvia Bonomi, and Michel Raynal.
+\newblock {Regular register: An implementation in a churn prone environment}.
+\newblock {\em Lecture Notes in Computer Science (including subseries Lecture
+  Notes in Artificial Intelligence and Lecture Notes in Bioinformatics)}, 5869
+  LNCS:15--29, 2010.
+
 \bibitem{Barabasi1999}
 Albert~L{\'{a}}szl{\'{o}} Barab{\'{a}}si and R{\'{e}}ka Albert.
 \newblock {Emergence of scaling in random networks}.
@@ -46,6 +53,14 @@ Ulrik Brandes.
 BtcDrak, Mark Friedenbach, and Eric Lombrozo.
 \newblock {CHECKSEQUENCEVERIFY}.
 \newblock \url{https://github.com/bitcoin/bips/blob/master/bip-0112.mediawiki}.
+
+\bibitem{Burchert2017}
+Conrad Burchert, Christian Decker, and Roger Wattenhofer.
+\newblock {Scalable funding of bitcoin micropayment channel networks: Regular
+  submission}.
+\newblock {\em Lecture Notes in Computer Science (including subseries Lecture
+  Notes in Artificial Intelligence and Lecture Notes in Bioinformatics)}, 10616
+  LNCS:361--377, 2017.
 
 \bibitem{Buterin2014}
 Vitalik Buterin.
@@ -133,6 +148,13 @@ Aric~a. Hagberg, Daniel~a. Schult, and Pieter~J. Swart.
 \newblock {\em Proceedings of the 7th Python in Science Conference
   (SciPy2008)}, 836:11----15, 2008.
 
+\bibitem{Ko2008}
+Steven~Y. Ko, Imranul Hoque, and Indranil Gupta.
+\newblock {Using tractable and realistic churn models to analyze quiescence
+  behavior of distributed protocols}.
+\newblock {\em Proceedings of the IEEE Symposium on Reliable Distributed
+  Systems}, pages 259--268, 2008.
+
 \bibitem{Krapivsky2000}
 P.~L. Krapivsky, S.~Redner, and F.~Leyvraz.
 \newblock {Connectivity of growing random networks}.
@@ -143,6 +165,12 @@ Leslie Lamport, Robert Shostak, and Marshall Pease.
 \newblock {The Byzantine Generals Problem}.
 \newblock {\em ACM Transactions on Programming Languages and Systems},
   4(3):382--401, 1982.
+
+\bibitem{Liben-Nowell2002}
+David Liben-Nowell, Hari Balakrishnan, and David Karger.
+\newblock {Analysis of the evolution of peer-to-peer systems}.
+\newblock {\em PODC '02: Proceedings of the twenty-first annual symposium on
+  Principles of distributed computing}, pages 233--242, 2002.
 
 \bibitem{Malone2014}
 D.~Malone and K.J. O'Dwyer.
@@ -156,6 +184,13 @@ James Moody and Douglas~R. White.
 \newblock {Structural Cohesion and Embeddedness: A Hierarchical Concept of
   Social Groups}.
 \newblock {\em American Sociological Review}, 68(1):103, feb 2003.
+
+\bibitem{Mostefaoui}
+A.~Mostefaoui, M.~Raynal, C.~Travers, S.~Patterson, D.~Agrawal, and A.~{El
+  Abbadi}.
+\newblock {From Static Distributed Systems to Dynamic Systems}.
+\newblock In {\em 24th IEEE Symposium on Reliable Distributed Systems
+  (SRDS'05)}, pages 109--118. IEEE.
 
 \bibitem{Nakamoto2008}
 Satoshi Nakamoto.

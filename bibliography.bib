@@ -484,6 +484,19 @@ author = {Atzei, Nicola and Bartoletti, Massimo and Lande, Stefano and Zunino, R
 file = {:D$\backslash$:/Documenti/Mendeley Desktop/Unknown/Atzei et al/Atzei et al. - Unknown - A formal model of Bitcoin transactions.pdf:pdf},
 title = {{A formal model of Bitcoin transactions}}
 }
+@article{Ko2008,
+abstract = {Large-scale distributed systems are subject to churn, i.e., continuous arrival, departure and failure of processes. Analysis of protocols under churn requires one to use churn models that are tractable (easy to apply), realistic (apply to deployment .....},
+author = {Ko, Steven Y. and Hoque, Imranul and Gupta, Indranil},
+doi = {10.1109/SRDS.2008.19},
+file = {:D$\backslash$:/Documenti/Mendeley Desktop/2008/Ko, Hoque, Gupta/Ko, Hoque, Gupta - 2008 - Using tractable and realistic churn models to analyze quiescence behavior of distributed protocols.pdf:pdf},
+isbn = {9780769534107},
+issn = {10609857},
+journal = {Proceedings of the IEEE Symposium on Reliable Distributed Systems},
+pages = {259--268},
+title = {{Using tractable and realistic churn models to analyze quiescence behavior of distributed protocols}},
+year = {2008}
+}
+
 @article{Bentov2014,
 abstract = {We study a model of fairness in secure computation in which an adversarial party that aborts on receiving output is forced to pay a mutually predefined monetary penalty. We then showhowthe Bitcoin network can be used to achieve the above notion of fairness in the two-party as well as the multiparty setting (with a dishonest majority). In particular, we propose new ideal functionalities and protocols for fair secure computation and fair lottery in this model. One of our main contributions is the definition of an ideal primitive, which we call F? CR (CR stands for “claim-or-refund”), that formalizes and abstracts the exact properties we require from the Bitcoin network to achieve our goals. Naturally, this abstraction allows us to design fair protocols in a hybrid model in which parties have access to the F? CR functionality, and is otherwise independent of the Bitcoin ecosystem. We also show an efficient realization of F? CR that requires only two Bitcoin transactions to be made on the network. Our constructions also enjoy high efficiency. In a multiparty setting, our protocols only require a constant number of calls to F? CR per party on top of a standard multiparty secure computation protocol. Our fair multiparty lottery protocol improves over previous solutions which required a quadratic number of Bitcoin transactions. Keywords:},
 archivePrefix = {arXiv},
@@ -519,6 +532,58 @@ url = {http://www.tandfonline.com/doi/abs/10.1080/0022250X.2001.9990249},
 volume = {25},
 year = {2001}
 }
+@article{Baldoni2010,
+author = {Baldoni, Roberto and Bonomi, Silvia and Raynal, Michel},
+doi = {10.1007/978-3-642-11476-2_3},
+file = {:D$\backslash$:/Documenti/Mendeley Desktop/2010/Baldoni, Bonomi, Raynal/Baldoni, Bonomi, Raynal - 2010 - Regular register An implementation in a churn prone environment.pdf:pdf},
+isbn = {364211475X},
+issn = {03029743},
+journal = {Lecture Notes in Computer Science (including subseries Lecture Notes in Artificial Intelligence and Lecture Notes in Bioinformatics)},
+pages = {15--29},
+title = {{Regular register: An implementation in a churn prone environment}},
+volume = {5869 LNCS},
+year = {2010}
+}
+@article{Burchert2017,
+abstract = {The Bitcoin network has scalability problems. To increase its transaction rate and speed, micropayment channel networks have been proposed, however these require to lock funds into specific channels. Moreover, the available space in the blockchain does not allow scaling to a world wide payment system. We propose a new layer that sits in between the blockchain and the payment channels. The new layer addresses the scalability problem by enabling trust-less off-blockchain channel funding. It consists of shared accounts of groups of nodes that flexibly create one-to-one channels for the payment network. The new system allows rapid changes of the allocation of funds to channels and reduces the cost of opening new channels. Instead of one blockchain transaction per channel, each user only needs one transaction to enter a group of nodes – within the group the user can create arbitrary many channels. For a group of 20 users with 100 intra-group channels, the cost of the blockchain transac-tions is reduced by 90{\%} compared to 100 regular micropayment channels opened on the blockchain. This can be increased further to 96{\%} if Bitcoin introduces Schnorr signatures with signature aggregation.},
+author = {Burchert, Conrad and Decker, Christian and Wattenhofer, Roger},
+doi = {10.1007/978-3-319-69084-1_26},
+file = {:D$\backslash$:/Documenti/Mendeley Desktop/2017/Burchert, Decker, Wattenhofer/Burchert, Decker, Wattenhofer - 2017 - Scalable funding of bitcoin micropayment channel networks Regular submission.pdf:pdf},
+isbn = {9783319690834},
+issn = {16113349},
+journal = {Lecture Notes in Computer Science (including subseries Lecture Notes in Artificial Intelligence and Lecture Notes in Bioinformatics)},
+keywords = {cryptography,systems theory},
+pages = {361--377},
+title = {{Scalable funding of bitcoin micropayment channel networks: Regular submission}},
+volume = {10616 LNCS},
+year = {2017}
+}
+@article{Liben-Nowell2002,
+abstract = {In this paper, we give a theoretical analysis of peer-to-peer (P2P) networks operating in the face of concurrent joins and unexpected departures. We focus on Chord, a recently developed P2P system that implements a distributed hash table abstraction, and study the process by which Chord maintains its distributed state as nodes join and leave the system. We argue that traditional performance measures based on run-time are uninformative for a continually running P2P network, and that the rate at which nodes in the network need to participate to maintain system state is a more useful metric. We give a general lower bound on this rate for a network to remain connected, and prove that an appropriately modified version of Chord's maintenance rate is within a logarithmic factor of the optimum rate.},
+author = {Liben-Nowell, David and Balakrishnan, Hari and Karger, David},
+doi = {10.1145/571825.571863},
+file = {:D$\backslash$:/Documenti/Mendeley Desktop/2002/Liben-Nowell, Balakrishnan, Karger/Liben-Nowell, Balakrishnan, Karger - 2002 - Analysis of the evolution of peer-to-peer systems.pdf:pdf},
+isbn = {1581134851},
+issn = {1545-5971},
+journal = {PODC '02: Proceedings of the twenty-first annual symposium on Principles of distributed computing},
+keywords = {Churn,DHT,P2P},
+pages = {233--242},
+title = {{Analysis of the evolution of peer-to-peer systems}},
+year = {2002}
+}
+@inproceedings{Mostefaoui,
+author = {Mostefaoui, A. and Raynal, M. and Travers, C. and Patterson, S. and Agrawal, D. and {El Abbadi}, A.},
+booktitle = {24th IEEE Symposium on Reliable Distributed Systems (SRDS'05)},
+doi = {10.1109/RELDIS.2005.19},
+isbn = {0-7695-2463-X},
+mendeley-groups = {Blockchain},
+pages = {109--118},
+publisher = {IEEE},
+title = {{From Static Distributed Systems to Dynamic Systems}},
+url = {http://ieeexplore.ieee.org/document/1541189/}
+}
+
+
 @article{Moody2003,
 author = {Moody, James and White, Douglas R.},
 doi = {10.2307/3088904},

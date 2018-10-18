@@ -1,5 +1,5 @@
 \begin{document}
-	\chapter{Methodology}
+	\chapter{Collecting Data}
 	This chapter describes how the Lightning Network's base information are gathered and which tools will be used for the analysis of the said network. The Lightning Network is essentially composed of a client/daemon running on a Linux-based machine that act as a \textit{watchdog} over the Bitcoin blockchain in case any attacker decides to act maliciously. Since the Lightning Network is a \textit{trustless} off-chain payment network, it is not yet possible to watch on a third-party blockchain, that is, a full Bitcoin node and its blockchain are required to run locally and cannot be delegated to an external arbiter.
 	
 	Downloading and maintaining a blockchain requires a server that is constantly up and running: for this reason a Raspberry Pi 2 model B with a custom Debian based distribution was setup along with a storage unit of 1 TeraByte. The main Bitcoin blockchain size is 181,223 Gigabyte as the time of writing\footnote{https://www.blockchain.com/charts/blocks-size}, while the testing blockchain (the Bitcoin developer environment) is only 25,975 Gigabyte. Lightning Network is both implemented for the main and the testing blockchain but this work will refer only to the testnet environment; nonetheless, everything that is presented here can be replicated on the main network.

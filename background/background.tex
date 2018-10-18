@@ -210,6 +210,8 @@
 				
 		To close a channel either a commitment transaction is published onto the blockchain, resulting on one of the two party waiting \(n\) blocks before being able to get his money back, or the two agree on the last final state of the balance, namely a \textit{Settlement Transaction}, in which its outputs are not encumbered. Yet it is important to notice that if the two parties remain cooperative, the channel can remain open indeterminately.
 		
+		Recently, a new paper by Burchert C., Decker C. and Wattenhofer R. proposed an alternative to the one-to-one channels paradigm of the Lightning Network which is called "Channel Factory" \cite{Burchert2017} and that should decrease even further the number of on-chain transactions required for a fast-payment system to operate, where instead of having a single partner cooperating in the building of a channel, a user is assigned to a collaborating group where funds can be allocated dynamically within the group participants. The two implementations however are not mutually exclusive and while the channel factory reduces the number of on-chain transactions, the risks for uncooperative parties rises with the rising number of parties involved in a factory.
+		
 		\subsection{Hashed Timelock Contracts}
 		
 		The missing piece that allows to build a network of channel is the \textit{Hashed Time-Lock Contract}, a special contract that allows to maintain a global state across multiple channels based on time commitments (by using the nLockTime parameter) and pre-images discloures. A HTLC is a revocable contract between two parties enforcible via blockchain and the terms of contract are the following:
@@ -259,13 +261,13 @@
 	
 		In this way the participant will perform their task knowing that the step before has been already performed. Let's say Alice wants to pay David, then David picks a random number R, produces the hash H and gives H to Alice. Alice tells Bob that if he can show her R then he will be able to pull funds from her. Bob does the same with Carol and Carol with David. Now on day 1, David knows R so he can pull the funds from Carol. On day 2, Carol shows R to Bob so she can pull funds from Bob and finally on day 3 Bob shows R to Alice, and he's able to pull funds from her as well. Every pair of node settles the new balance with their neighbors in a new commitment transactions and thus the payment is finally over.
 		
-		Suppose now there are problems between Bob and Carol during the payment, with Bob becoming unresponsive (i.e. broken link). Since Carol cannot settle a new commitment transactions with her updated balance she's forced to publish her chain of floating transaction along with the HTLC of the current operation to the blockchain, eventually disclosing the value of R. By knowing the value of R, Alice can consider the payment done. If Bob manages to return online before the HTLC with Alice expires, he will be able to observe R from the transaction that Carol has pushed onto the blockchain, and thus will pull funds from Alice as well (as long as the contract locktime has not elapsed).
-		
-		\begin{figure}[h]
+		\begin{figure}[htbp]
 			\centering
 			\includegraphics[width=0.7\linewidth]{HTLC_broken_channel}
 			\caption{In case Carol sees that Bob is unresponsive, she can broadcast the current Commitment Transaction alongside the HTLC and the value R. Bob can later see the value R from the blockchain and fulfill his contract with Alice.}
 		\end{figure}
+		
+		Suppose now there are problems between Bob and Carol during the payment, with Bob becoming unresponsive (i.e. broken link). Since Carol cannot settle a new commitment transactions with her updated balance she's forced to publish her chain of floating transaction along with the HTLC of the current operation to the blockchain, eventually disclosing the value of R. By knowing the value of R, Alice can consider the payment done. If Bob manages to return online before the HTLC with Alice expires, he will be able to observe R from the transaction that Carol has pushed onto the blockchain, and thus will pull funds from Alice as well (as long as the contract locktime has not elapsed).
 		
 		Because of their time-dependent nature, nodes and channels are not intended to be considered as static features of a network: a channel can be suddenly closed whenever the locktime runs off, or maybe it is possible that some nodes are inactive during some period of the day (e.g. nodes shutting down during nighttime) so there's the need to capture this property in a model that can describe such dynamic behavior.
 		

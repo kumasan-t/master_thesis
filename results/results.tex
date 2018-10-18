@@ -7,7 +7,7 @@
 	
 	The following section takes in consideration the most relevant trends of the network which are the nodes and edges variation, the average degree and the diameter of the network on a daily and a monthly basis. The analysis carried over the daily basis data is made to justify the decision of the focus on a larger time window. The reasons behind the following churn rates are out of the scope of this work, but it is likely that they largely depends on protocol changes, client errors and, possibly the popularity of the network itself.
 	
-	A full day representation of the Lightning Network consists of 144 snapshots taken at 10 minutes intervals; the 10 minutes intervals were chosen because every channel that is added (or removed) from the network must wait for the funding transaction (settlement transaction in case a channel is being closed) to be included in a block and added to the chain by the miners. The following results matched the expectation because, as stated in the white paper, a Lightning node and its channels are meant to have a long lifespan. The data refers to the date of May 16th, May 21th, May 26th, June 2nd, 
+	A full day representation of the Lightning Network consists of 144 snapshots taken at 10 minutes intervals; the 10 minutes intervals were chosen because every channel that is added (or removed) from the network must wait for the funding transaction (settlement transaction in case a channel is being closed) to be included in a block and added to the chain by the miners. The following results matched the expectation because, as stated in the white paper, a Lightning node and its channels are meant to have a long lifespan. The data refers to the date of May 16th, May 21th, May 26th and June 2nd 2018.
 	
 	\subsection{Daily nodes variation}
 	
@@ -16,29 +16,29 @@
 		\begin{subfigure}{0.45\textwidth}
 			\centering
 			\includegraphics[width=\linewidth]{daily_number_of_nodes0}
-			\caption{Snapshot, May 16th}
+			\caption{May 16th 2018}
 			\label{daily_node0}
 		\end{subfigure}
 		\begin{subfigure}{0.45\textwidth}
 			\centering
 			\includegraphics[width=\linewidth]{daily_number_of_nodes1}
-			\caption{Snapshot, May 21th}
+			\caption{May 21th 2018}
 			\label{daily_node1}
 		\end{subfigure}
 			\begin{subfigure}{0.45\textwidth}
 			\centering
 			\includegraphics[width=\linewidth]{daily_number_of_nodes2}
-			\caption{Snapshot, May 26th}
+			\caption{May 26th 2018}
 			\label{daily_node2}
 		\end{subfigure}
 		\begin{subfigure}{0.45\textwidth}
 			\centering
 			\includegraphics[width=\linewidth]{daily_number_of_nodes3}
-			\caption{Snapshot, June 2nd}
+			\caption{June 2nd 2018}
 			\label{daily_node3}
 		\end{subfigure}
 		
-		\caption{Nodes trends on a daily basis}
+		\caption{Nodes trends on a daily basis. Every unit on the horizontal axis corresponds to a snapshot taken at 10 minutes intervals.}
 		\label{daily_nodes_variation}
 	\end{figure}
 
@@ -89,7 +89,7 @@
 			\label{daily_edges3}
 		\end{subfigure}
 		
-		\caption{Edges trends on a daily basis}
+		\caption{Edges trends on a daily basis. Every unit on the horizontal axis corresponds to a snapshot taken at 10 minutes intervals}
 		\label{daily_edges_variation}
 	\end{figure}
 
@@ -137,7 +137,7 @@
 			\label{daily_degree3}
 		\end{subfigure}
 	
-	\caption{Average degree on a daily basis}
+	\caption{Average degree on a daily basis. Every unit on the horizontal axis corresponds to a snapshot taken at 10 minutes intervals}
 	\label{daily_degree _variation}
 	\end{figure}
 
@@ -186,7 +186,7 @@
 			\label{daily_diameter3}
 		\end{subfigure}
 		
-		\caption{Diameter trends on a daily basis}
+		\caption{Diameter trends on a daily basis. Every unit on the horizontal axis corresponds to a snapshot taken at 10 minutes intervals}
 		\label{daily_diameter}
 	\end{figure}
 	
@@ -201,7 +201,7 @@
 	\begin{figure}
 		\centering
 		\includegraphics[width=\linewidth]{number_of_nodes}
-		\caption{Monthly nodes variation.}
+		\caption{Monthly nodes variation. Every unit on the horizontal axis corresponds to a snapshot taken at 24 hours intervals.}
 		\label{monthly_nodes}
 	\end{figure}
 	
@@ -219,7 +219,7 @@
 	\begin{figure}
 		\centering
 		\includegraphics[width=\linewidth]{number_of_edges}
-		\caption{Monthly edges variation.}
+		\caption{Monthly edges variation. Every unit on the horizontal axis corresponds to a snapshot taken at 24 hours intervals.}
 		\label{monthly_edges}
 	\end{figure}
 
@@ -238,7 +238,7 @@
 	\begin{figure}
 		\centering
 		\includegraphics[width=\linewidth]{average_degree}
-		\caption{Monthly average degree.}
+		\caption{Monthly average degree. Every unit on the horizontal axis corresponds to a snapshot taken at 24 hours intervals.}
 		\label{monthly_degree}
 	\end{figure}
 	
@@ -259,7 +259,7 @@
 	\begin{figure}
 		\centering
 		\includegraphics[width=\linewidth]{distance}
-		\caption{Diameter.}
+		\caption{Diameter. Every unit on the horizontal axis corresponds to a snapshot taken at 24 hours intervals.}
 		\label{monthly_diameter}
 	\end{figure}
 
@@ -328,7 +328,7 @@
 	\begin{figure}[ht!]
 		\centering
 		\includegraphics[width=\linewidth]{monthly_betweenness_centrality}
-		\caption{Betweenness Centrality (Monthly)}
+		\caption{Betweenness Centrality (Monthly). Every unit on the horizontal axis corresponds to a snapshot taken at 24 hours intervals. The legend refers to each node identifier.}
 		\label{monthly_betweenness_centrality}
 	\end{figure}		
 	
@@ -550,7 +550,7 @@
 	
 	Results show a decreased average clustering coefficient, as the scale-free networks are supposed to perform when they grow in size, and overall the other parameters are in line with the values observed in the real network. It must be reminded however that data are based over the Testnet environment: unfortunately, generating an equivalent network for the Main-Net has been showed to be not accurate, as the average degree of the Main-Net appears to be higher than the one presented here, therefore the $\gamma$ value discovered so far is only representative of the testing network. However, the methodologies here presented are compatible with the real network environment so it should not be hard to see if they applies for a real world scenario.
 
-	\section{Addressing node dynamicity}
+	\section{Assessing node dynamicity}
 	
 	
 	We introduce a formalism to describe the dynamic behavior of the network from nodes and edges points of view. The network evolution is described in a time interval defined as a set of integer $\{t_0, t_1, t_2 .... t_k \}$. Since the network was observed at fixed time interval  we can assume that for $\forall \: 0 < i \leq k,\: t_i-t_{i-1} = c$ and specifically in this work $c = 1$, hence we can refer to each time instant either by $t_i$ or its integer $i$ without loss of generality. For every time instant $t$, there is a graph $G_{t}= (V_t,E_t)$ where $V_t$ and $E_t$ represents the set of nodes and edges at time $t$ respectively. Nodes that constantly enter and leave the network are called \textit{churning nodes}. To characterize these two behaviors with respect to the time parameter we define two functions:
@@ -611,7 +611,7 @@
 		\label{fig:edge_stable_ratio}
 	\end{figure}
 	
-	\section{Addressing edge dynamicity}
+	\section{Assessing edge dynamicity}
 	
 	As more and more nodes join and leave the network, the channel structures changes accordingly (Figure \ref{fig:edge_churn}) with new channels being opened and closed between nodes. The network is characterized by a stable edge component that accounts for $E_{static} = 1202$ nodes and Figure \ref{fig:edge_stable_ratio} shows that, on average,  only 52.55\% of the edges of each snapshot are going to stay through all the observation period.	To better capture the dynamic behavior of the network, we introduce a formalism that takes into account the edge variability of a graph with respect to time. This framework is known as TVG or Time Varying Graph, and it is a unified model which is the integration of various existing models and concepts proposed in the literature for dynamic graphs. \\
 	We define our TVG as a directed graph $\mathcal{G} = (V, E, \mathcal{T}, \rho, \mathcal{C}, A)$ where:
