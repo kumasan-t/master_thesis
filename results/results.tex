@@ -1,5 +1,5 @@
 \begin{document}
-	\chapter{Results}
+	\chapter{Lightning Network Analysis}
 	
 	The study conducted over the gathered data served for the definition of new metrics to measure the performance and robustness of the Lightning Network and for the formal modeling of two mathematical representation of the Lightning Network, from a static and dynamic point of view. The analysis is carried over a period of one month, one snapshot per day; this observation period will be justified by the results obtained by the analysis of daily behavior of the network that will be shown next.
 	
@@ -11,7 +11,7 @@
 	
 	\subsection{Daily nodes variation}
 	
-	\begin{figure}[h]
+	\begin{figure}[htbp!]
 		\centering
 		\begin{subfigure}{0.45\textwidth}
 			\centering
@@ -36,6 +36,11 @@
 			\includegraphics[width=\linewidth]{daily_number_of_nodes3}
 			\caption{June 2nd 2018}
 			\label{daily_node3}
+		\end{subfigure}
+		\begin{subfigure}{\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{daily_number_of_nodes_aggregated}
+			\caption{}
 		\end{subfigure}
 		
 		\caption{Nodes trends on a daily basis. Every unit on the horizontal axis corresponds to a snapshot taken at 10 minutes intervals.}
@@ -62,33 +67,37 @@
 	
 	\subsection{Daily edges variation}
 
-	\begin{figure}[h]
+	\begin{figure}[htbp!]
 		\centering
-		\begin{subfigure}{0.45\textwidth}
+		\begin{subfigure}{0.49\textwidth}
 			\centering
 			\includegraphics[width=\linewidth]{daily_number_of_edges0}
-			\caption{Snapshot, May 16th}
+			\caption{May 16th 2018}
 			\label{daily_edges0}
 		\end{subfigure}
-		\begin{subfigure}{0.45\textwidth}
+		\begin{subfigure}{0.49\textwidth}
 			\centering
 			\includegraphics[width=\linewidth]{daily_number_of_edges1}
-			\caption{Snapshot, May 21th}
+			\caption{May 21th 2018}
 			\label{daily_edges1}
 		\end{subfigure}
-		\begin{subfigure}{0.45\textwidth}
+		\begin{subfigure}{0.49\textwidth}
 			\centering
 			\includegraphics[width=\linewidth]{daily_number_of_edges2}
-			\caption{Snapshot, May 26th}
+			\caption{May 26th 2018}
 			\label{daily_edges2}
 		\end{subfigure}
-		\begin{subfigure}{0.45\textwidth}
+		\begin{subfigure}{0.49\textwidth}
 			\centering
 			\includegraphics[width=\linewidth]{daily_number_of_edges3}
-			\caption{Snapshot, June 2nd}
+			\caption{June 2nd 2018}
 			\label{daily_edges3}
 		\end{subfigure}
-		
+		\begin{subfigure}{\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{daily_number_of_edges_aggregated}
+			\caption{}
+		\end{subfigure}		
 		\caption{Edges trends on a daily basis. Every unit on the horizontal axis corresponds to a snapshot taken at 10 minutes intervals}
 		\label{daily_edges_variation}
 	\end{figure}
@@ -110,33 +119,37 @@
 
 	\subsection{Daily average degree variation}
 
-	\begin{figure}[h]
+	\begin{figure}[htbp!]
 	\centering
-		\begin{subfigure}{0.45\textwidth}
+		\begin{subfigure}{0.49\textwidth}
 			\centering
 			\includegraphics[width=\linewidth]{daily_average_degree0}
-			\caption{Snapshot, May 16th}
+			\caption{May 16th 2018}
 			\label{daily_degree0}
 		\end{subfigure}
-		\begin{subfigure}{0.45\textwidth}
+		\begin{subfigure}{0.49\textwidth}
 			\centering
 			\includegraphics[width=\linewidth]{daily_average_degree1}
-			\caption{Snapshot, May 21th}
+			\caption{May 21th 2018}
 			\label{daily_degree1}
 		\end{subfigure}
-		\begin{subfigure}{0.45\textwidth}
+		\begin{subfigure}{0.49\textwidth}
 			\centering
 			\includegraphics[width=\linewidth]{daily_average_degree2}
-			\caption{Snapshot, May 26th}
+			\caption{May 26th 2018}
 			\label{daily_degree2}
 		\end{subfigure}
-		\begin{subfigure}{0.45\textwidth}
+		\begin{subfigure}{0.49\textwidth}
 			\centering
 			\includegraphics[width=\linewidth]{daily_average_degree3}
-			\caption{Snapshot, June 2nd}
+			\caption{June 2nd 2018}
 			\label{daily_degree3}
 		\end{subfigure}
-	
+		\begin{subfigure}{\textwidth}
+			\centering
+			\includegraphics[width=\linewidth]{daily_average_degree_aggregated}
+			\caption{}
+		\end{subfigure}
 	\caption{Average degree on a daily basis. Every unit on the horizontal axis corresponds to a snapshot taken at 10 minutes intervals}
 	\label{daily_degree _variation}
 	\end{figure}
@@ -161,28 +174,28 @@
 	
 		\begin{figure}[h]
 		\centering
-		\begin{subfigure}{0.45\textwidth}
+		\begin{subfigure}{0.49\textwidth}
 			\centering
 			\includegraphics[width=\linewidth]{daily_diameter0}
-			\caption{Snapshot, May 16th}
+			\caption{May 16th 2018}
 			\label{daily_diameter0}
 		\end{subfigure}
-		\begin{subfigure}{0.45\textwidth}
+		\begin{subfigure}{0.49\textwidth}
 			\centering
 			\includegraphics[width=\linewidth]{daily_diameter1}
-			\caption{Snapshot, May 21th}
+			\caption{May 21th 2018}
 			\label{daily_diameter1}
 		\end{subfigure}
-		\begin{subfigure}{0.45\textwidth}
+		\begin{subfigure}{0.49\textwidth}
 			\centering
 			\includegraphics[width=\linewidth]{daily_diameter2}
-			\caption{Snapshot, May 26th}
+			\caption{May 26th 2018}
 			\label{daily_diameter2}
 		\end{subfigure}
-		\begin{subfigure}{0.45\textwidth}
+		\begin{subfigure}{0.49\textwidth}
 			\centering
 			\includegraphics[width=\linewidth]{daily_diameter3}
-			\caption{Snapshot, June 2nd}
+			\caption{June 2nd 2018}
 			\label{daily_diameter3}
 		\end{subfigure}
 		
@@ -282,34 +295,34 @@
 	\end{equation}
 	where $\sigma_st$ is the total number of shortest paths from node $s$ and node $t$ and $\sigma_{st}(v)$ is the number of paths that pass through $v$. In order to have $g(v) \in [0, 1]$ it is necessary to normalize the values by dividing (for undirected graphs) by $(N-1)(N-2)/2$ where $N$ is the total number of nodes.
 
-	\begin{figure}
+	\begin{figure}[htbp]
 		\centering
-		\begin{subfigure}{0.45\textwidth}
+		\begin{subfigure}{0.6\textwidth}
 			\centering
 			\includegraphics[width=\linewidth]{daily_betweenness_centrality0}
 			\caption{Snapshot, May 16th}
 			\label{daily_beetwenness0}
 		\end{subfigure}
-		\begin{subfigure}{0.45\textwidth}
+		\begin{subfigure}{0.6\textwidth}
 			\centering
 			\includegraphics[width=\linewidth]{daily_betweenness_centrality1}
 			\caption{Snapshot, May 21th}
 			\label{daily_betweenness1}
 		\end{subfigure}
-		\begin{subfigure}{0.45\textwidth}
+		\begin{subfigure}{0.6\textwidth}
 			\centering
 			\includegraphics[width=\linewidth]{daily_betweenness_centrality2}
 			\caption{Snapshot, May 26th}
 			\label{daily_betweenness2}
 		\end{subfigure}
-		\begin{subfigure}{0.45\textwidth}
+		\begin{subfigure}{0.6\textwidth}
 			\centering
 			\includegraphics[width=\linewidth]{daily_betweenness_centrality3}
 			\caption{Snapshot, June 2nd}
 			\label{daily_betweenness3}
 		\end{subfigure}
 		
-		\caption{Betweenness centrality}
+		\caption{Betweenness centrality of top five nodes for each day observed. Each units on the horizontal axis  corresponds to a snapshot taken at 10 minutes interval. The legend refers to the nodes identifier.}
 		\label{daily_betweenness}
 	\end{figure}	
 	
@@ -328,7 +341,7 @@
 	\begin{figure}[ht!]
 		\centering
 		\includegraphics[width=\linewidth]{monthly_betweenness_centrality}
-		\caption{Betweenness Centrality (Monthly). Every unit on the horizontal axis corresponds to a snapshot taken at 24 hours intervals. The legend refers to each node identifier.}
+		\caption{Betweenness Centrality (Monthly). Every unit on the horizontal axis corresponds to a snapshot taken at 24 hours intervals. The legend refers to the nodes identifier.}
 		\label{monthly_betweenness_centrality}
 	\end{figure}		
 	
@@ -361,12 +374,12 @@
 	
 	\begin{figure}[h]
 		\centering
-		\begin{subfigure}{0.45\textwidth}
+		\begin{subfigure}{0.7\textwidth}
 			\centering
 			\includegraphics[width=\linewidth]{monthly_betweenness_centrality_attack}
 			\caption{Number of nodes needed to disconnect the network}
 		\end{subfigure}
-		\begin{subfigure}{0.45\textwidth}
+		\begin{subfigure}{0.7\textwidth}
 			\centering
 			\includegraphics[width=\linewidth]{monthly_betweenness_centrality_attack_percentage}
 			\caption{Percentage of nodes wrt graph size of current snapshot.}
@@ -495,21 +508,7 @@
 	\end{center}
 	The eccentricity and diameters value of the two models here are almost identical, with the Chung-Lu model performing slightly better than the BA-model which shows a shorter diameter but a higher average shortest path length.
 	
-	Another good metric for comparing different networks is the average clustering coefficient, which is a way to measure how close a node and its neighbors are to being a clique and it's defined for undirected graph for every node $i$ of the graph as $$C_i = \frac{\lambda_G(v)}{\tau_G(v)}$$ where $\lambda_G(v)$ is the number of subgraphs of the graph with 3 vertices (one of which must be $v$) and 3 edges, and $\tau_G(v)$ is the number of triples, i.e. the number of subgraphs with 3 vertices and 2 edges, in which $v$ is incident to both the edges. The table below shows the results for the real network, the network generated through Chung-Lu algorithm and the BA model.
-	\begin{center}
-		\begin{tabulary}{0.75\linewidth}{| C | C |}
-			\hline
-			& Average Clustering Coefficient \\ \hline
-			Real World & 0.20591 \\ \hline
-			Chung-Lu model & 0.3368 \\ \hline
-			BA-model & 0.03322 \\
-			\hline
-		\end{tabulary}
-	\end{center}
-
-	Here the differences between the two models are more pronounced. While the Chung-Lu model shows an average clustering coefficient in line with the real case scenario, the BA-model lacks on catching properly the aspect of centralized hubs which are a fundamental characteristic of the Lightning Network. Furthermore, this aspect is also reflected by degree distribution in relation to the betweenness centrality that we already seen in Section \ref{sec:betweenness}. Figure \ref{betweenness_centrality_degree_models} shows degree betweenness centrality distributions of two random generated graphs both in linear and semilogarithmic scale. What emerges is that the betweenness score from BA-model is quite lower than the Chung-Lu and real network, and this was kinda expected given the that the average clustering coefficient has been shown to be low, suggesting that nodes in BA do not model the central hubs as well as in Chung-Lu.
-	
-	\begin{figure}[]
+		\begin{figure}[htbp]
 		\centering
 		\begin{subfigure}{0.49\textwidth}
 			\centering
@@ -521,7 +520,7 @@
 			\includegraphics[width=\linewidth]{scatter_plot_betweenness_centrality_chung_lu_semilog}
 			\caption{Chung-Lu model (semilog)}
 		\end{subfigure}
-	
+		
 		\begin{subfigure}{0.49\textwidth}
 			\centering
 			\includegraphics[width=\linewidth]{scatter_plot_betweenness_centrality_barabasi}
@@ -535,6 +534,20 @@
 		\caption{Betweenness centrality degree distribution for BA and Chung-Lu generated networks.}
 		\label{betweenness_centrality_degree_models}
 	\end{figure}
+	
+	Another good metric for comparing different networks is the average clustering coefficient, which is a way to measure how close a node and its neighbors are to being a clique and it's defined for undirected graph for every node $i$ of the graph as $$C_i = \frac{\lambda_G(v)}{\tau_G(v)}$$ where $\lambda_G(v)$ is the number of subgraphs of the graph with 3 vertices (one of which must be $v$) and 3 edges, and $\tau_G(v)$ is the number of triples, i.e. the number of subgraphs with 3 vertices and 2 edges, in which $v$ is incident to both the edges. The table below shows the results for the real network, the network generated through Chung-Lu algorithm and the BA model.
+	\begin{center}
+		\begin{tabulary}{0.75\linewidth}{| C | C |}
+			\hline
+			& Average Clustering Coefficient \\ \hline
+			Real World & 0.20591 \\ \hline
+			Chung-Lu model & 0.3368 \\ \hline
+			BA-model & 0.03322 \\
+			\hline
+		\end{tabulary}
+	\end{center}
+
+	Here the differences between the two models are more pronounced. While the Chung-Lu model shows an average clustering coefficient in line with the real case scenario, the BA-model lacks on catching properly the aspect of centralized hubs which are a fundamental characteristic of the Lightning Network. Furthermore, this aspect is also reflected by degree distribution in relation to the betweenness centrality that we already seen in Section \ref{sec:betweenness}. Figure \ref{betweenness_centrality_degree_models} shows degree betweenness centrality distributions of two random generated graphs both in linear and semilogarithmic scale. What emerges is that the betweenness score from BA-model is quite lower than the Chung-Lu and real network, and this was kinda expected given the that the average clustering coefficient has been shown to be low, suggesting that nodes in BA do not model the central hubs as well as in Chung-Lu.
 	
 	As already stated in \cite{Watts1998}, random graphs clustering coefficients are usually smaller with respect to real network ones because of the inability to describe at best the inevitable unpredictability of some phenomena. Hence a deeper understanding of the probability distribution with the exact $\gamma$ value was necessary to obtain an equivalent model able to show the same behavior of the real network.
 	
@@ -553,7 +566,7 @@
 	\section{Assessing node dynamicity}
 	
 	
-	We introduce a formalism to describe the dynamic behavior of the network from nodes and edges points of view. The network evolution is described in a time interval defined as a set of integer $\{t_0, t_1, t_2 .... t_k \}$. Since the network was observed at fixed time interval  we can assume that for $\forall \: 0 < i \leq k,\: t_i-t_{i-1} = c$ and specifically in this work $c = 1$, hence we can refer to each time instant either by $t_i$ or its integer $i$ without loss of generality. For every time instant $t$, there is a graph $G_{t}= (V_t,E_t)$ where $V_t$ and $E_t$ represents the set of nodes and edges at time $t$ respectively. Nodes that constantly enter and leave the network are called \textit{churning nodes}. To characterize these two behaviors with respect to the time parameter we define two functions:
+	We introduce a formalism to describe the dynamic behavior of the network from nodes and edges points of view. The network evolution is described in a time interval defined as a set of integer $\{t_0, t_1, t_2 .... t_k \}$. Since the network was observed at fixed time interval  we can assume that for $\forall \: 0 < i \leq k,\: t_i-t_{i-1} = c$ and specifically in this work $c = 1$, hence we can refer to each time instant either by $t_i$ or its integer $i$ without loss of generality. For every time instant $t$, there is a graph $G_{t}= (V_t,E_t)$ where $V_t$ and $E_t$ represents the set of nodes and edges at time $t$ respectively. Nodes that constantly enter and leave the network are called \textit{churning nodes}. To characterize these two behaviors with respect to the time parameter we define two functions based on Bonomi's model present in \cite{Baldoni2010}:
 	\begin{definition}
 		Join function. $\lambda(t)$ is defined as a discrete time, deterministic function that returns the number of nodes that joined the network at time $t$, i.e. they opened a payment channel with \textit{at least} one node of the network.
 	\end{definition}
