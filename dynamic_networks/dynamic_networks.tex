@@ -43,18 +43,18 @@
 		
 		\item a relation \(E \subseteq V \times V \times L\) where \(L\) are domain-specific labels and can be used (or omitted) to enrich the description of the network.
 		
-		\item a time span *simbolo mancante* \( T \subseteq \mathbb{T}\) called \textit{lifespan} with \(\mathbb{T}\) representing the domain of time which usually coincides with the \(\mathbb{N}\) if the system is discrete, \(\mathbb{R}^+\) otherwise.
+		\item a time span \( \mathcal{T} \subseteq \mathbb{T}\) called \textit{lifespan} with \(\mathbb{T}\) representing the domain of time which usually coincides with the \(\mathbb{N}\) if the system is discrete, \(\mathbb{R}^+\) otherwise.
 		
-		\item a function \(\rho : E \times T \to \{0, 1\} \) called \textit{presence} to track the availability of an edge at a given time.
+		\item a function \(\rho : E \times \mathcal{T} \to \{0, 1\} \) called \textit{presence} to track the availability of an edge at a given time.
 		
-		\item a function \(\zeta : E \times T \to \mathbb{T}\) called latency function that indicates the time needed to cross an edge at a given date.
+		\item a function \(\zeta : E \times \mathcal{T} \to \mathbb{T}\) called latency function that indicates the time needed to cross an edge at a given date.
 	\end{itemize}
 
 	The model can also be enriched with two more functions that can capture the nodes dynamic behavior in a way similar to \(\rho\) and \(\zeta\).
 	\begin{itemize}
-		\item a function \(\psi : V \times T \to \{0, 1\}\) called \textit{node presence function}, expressing the availability of a node at a given time T.
+		\item a function \(\psi : V \times \mathcal{T} \to \{0, 1\}\) called \textit{node presence function}, expressing the availability of a node at a given time T.
 		
-		\item a function \(\phi : V \times T \to \mathbb{T}\) called 
+		\item a function \(\phi : V \times \mathcal{T} \to \mathbb{T}\) called 
 	\end{itemize}
 	
 	Inside the definition of a time varying graph we have the notion of \textit{underlying graph}, that is the graph \(G = (V, E)\) which is the backbone of the dynamic network. One important thing to notice is that a connected component G doesn't imply the connectivity of the TVG, in fact the TVG could be disconnected for every time instant of its lifespan.
@@ -84,11 +84,11 @@
 	\end{figure}
 	
 	\begin{itemize}
-		\item \textit{Edge-centric evolution}: every edges has associated a set of the union of all the dates in which an edge \(e\) is available. Such set is denoted by \(I(e)\) and every element of \(I\) is such that \(I(e) = \{t \in T | \rho(e,t) = 1\}\), that is, the elements of the set are of the kind \(I(e) = \{t_1, t_2, t_3 ... \}\) and since they express time intervals it is possible to subdivide them in two sets \(App(e)\) and \(Dis(e)\), \textit{appearance and disappearance}, where \(App(e) = \{t_n | t_n \in I(e), n = 2N + 1\}\) and \(Dis(e) = \{t_n | t_n \in I(e), n = 2N\}\), i.e. every \(t\) in an even position is a date of appearance while \(t\) in odd position are dates of disappearance.
+		\item \textit{Edge-centric evolution}: every edges has associated a set of the union of all the dates in which an edge \(e\) is available. Such set is denoted by \(I(e)\) and every element of \(I\) is such that \(I(e) = \{t \in \mathcal{T} | \rho(e,t) = 1\}\), that is, the elements of the set are of the kind \(I(e) = \{t_1, t_2, t_3 ... \}\) and since they express time intervals it is possible to subdivide them in two sets \(App(e)\) and \(Dis(e)\), \textit{appearance and disappearance}, where \(App(e) = \{t_n | t_n \in I(e), n = 2N + 1\}\) and \(Dis(e) = \{t_n | t_n \in I(e), n = 2N\}\), i.e. every \(t\) in an even position is a date of appearance while \(t\) in odd position are dates of disappearance.
 		
 		\item \textit{Vertex-centric evolution}: nodes spawn and de-spawn causes changes in the configuration of the neighbor for some nodes, and it is expressed through \textit{sequences of neighborhoods} \(N_{t_1}(v), N_{t_2}(v), N_{t_3}(v) ...\). This kind of configuration is not very common in the literature.
 		
-		\item \textit{Graph-centric evolution}: it is the situation in which graphs are subject to events (edges appearance and disappearance) that make their topology change. Each of this events happens in a \textit{characteristic date}, and these dates are sorted in chronological such that \(S_{T}(\overline{G}) = sort(\cup\{S_t(e) : e \in E\})\) with \( \overline{G}\) being a TVG. From a global point of view, it is possible to have a look at the evolution of the graph as a sequence of graph snapshot \(S_{\overline{G}} = G_1, G_2, G_3\) where \(G_i\) is a static snapshot of \(\overline{G}\) at time \(i\).
+		\item \textit{Graph-centric evolution}: it is the situation in which graphs are subject to events (edges appearance and disappearance) that make their topology change. Each of this events happens in a \textit{characteristic date}, and these dates are sorted in chronological such that \(S_{\mathcal{T}}(\mathcal{G}) = sort(\cup\{S_{\mathcal{T}}(e) : e \in E\})\) with \( \mathcal{G}\) being a TVG. From a global point of view, it is possible to have a look at the evolution of the graph as a sequence of graph snapshot \(S_{\mathcal{G}} = G_1, G_2, G_3\) where \(G_i\) is a static snapshot of \(\mathcal{G}\) at time \(i\).
 	\end{itemize}
 	
 	The time-varying graph framework also put emphasis on the different peculiarity of the different networks that can be modeled as a TVG by providing a classification method based on some particular properties. They are thirteen in total and are \textit{minimum reachability, all-nodes-reachability, connectivity over time, round connectivity, recurrent connectivity, recurrence of edges, time bounded recurrence of edges, periodicity of edges, constant connectivity, T-interval connectivity, eventual instant-connectivity, eventual instant-routability, complete graph of interaction}.

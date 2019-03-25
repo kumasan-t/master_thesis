@@ -218,13 +218,13 @@
 		\label{monthly_nodes}
 	\end{figure}
 	
-	Figure \ref{monthly_nodes} displays the trend of the churning nodes from May 15th to June 27th. Differently from what has been observed on the daily trends, here the overall variation at the end of the observation period is, as expected, more pronounced as the size of the network has seen a +13.73\% joining rate.
+	Figure \ref{monthly_nodes} displays the trend of the churning nodes from May 25th to June 27th. Differently from what has been observed on the daily trends, here the overall variation at the end of the observation period is, as expected, more pronounced as the size of the network has seen a +13.73\% joining rate.
 	
 	\begin{center}
 		\begin{tabulary}{\linewidth}{| L | C | C | C | C | C |}
 			\hline	
 			& Starting nodes & Final nodes  & Variation(\%) & Max num. of nodes & Min num. of nodes \\ \hline
-			May 15th - June 27th & 779 & 886 & +13.73\% & 886 & 682 \\ \hline
+			May 25th - June 27th & 779 & 886 & +13.73\% & 886 & 682 \\ \hline
 		\end{tabulary}
 	\end{center}
 	
@@ -242,7 +242,7 @@
 		\begin{tabulary}{\linewidth}{| L | C | C | C | C | C |}
 			\hline	
 			& Starting channels & Final channels  & Variation(\%) & Max num. of channels & Min num. of channels \\ \hline
-			May 15th - June 27th & 2420 & 2886 & +19.25\% & 2886 & 1910 \\ \hline
+			May 25th - June 27th & 2420 & 2886 & +19.25\% & 2886 & 1910 \\ \hline
 		\end{tabulary}
 	\end{center}
 	
@@ -261,7 +261,7 @@
 		\begin{tabulary}{\linewidth}{| L | C | C | C | C | C |}
 			\hline	
 			& Starting degree (avg.) & Final degree (avg.)  & Variation(\%) & Max avg.degree & Min avg. degree \\ \hline
-			May 15th - June 27th & 6.21 & 6.51 & +4.85\% & 6.56 & 5.60 \\ \hline
+			May 25th - June 27th & 6.21 & 6.51 & +4.85\% & 6.56 & 5.60 \\ \hline
 		\end{tabulary}
 	\end{center}
 	
@@ -345,7 +345,7 @@
 		\label{monthly_betweenness_centrality}
 	\end{figure}		
 	
-	For example it has been noted that, on average, the total number of neighbors of these five nodes is 486.125, accounting for 62,7\% of the overall size of network. Such a high centrality score also suggests that a portion of neighbors may only have a single channel that keeps them connected to the rest of the network. To test this hypothesis we removed these five top nodes from the latest snapshot, and the result was that the graph got partitioned into 234 subgraphs: the largest subgraph among these contained 532 nodes (which is the Lightning Network itself) while the number of nodes of the remaining subgraphs is 242. Out of these 242 nodes, 228 were single channel nodes. However, given the nature of the network, disconnecting central nodes has no effect on the network connectivity as the giant connected component still remains connected.
+	For example it has been noted that, on average, the total number of neighbors of these five nodes is 486.125, accounting for 62,7\% of the overall size of network. Such a high centrality score also suggests that a portion of neighbors may only have a single channel that keeps them connected to the rest of the network. To test this hypothesis we removed these five top nodes from the latest snapshot, and the result was that the graph got partitioned into 234 subgraphs: the largest subgraph among these contained 532 nodes (which is the Lightning Network itself) while the number of nodes of the remaining subgraphs is 242. Out of these 242 nodes, 228 were single channel nodes.
 
 	It is then possible to investigate over some peculiar events like the one happened during snapshot 10 and 11, where node \textit{03e5f9} lost suddenly its centrality over 24 hours: 
 	from day 0 through day 10 the node was performing first among the others for betweenness centrality score. On day 11, the node dropped from 196 nodes to 37 as it closed channels with 159 peers; out of these 159 peers, 98 (12\% of the total nodes) of them were single channel nodes, effectively disconnecting them from the rest of the network. Unfortunately it's impossible to determine the causes that led to such a drop as it may be happened because of saturated channel balances, unresponsive nodes or internal errors on their server.
@@ -384,7 +384,7 @@
 			\includegraphics[width=\linewidth]{monthly_betweenness_centrality_attack_percentage}
 			\caption{Percentage of nodes wrt graph size of current snapshot.}
 		\end{subfigure}
-		\caption{Number of iterations for each snapshot needed to disconnect every node of the network.}
+		\caption{Number of iterations for each snapshot needed to disconnect every node of the network. Every unit on the horizontal axis corresponds to a snapshot taken at 24 hours intervals.}
 		\label{betweenness_attack}
 	\end{figure}
 	
@@ -397,7 +397,7 @@
 	\begin{figure}
 		\centering
 		\includegraphics[width=\linewidth]{monthly_completeness}
-		\caption{Density of the graphs. Density is calculated as $\frac{m}{n(n-1)}$}
+		\caption{Density of the graphs. Density is calculated as $\frac{m}{n(n-1)}$. Every unit on the horizontal axis corresponds to a snapshot taken at 24 hours intervals.}
 		\label{monthly_completeness}
 	\end{figure}
 	
@@ -419,13 +419,13 @@
 	
 	\begin{figure}[ht!]
 		\includegraphics[width=\linewidth]{k_connectivity_average_size}\\
-		\caption{Average size for each components for every snapshot taken from May 15th to June 27th}
+		\caption{Average size for each components for every snapshot taken from May 25th to June 27th.}
 		\label{monthly_connectivity_average}
 	\end{figure}
 	
 	\begin{figure}
 		\includegraphics[width=\linewidth]{k_connectivity_max_size}
-		\caption{Highest connectivity value for each snapshot.}
+		\caption{Highest connectivity value for each snapshot. Every unit on the horizontal axis corresponds to a snapshot taken at 24 hours intervals.}
 		\label{monthly_connectivity_max_size}
 	\end{figure}
 	
@@ -442,7 +442,7 @@
 	
 	\begin{figure}
 		\includegraphics[width=\linewidth]{k_connectivity_beetwenness}
-		\caption{Blue bars show the size of the maximum k-connected subgraph, orange bars show how many nodes selected among the top betweenness centrality nodes belong to the most connected component.}
+		\caption{Blue bars show the size of the maximum k-connected subgraph, orange bars show how many nodes selected among the top betweenness centrality nodes belong to the most connected component. Every unit on the horizontal axis corresponds to a snapshot taken at 24 hours intervals.}
 		\label{monthyl_k_connectivity_betweenness}
 	\end{figure}
 	
@@ -499,7 +499,7 @@
 	\begin{center}
 		\begin{tabulary}{\linewidth}{| C | C | C | C | C |}
 			\hline
-			& Radius & Diameter & Eccentricity & Shortest Path \\ \hline
+			& Radius & Diameter & Eccentricity & Avg. Shortest Path \\ \hline
 			Real World & 4.0 & 7.656 & 5.50 & 3.098 \\ \hline
 			Chung-Lu model & 3.48 & 6.54 &  4.778 &  2.719 \\ \hline
 			BA-model & 3.87 & 6 & 4.9188 & 3.487 \\ 
@@ -613,9 +613,19 @@
 	The size has been found to be $N_{static} = 503$ nodes and Figure \ref{percentage_static_nodes} shows the fraction of nodes that are stable with respect to the total number of nodes for each graph $G_t$ but results may be skewed by two particular event as observed in Figure \ref{churn}, where we can first appreciate a severe drop in $\mu(t_{11})$, and that has already been addressed in Section \ref{sec:betweenness} where we commented on the behavior of the most central node shutting down 159 channels, and second, in $\lambda(t_{26})$, where 167 new nodes joined the network; the unexpected churn can be explained by a real fact that happened during the observation period where a user tried and succeeded to become the most important node per capacity score in the main-net environment in July 2018\footnote{https://medium.com/andreas-tries-blockchain/bitcoin-lightning-network-1-can-i-compile-and-run-a-node-cd3138c68c15}, so it is plausible that he performed some test over the testing environment before approaching the real network.
 	
 	\begin{figure}[h]
-		\includegraphics[width=\linewidth]{edge_churn_plot}
-		\caption{Edges join and leave variation.}
-		\label{fig:edge_churn}
+		\centering
+		\begin{subfigure}{0.7 \linewidth}
+			\centering
+			\includegraphics[width=\linewidth]{edge_churn_plot}
+			\caption{Edges variation with churning nodes.}
+		\end{subfigure}
+		\begin{subfigure}{0.7 \linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{edge_stable_churn_plot}
+		\caption{Edges variation without churning nodes.}
+	\end{subfigure}
+	\caption{Edges join and leave variation in both scenarios where churning nodes are included and excluded from each snapshots.}
+	\label{fig:edge_churn}
 	\end{figure}
 
 	\begin{figure}[t]
@@ -626,7 +636,7 @@
 	
 	\section{Assessing edge dynamicity}
 	
-	As more and more nodes join and leave the network, the channel structures changes accordingly (Figure \ref{fig:edge_churn}) with new channels being opened and closed between nodes. The network is characterized by a stable edge component that accounts for $E_{static} = 1202$ nodes and Figure \ref{fig:edge_stable_ratio} shows that, on average,  only 52.55\% of the edges of each snapshot are going to stay through all the observation period.	To better capture the dynamic behavior of the network, we introduce a formalism that takes into account the edge variability of a graph with respect to time. This framework is known as TVG or Time Varying Graph, and it is a unified model which is the integration of various existing models and concepts proposed in the literature for dynamic graphs. \\
+	As more and more nodes join and leave the network, the channel structures changes accordingly and we can observe from Figure \ref{fig:edge_churn} that dynamic nodes introduce the most variation when it comes to edges (which is normal as every nodes that connects (disconencts) must open (close) at least one channel). The network is characterized by a stable edge component that accounts for $E_{static} = 1202$ nodes and Figure \ref{fig:edge_stable_ratio} shows that, on average,  only 52.55\% of the edges of each snapshot are going to stay through all the observation period.	To better capture the dynamic behavior of the network, we introduce a formalism that takes into account the edge variability of a graph with respect to time. This framework is known as TVG or Time Varying Graph, and it is a unified model which is the integration of various existing models and concepts proposed in the literature for dynamic graphs. \\
 	We define our TVG as a directed graph $\mathcal{G} = (V, E, \mathcal{T}, \rho, \mathcal{C}, A)$ where:
 	\begin{itemize}
 		\item $V$ and $E$ are the set of nodes of our network respectively. 
@@ -646,10 +656,14 @@
 		\textit{uncooperativePayment}(u,v,s). Defines a payment function. A payment can be performed at time instant $t_n$ if:
 		\begin{itemize}
 			
-			\item $\exists$ a path between node $u$ and $v$, denoted as $\pi =  \{c_{u,1} ... {c_{i,v}}\}$.
-			\item $\forall$ edges $e$ in $\pi$ that connects $u$ to $v$, $k_{tot} = \sum_{e} k_2(e)$ such that $\rho(e, t_{n+i}) = 1, \, \forall n < i < n + k_{tot}$, that is a path must remain open for the duration of the payment.
+			\item $\exists$ a path between node $u$ and $v$, denoted as $\pi =  \{c_{u,1}, c_{2,3} ... {c_{m,v}}\}$.
+			
+			\item $l = |\pi|$ is the number of channels that need to be traversed from $u$ to reach $v$, $\forall \, e_i$ s.t. $e_i$ is the i-th edge to be traversed, it must hold that $\rho(e_i, t_d) = 1, \, \forall \, n < d < n + k$ where $k = \sum_{j = i}^{l}k_2(e_j)$. That means that an edge must remain open in a decrementing timelock fashion for the duration of the payment.
+			
 			\item $\forall$ edges $e$ in $\pi$ that connects $u$ to $v$, $k_1(e) >= s$, i.e. an edge carries enough funds to allow the transfer of money.
-			\item For every payment operation $\pi_i$ that is taking place in any instant between $[t_n, t_{n + k_{tot}})$ it must hold that $\pi \cap \pi_i = \emptyset$, meaning that there can't be two or more payments occurring on any edges that belong to $\pi$.
+			
+			\item For every payment operation $\pi_i$ that is taking place in any instant between $[t_n, t_{n + k_{tot}})$ where $k_{tot} = \sum_{j = 0}^{l} k_2(e_j)$, it must hold that $\pi \cap \pi_i = \emptyset$, meaning that there can't be two or more payments occurring on any edges that belong to $\pi$.
+			
 			\item at the end of the payment, $\forall$ edges $e_{ij}$ in $\pi$ that connects $u$ to $v$ it must hold that $cap_{i,j} = k_1(e_{i,j}) + k_1(e_{j,i})$ and $k_1(e_{j,i}) = cap_{i,j} - (k_1(e_{i,j}) - s)$.
 		\end{itemize}
 	\end{definition}
